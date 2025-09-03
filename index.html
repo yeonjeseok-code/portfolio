@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>연제석 · 기획 포트폴리오</title>
+  <style>
+    :root {
+      --bg: #f6f9ff;
+      --bg-soft: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #2f7cff;
+      --accent-2: #79b0ff;
+      --card: #ffffff;
+      --border: #e6eefc;
+      --radius: 22px;
+      --shadow: 0 12px 36px rgba(25,60,120,.12);
+    }
+    *{box-sizing:border-box}
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body{
+      margin:0; font-family:"Noto Sans KR",sans-serif; color:var(--text);
+      background:
+        radial-gradient(1200px 900px at 8% 8%, rgba(47,124,255,.10), transparent 60%),
+        radial-gradient(1000px 700px at 90% 20%, rgba(121,176,255,.12), transparent 60%),
+        linear-gradient(180deg,var(--bg-soft),var(--bg));
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* 공통 레이아웃 */
+    .container{ width:min(1180px,92vw); margin:0 auto }
+    .section{ padding:clamp(56px,6vw,96px) 0; position:relative }
+    .section-title{ display:flex; align-items:baseline; gap:.6rem; margin-bottom:1.25rem }
+    .section-title h2{ margin:0; font-size:clamp(22px,3.2vw,34px); letter-spacing:-.2px }
+    .pill{ font-size:12px; color:var(--muted); border:1px solid var(--border); padding:4px 10px; border-radius:999px }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; word-break:keep-all; line-height:1.6 }
+
+    /* 스크롤 페이드 */
+    .page{min-height:100svh; scroll-snap-align:start; scroll-snap-stop:always}
+    .fade-section{ opacity:1; transform:translateY(0); transition:opacity .6s ease, transform .6s ease }
+
+    /* ===== HERO (요청 레이아웃 유지, 버튼 삭제, 워터마크 고정) ===== */
+    #hero-swap{ position:relative; height:200vh }
+    #hero-swap .pin{ position:sticky; top:0; height:100vh; isolation:isolate; overflow:hidden }
+    #hero-swap .backdrop{ position:absolute; inset:0; z-index:0; pointer-events:none }
+    #hero-swap .backdrop::after{
+      content:"PORTFOLIO"; position:absolute; left:50%; top:45%; transform:translate(-50%,-50%);
+      font-weight:900; font-size:clamp(80px,18vw,240px);
+      color:rgba(47,124,255,.06); -webkit-text-stroke:1.4px rgba(47,124,255,.35); text-shadow:0 10px 36px rgba(47,124,255,.18)
+    }
+    .layer{ position:absolute; inset:0; display:grid; place-items:center; transition:opacity .35s ease, transform .35s ease; z-index:1 }
+    .profile{ width:min(560px,86vw); padding:30px; text-align:center; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow) }
+    .avatar{ width:96px; height:96px; border-radius:50%; margin:0 auto 14px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); display:grid; place-items:center; font-weight:800; font-size:28px; color:#001018 }
+    .intro-wrap{ width:min(1000px,92vw); margin:0 auto; text-align:center }
+    .headline{ font:900 clamp(34px,7vw,80px)/1.06 sans-serif; background:linear-gradient(135deg,#111,rgba(47,124,255,.55)); -webkit-background-clip:text; color:transparent; margin:.35em 0 }
+
+    /* ===== PROJECTS: 가로 슬라이더 ===== */
+    #projects{ margin-top:-12px }
+    .slider-wrap{ position:relative }
+    .slider{ --gap:18px; display:grid; grid-auto-flow:column; align-items:stretch; gap:var(--gap); overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding-bottom:6px }
+    .slider::-webkit-scrollbar{ height:10px }
+    .slider::-webkit-scrollbar-thumb{ background:var(--border); border-radius:999px }
+    .slide{ scroll-snap-align:start; min-width:clamp(280px,40vw,420px) }
+    .project-card{ display:grid; grid-template-rows: 180px auto; text-decoration:none; color:inherit }
+    .project-media{ background:linear-gradient(135deg, rgba(47,124,255,.25), rgba(121,176,255,.18)); border-bottom:1px solid var(--border); position:relative }
+    .project-media .label{ position:absolute; inset:12px auto auto 12px; background:rgba(0,0,0,.35); border:1px solid var(--border); border-radius:999px; padding:3px 8px; font-size:12px; color:#e6f7ff }
+    .project-body{ padding:16px; display:grid; gap:10px }
+    .project-title{ margin:0; font-size:18px }
+    .project-desc{ margin:0; color:var(--muted); font-size:14px; line-height:1.5 }
+    .chip-row{ display:flex; gap:8px; flex-wrap:wrap }
+    .chip{ font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted) }
+    .slider-ctrl{ position:absolute; inset:50% 0 auto 0; transform:translateY(-50%); display:flex; justify-content:space-between; pointer-events:none }
+    .ctrl-btn{ pointer-events:auto; border:1px solid var(--border); background:var(--bg-soft); width:44px; height:44px; border-radius:50%; display:grid; place-items:center; font-weight:800; box-shadow:var(--shadow) }
+
+    /* ===== RESUME / SKILLS ===== */
+    .resume-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(18px,3vw,28px) }
+    @media (max-width:900px){ .resume-grid{ grid-template-columns:1fr } }
+    .timeline{ display:grid; gap:14px }
+    .item{ padding:16px; display:grid; gap:6px }
+    .item h3{ margin:0; font-size:16px }
+    .item .meta{ font-size:13px; color:var(--muted) }
+    .skills{ display:grid; gap:14px }
+    .skill{ padding:14px }
+    .meter{ height:8px; background:#e9f0ff; border:1px solid var(--border); border-radius:999px; overflow:hidden }
+    .meter > i{ display:block; height:100%; width:var(--w,50%); background:linear-gradient(90deg, var(--accent), var(--accent-2)) }
+
+    /* ===== Tools / Templates ===== */
+    .grid-1{ display:grid; grid-template-columns:1fr }
+
+    footer{ padding:48px 0; color:var(--muted); text-align:center }
+    /* === Watermark fix (PORTFOLIO behind hero card) === */
+  #hero-swap .backdrop{position:absolute; inset:0; z-index:0; pointer-events:none}
+  #hero-swap .backdrop::after{
+    content:"PORTFOLIO"; position:absolute; left:50%; top:46%; transform:translate(-50%,-50%);
+    font-weight:900; letter-spacing:.08em; font-size:clamp(120px,20vw,260px);
+    color:transparent; -webkit-text-stroke:1.4px rgba(47,124,255,.32);
+    text-shadow:0 12px 36px rgba(47,124,255,.18); opacity:.9;
+  }
+</style>
+</head>
+<body>
+  <main id="pages">
+    <!-- 1) HERO -->
+    <header id="home" class="page fade-section">
+      <section id="hero-swap">
+        <div class="pin">
+          <div class="backdrop" aria-hidden="true"></div>
+          <!-- 프로필 카드 (깃허브/서울 제거, 태그라인 교체) -->
+          <div class="layer card">
+            <div class="profile">
+              <div class="avatar">JS</div>
+              <h1>연제석</h1>
+              <p>AI 기획자 · 콘텐츠 전략가</p>
+              <p><a href="mailto:jeseokii@naver.com">jeseokii@naver.com</a></p>
+              <div style="margin-top:12px; font-weight:700; color:#2a64c7">원활한 협업을 위해 끊임없이 고민하고 문제 해결을 즐기는 기획자</div>
+            </div>
+          </div>
+          <!-- INTRO 레이어 (히어로 스크롤 스왑 유지) -->
+          <div class="layer intro">
+            <div class="intro-wrap">
+              <div style="font:700 12px/1.2 sans-serif; letter-spacing:.18em; text-transform:uppercase; color:#6b7da4">INTRO</div>
+              <h2 class="headline">저는 AI 기획자입니다.</h2>
+              <p style="font:800 clamp(16px,2.6vw,28px)/1.25 sans-serif; color:#1b2a4a">제품부터 운영, 채용브랜딩까지 →</p>
+              <p style="margin-top:14px; color:#44506a; font-size:16px">
+                인공지능을 도구이자 파트너로 삼아 문제를 구조화하고, 팀과의 협업을 통해 빠르게 실행합니다.<br/>
+                데이터와 스토리의 균형으로 사용자 경험과 프로세스를 동시에 개선합니다.<br/>
+                또한 변화하는 환경 속에서 기획의 본질을 고민하며, 실험과 피드백을 통해 더 나은 방향을 탐구합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <!-- 2) PROJECTS -->
+    <section id="projects" class="section page fade-section" aria-label="프로젝트">
+      <div class="container">
+        <div class="section-title">
+          <h2>프로젝트</h2>
+          <span class="pill">좌·우로 슬라이드</span>
+        </div>
+        <div class="slider-wrap">
+          <div class="slider" id="slider" aria-label="프로젝트 슬라이더">
+            <!-- 외부 링크: 채용 브랜딩 콘텐츠 메이커 -->
+            <a class="slide card project-card" href="https://chatgpt.com/g/g-68a28f29f990819192479e1073f1f44c-caeyong-beuraending-kontenceu-meikeo" target="_blank" rel="noopener">
+              <div class="project-media"><span class="label">Tools</span></div>
+              <div class="project-body">
+                <h3 class="project-title">채용 브랜딩 콘텐츠 메이커</h3>
+                <p class="project-desc">채용 페이지/인터뷰/카드뉴스 등 콘텐츠를 빠르게 제작하도록 돕는 템플릿 기반 메이커.</p>
+                <div class="chip-row"><span class="chip">HR</span><span class="chip">콘텐츠 전략</span><span class="chip">템플릿</span></div>
+              </div>
+            </a>
+            <a class="slide card project-card" href="?p=sku">
+              <div class="project-media"><span class="label">클래스101</span></div>
+              <div class="project-body">
+                <h3 class="project-title">미술/디지털 드로잉 SKU 확장</h3>
+                <p class="project-desc">수강 니즈 리서치 → 커리큘럼 차별화(브러시·색감·스토리텔링) → 매출 상위/카테고리 1위.</p>
+                <div class="chip-row"><span class="chip">리서치</span><span class="chip">커리큘럼</span><span class="chip">론칭</span></div>
+              </div>
+            </a>
+            <a class="slide card project-card" href="?p=bts-cvr">
+              <div class="project-media"><span class="label">블루타이거</span></div>
+              <div class="project-body">
+                <h3 class="project-title">문의→결제 전환 고도화</h3>
+                <p class="project-desc">로드맵 컨설팅/패키지 기획 정교화로 객단가·매출 상승. 교육 컨설팅 3개월 매출 6천만+.</p>
+                <div class="chip-row"><span class="chip">컨설팅</span><span class="chip">프로세스</span><span class="chip">KPI</span></div>
+              </div>
+            </a>
+            <a class="slide card project-card" href="?p=process">
+              <div class="project-media"><span class="label">클래스101</span></div>
+              <div class="project-body">
+                <h3 class="project-title">클래스 제작 프로세스 개편</h3>
+                <p class="project-desc">핸드오프 가이드/체크리스트 정비로 일정 안정성 향상, 운영 리스크 감소.</p>
+                <div class="chip-row"><span class="chip">문서화</span><span class="chip">체크리스트</span></div>
+              </div>
+            </a>
+            <a class="slide card project-card" href="?p=kolus">
+              <div class="project-media"><span class="label">블루타이거</span></div>
+              <div class="project-body">
+                <h3 class="project-title">콜러스 플레이어 가이드</h3>
+                <p class="project-desc">영상 플레이어 도입 후 업로드 가이드 제작으로 운영 효율 향상.</p>
+                <div class="chip-row"><span class="chip">가이드</span><span class="chip">운영</span></div>
+              </div>
+            </a>
+          </div>
+          <div class="slider-ctrl" aria-hidden="true">
+            <button class="ctrl-btn" id="prev" aria-label="이전 프로젝트">◀</button>
+            <button class="ctrl-btn" id="next" aria-label="다음 프로젝트">▶</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) 경력 & 스킬 -->
+    <section id="about" class="section page fade-section" aria-label="경력 & 스킬">
+      <div class="container">
+        <div class="section-title"><h2>경력 & 스킬</h2><span class="pill">간단 요약</span></div>
+        <div class="resume-grid">
+          <div>
+            <div class="timeline">
+              <article class="card item">
+                <h3><b>블루타이거</b> · 기획팀 / <b>기획팀장 & 컨설팅 매니저</b> / PM</h3>
+                <div class="meta">2023.12 – 재직</div>
+                <p class="muted">로드맵 컨설팅 · 패키지 기획 · 카테고리 리서치<br>상세페이지·광고소재 검토 · 멘토 섭외·운영<br>전환율/객단가 증대 프로젝트 리딩</p>
+              </article>
+              <article class="card item">
+                <h3><b>클래스101 스튜디오</b> · 디지털 아트/아트 클래스 기획 PD(MD)</h3>
+                <div class="meta">2021.05 – 2022.06</div>
+                <p class="muted">강사 발굴·섭외 · 31개 클래스 제작<br>신규 카테고리 탭핑(북토크 등)<br>TOP30 다수 · 카테고리 매출 1위</p>
+              </article>
+            </div>
+          </div>
+          <aside>
+            <div class="skills">
+              <div class="card skill">
+                <strong>기획/문서화</strong>
+                <div class="meter" aria-label="기획 숙련도"><i style="--w:88%"></i></div>
+                <p class="muted" style="margin:.5rem 0 0">요구사항 정의, 정보구조 설계, 사용자 스토리</p>
+              </div>
+              <div class="card skill">
+                <strong>리서치/분석</strong>
+                <div class="meter" aria-label="리서치 숙련도"><i style="--w:80%"></i></div>
+                <p class="muted" style="margin:.5rem 0 0">벤치마킹, 사용자 인터뷰, 페르소나/저니</p>
+              </div>
+              <div class="card skill">
+                <strong>운영/자동화</strong>
+                <div class="meter" aria-label="운영 숙련도"><i style="--w:76%"></i></div>
+                <p class="muted" style="margin:.5rem 0 0">노션/구글워크스페이스, 간단한 스크립트 자동화</p>
+              </div>
+              <div class="card skill">
+                <strong>협업</strong>
+                <div class="meter" aria-label="협업 숙련도"><i style="--w:84%"></i></div>
+                <p class="muted" style="margin:.5rem 0 0">PM/디자이너/개발자 커뮤니케이션, 일정 관리</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) 도구/템플릿 링크 섹션 -->
+    <section id="tools" class="section page fade-section" aria-label="AI 도구/템플릿">
+      <div class="container">
+        <div class="section-title"><h2>AI 도구/템플릿</h2><span class="pill">실사용 리소스</span></div>
+        <div class="grid-1">
+          <a class="card tool-card" href="https://chatgpt.com/g/g-68a28f29f990819192479e1073f1f44c-caeyong-beuraending-kontenceu-meikeo" target="_blank" rel="noopener" style="display:flex; flex-direction:column; gap:8px; padding:18px;">
+            <div style="font-weight:700; font-size:18px">채용 브랜딩 콘텐츠 메이커</div>
+            <p class="muted" style="margin:0">채용 공고/핸드북/인터뷰 등의 콘텐츠를 빠르게 뽑아내는 템플릿 & 가이드.</p>
+            <span class="pill" style="width:max-content">바로 보기 ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) 상세 라우팅 섹션 -->
+    <section id="detail" class="section page" style="display:none" aria-label="프로젝트 상세">
+      <div class="container">
+        <a class="pill" href="./">← 목록으로</a>
+        <div class="card" id="detail-box" style="padding:22px; margin-top:14px"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="y"></span> Yeon Jeseok. Built for GitHub Pages.
+  </footer>
+
+  <script>
+    // 연도 자동 표기
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== Hero Swap 전환 (겹침 최소화, 버튼 없음) =====
+    (function(){
+      const sec=document.getElementById('hero-swap');
+      const pin=sec.querySelector('.pin');
+      const card=sec.querySelector('.layer.card');
+      const intro=sec.querySelector('.layer.intro');
+      function raf(){
+        const rect=sec.getBoundingClientRect();
+        const total=Math.max(sec.offsetHeight-pin.offsetHeight,1);
+        const scrolled=Math.min(Math.max(-rect.top,0), total);
+        const t=scrolled/total; // 0~1
+        const ease=1-(1-t)*(1-t);
+        // 카드→인트로 전환(30% 이후부터)
+        const t2=Math.max(0, Math.min(1, (ease-0.30)/0.70));
+        card.style.opacity=(1+t2*-1).toFixed(3);
+        card.style.transform=`translateY(${t2*16}px) scale(${1-t2*0.02})`;
+        intro.style.opacity=t2.toFixed(3);
+        intro.style.transform=`translateY(${(1-t2)*10}px)`;
+      }
+      ['scroll','resize','load'].forEach(ev=>addEventListener(ev,raf,{passive:true}));
+      raf();
+    })();
+
+    // ===== 프로젝트 슬라이더 =====
+    (function(){
+      const slider = document.getElementById('slider');
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      function getStep(){ const card = slider.querySelector('.slide'); const styles = getComputedStyle(slider); const gap = parseFloat(styles.getPropertyValue('--gap'))||16; return (card?.getBoundingClientRect().width||360)+gap }
+      if(prev && next){
+        prev.addEventListener('click', ()=> slider.scrollBy({ left: -getStep(), behavior:'smooth' }));
+        next.addEventListener('click', ()=> slider.scrollBy({ left: +getStep(), behavior:'smooth' }));
+      }
+      slider.setAttribute('tabindex','0');
+      slider.addEventListener('keydown', (e)=>{ if(e.key==='ArrowRight') slider.scrollBy({ left:+getStep(), behavior:'smooth'}); if(e.key==='ArrowLeft') slider.scrollBy({ left:-getStep(), behavior:'smooth'}); });
+      let startX=0, dx=0, touching=false;
+      slider.addEventListener('pointerdown', (e)=>{ touching=true; startX=e.clientX; slider.setPointerCapture(e.pointerId); });
+      slider.addEventListener('pointermove', (e)=>{ if(!touching) return; dx=e.clientX-startX; });
+      slider.addEventListener('pointerup', ()=>{ if(!touching) return; touching=false; if(Math.abs(dx)>50) slider.scrollBy({ left:-dx, behavior:'smooth' }); dx=0; });
+    })();
+
+    // ===== 페이드 보정 (최소 불투명도 0.6 유지) =====
+    (function(){
+      const fades=[...document.querySelectorAll('.fade-section')];
+      function tightenFade(){
+        const h=innerHeight;
+        fades.forEach(el=>{
+          if(el.id==='home'){ el.style.opacity=1; el.style.transform='translateY(0)'; return; }
+          const r=el.getBoundingClientRect();
+          if(r.top<h && r.bottom>0){
+            const center=r.top+r.height/2; const d=Math.abs(center-h/2); const n=Math.min(d/(h*0.65),1);
+            const fade=1-n; const base=0.6;
+            el.style.opacity=(base + fade*(1-base)).toFixed(3);
+            el.style.transform=`translateY(${n*6}px)`;
+          } else { el.style.opacity=1; el.style.transform='translateY(0)'; }
+        });
+      }
+      ['scroll','resize','load'].forEach(e=>addEventListener(e, tightenFade, {passive:true}));
+      tightenFade();
+    })();
+
+    // ===== 라우팅: ?p=slug 상세 =====
+    (function(){
+      const params=new URLSearchParams(location.search); const slug=params.get('p'); if(!slug) return;
+      // 목록 섹션 숨기고 상세만 표시
+      document.getElementById('home').style.display='none';
+      document.getElementById('projects').style.display='none';
+      document.getElementById('about').style.display='none';
+      document.getElementById('tools').style.display='none';
+      const detail=document.getElementById('detail'); detail.style.display='block';
+      const box=document.getElementById('detail-box');
+      const blocks={
+        sku:`<h2>미술/디지털 드로잉 SKU 확장</h2>
+            <p class='muted'><b>회사</b> 클래스101 | <b>성과</b> TOP30 8개, 카테고리 1위</p>
+            <h4>문제정의</h4><p>수요 대비 공급 미스매치로 신규 유입·매출 성장 정체</p>
+            <h4>접근</h4><ul><li>니즈 리서치(검색/후기/커뮤니티)</li><li>커리큘럼 차별화(브러시·색감·스토리텔링)</li><li>런칭 캘린더/크로스셀</li></ul>
+            <h4>결과</h4><p>상위 노출 확대, 매출 상위권 안착</p>`,
+        'bts-cvr':`<h2>문의→결제 전환 고도화</h2>
+            <p class='muted'><b>회사</b> 블루타이거 | <b>성과</b> 전환율 ≥25%p, 3개월 6천만+ 매출</p>
+            <h4>문제정의</h4><p>문의 이후 결제까지 이탈 구간 다수</p>
+            <h4>접근</h4><ul><li>로드맵/패키지 정의 고도화</li><li>세일즈 스크립트·상세페이지 정합성</li><li>리드 스코어링/후속 액션 템플릿</li></ul>
+            <h4>결과</h4><p>객단가·CVR 상승, 파이프라인 안정화</p>`,
+        process:`<h2>클래스 제작 프로세스 개편</h2>
+            <p class='muted'><b>회사</b> 클래스101 | <b>성과</b> 일정 안정성 향상, 리스크 감소</p>
+            <h4>문제정의</h4><p>부서 간 핸드오프 불명확 → 일정 지연</p>
+            <h4>접근</h4><ul><li>체크리스트/가이드 재정비</li><li>역할·품질 기준 명확화</li><li>커뮤니케이션 캘린더</li></ul>
+            <h4>결과</h4><p>지연·재작업 감소, 품질 표준화</p>`,
+        kolus:`<h2>콜러스 플레이어 가이드</h2>
+            <p class='muted'><b>회사</b> 블루타이거 | <b>성과</b> 업로드/QA 효율 향상</p>
+            <h4>문제정의</h4><p>플레이어 전환에 따른 운영 혼선</p>
+            <h4>접근</h4><ul><li>업로드 가이드/체크리스트</li><li>FAQ/트러블슈팅 문서화</li></ul>
+            <h4>결과</h4><p>운영 안정화/교육비용 절감</p>`
+      };
+      box.innerHTML = blocks[slug] || '<h2>프로젝트를 찾을 수 없습니다</h2>';
+      document.title = '프로젝트 · ' + (slug || '상세');
+    })();
+  </script>
+</body>
+</html>
