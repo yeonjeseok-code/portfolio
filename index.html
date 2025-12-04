@@ -17,7 +17,7 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* NAV (히어로 위에 떠있는 느낌) */
+    /* NAV */
     .top-nav {
       position: fixed;
       top: 0;
@@ -69,7 +69,7 @@
     }
     .nav-links a:hover::after { width: 100%; }
 
-    /* FULL HERO */
+    /* HERO */
     header.hero {
       position: relative;
       width: 100vw;
@@ -82,9 +82,7 @@
       color: #ffffff;
       padding: 0 20px;
       background-image:
-        /* 어두운 오버레이 */
         linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
-        /* 여기 두 번째 레이어를 나중에 이미지로 교체하면 됨 */
         linear-gradient(135deg, #00d0e0, #2f7cff, #0b2f6a);
       background-size: cover;
       background-position: center;
@@ -177,7 +175,7 @@
       100% { transform: translateY(22px); opacity: 0; }
     }
 
-    /* COMMON WRAPPER */
+    /* WRAPPER */
     .wrapper {
       max-width: 1040px;
       margin: 0 auto;
@@ -185,9 +183,7 @@
     }
 
     /* SECTION TITLE */
-    section {
-      margin-bottom: 60px;
-    }
+    section { margin-bottom: 60px; }
     .section-title {
       display: flex;
       align-items: center;
@@ -210,7 +206,7 @@
       margin-bottom: 22px;
     }
 
-    /* INTRO FULLSCREEN (두 번째 화면) */
+    /* INTRO FULLSCREEN */
     .intro-full {
       min-height: 100vh;
       display: flex;
@@ -254,7 +250,7 @@
       gap: 8px;
     }
     .intro-chip {
-      padding: 9px 13px;
+      padding: 10px 14px;
       border-radius: 999px;
       background: #f0fbff;
       border: 1px solid #a3ecff;
@@ -262,11 +258,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      transition: background 0.25s ease, transform 0.25s ease,
+        box-shadow 0.25s ease, opacity 0.2s ease;
     }
-    .intro-chip span.label {
-      font-weight: 500;
-    }
+    .intro-chip span.label { font-weight: 500; }
     .intro-chip span.dot {
       width: 7px;
       height: 7px;
@@ -276,25 +271,38 @@
     .intro-chip.active {
       background: #2f7cff;
       color: #ffffff;
-      box-shadow: 0 10px 30px rgba(34, 64, 150, 0.35);
+      box-shadow: 0 10px 30px rgba(34,64,150,0.35);
       transform: translateY(-2px);
     }
-    .intro-chip.active span.dot {
-      background: #ffffff;
-    }
+    .intro-chip.active span.dot { background: #ffffff; }
 
-    /* METRICS SECTION */
+    /* METRICS FULLSCREEN */
+    .metrics-full {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
     .metrics-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr);
-      gap: 26px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 32px;
       align-items: center;
+    }
+    .metrics-list-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .metrics-list-desc {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 18px;
     }
     .metrics-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      font-size: 14px;
+      gap: 10px;
+      font-size: 15px;
     }
     .metrics-item {
       display: flex;
@@ -302,15 +310,16 @@
       gap: 10px;
       opacity: 0.7;
       cursor: pointer;
-      transition: opacity 0.15s ease;
+      transition: opacity 0.15s ease, transform 0.15s ease;
     }
     .metrics-item.active {
       opacity: 1;
       font-weight: 600;
+      transform: translateX(3px);
     }
     .metrics-radio {
-      width: 14px;
-      height: 14px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       border: 2px solid #c5c8d5;
       position: relative;
@@ -329,7 +338,7 @@
     .metrics-visual {
       position: relative;
       width: 100%;
-      padding-top: 55%;
+      padding-top: 45%;
       border-radius: 999px;
       overflow: hidden;
       background: radial-gradient(circle at 30% 20%, #e1f7ff, #f5f8ff 55%, #e6f0ff 85%);
@@ -339,9 +348,9 @@
       position: absolute;
       inset: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       gap: 6px;
     }
     .metrics-number {
@@ -349,17 +358,17 @@
       font-weight: 800;
     }
     .metrics-label {
-      font-size: 13px;
+      font-size: 14px;
       opacity: 0.8;
     }
     .metrics-sub {
       font-size: 11px;
-      opacity: 0.65;
+      opacity: 0.7;
       text-align: center;
       padding: 0 24px;
     }
 
-    /* PROJECTS FILTER + CARDS (간단 버전 유지) */
+    /* PROJECTS */
     .project-filter-row {
       display: flex;
       flex-wrap: wrap;
@@ -376,18 +385,17 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      transition: background 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .project-filter span.icon {
-      font-size: 14px;
-    }
+    .project-filter span.icon { font-size: 14px; }
     .project-filter.active,
     .project-filter:hover {
       background: #2f7cff;
       color: #ffffff;
       border-color: #2f7cff;
       transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(34, 64, 150, 0.25);
+      box-shadow: 0 10px 26px rgba(34,64,150,0.25);
     }
 
     .cards {
@@ -399,15 +407,16 @@
       background: #ffffff;
       border-radius: 18px;
       padding: 18px 16px 16px;
-      border: 1px solid rgba(19, 20, 26, 0.06);
-      box-shadow: 0 10px 28px rgba(8, 11, 27, 0.04);
+      border: 1px solid rgba(19,20,26,0.06);
+      box-shadow: 0 10px 28px rgba(8,11,27,0.04);
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
       cursor: default;
     }
-    .card:hover {
+    .card:hover,
+    .card.active {
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(8, 11, 27, 0.08);
-      border-color: rgba(47, 124, 255, 0.45);
+      box-shadow: 0 16px 40px rgba(8,11,27,0.08);
+      border-color: rgba(47,124,255,0.45);
     }
     .card-label {
       font-size: 11px;
@@ -429,32 +438,142 @@
       border-color: rgba(47,124,255,0.4);
     }
 
-    /* SKILLS (간단 카드 버전 유지) */
-    .skills-grid {
+    /* SKILLS (새 레이아웃) */
+    .skills-layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 30px;
+      align-items: center;
     }
-    .skills-block {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 18px 16px 16px;
-      border: 1px solid rgba(19, 20, 26, 0.06);
-      box-shadow: 0 8px 26px rgba(8, 11, 27, 0.03);
-    }
-    .skills-block h3 {
-      font-size: 15px;
-      font-weight: 600;
+    .skills-left h3 {
+      font-size: 22px;
+      font-weight: 700;
       margin-bottom: 8px;
-      color: #2f7cff;
     }
-    .skills-block ul {
-      list-style: none;
+    .skills-left p {
+      font-size: 14px;
+      opacity: 0.82;
+    }
+    .skills-card {
+      background: #ffffff;
+      border-radius: 30px;
+      padding: 18px 22px;
+      box-shadow: 0 20px 55px rgba(8,11,27,0.08);
+      border: 1px solid rgba(19,20,26,0.06);
+    }
+    .skills-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .skills-tab {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      border: 1px solid #d9ddea;
+      background: #f5f7ff;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .skills-tab.active {
+      background: #2f7cff;
+      color: #ffffff;
+      border-color: #2f7cff;
+    }
+    .skills-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skills-chip {
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      background: #f3f7ff;
+      color: #27314f;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .skills-chip.active {
+      background: #00d0e0;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* AI LAB PROFILE SECTION */
+    .ai-lab-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.1fr);
+      gap: 32px;
+      align-items: center;
+    }
+    .ai-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ai-card {
+      border-radius: 32px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 22px 60px rgba(8,11,27,0.18);
+      border: 1px solid rgba(19,20,26,0.08);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .ai-card-image {
+      position: relative;
+      width: 100%;
+      padding-top: 120%;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #e3f5ff, #f9f6ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7693;
       font-size: 13px;
     }
-    .skills-block li {
-      margin-bottom: 4px;
-      opacity: 0.9;
+    .ai-card-caption {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #111827;
+    }
+    .ai-card-caption span {
+      display: block;
+      font-size: 11px;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    .ai-lab-right h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .ai-lab-right p {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 16px;
+    }
+    .ai-lab-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .ai-lab-chip {
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      background: #f3f7ff;
+      color: #27314f;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .ai-lab-chip.active {
+      background: #2f7cff;
+      color: #ffffff;
+      transform: translateY(-2px);
     }
 
     /* CONTACT */
@@ -462,13 +581,13 @@
       background: #111320;
       border-radius: 18px;
       padding: 18px 18px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.1);
       display: flex;
       flex-wrap: wrap;
       gap: 12px 24px;
       font-size: 14px;
       color: #f7f7ff;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.45);
     }
     .contact-item span {
       font-weight: 600;
@@ -482,7 +601,7 @@
       text-align: right;
     }
 
-    /* REVEAL 애니메이션 */
+    /* REVEAL */
     .reveal {
       opacity: 0;
       transform: translateY(18px);
@@ -496,10 +615,13 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .intro-grid,
-      .metrics-grid {
+      .metrics-grid,
+      .skills-layout,
+      .ai-lab-layout {
         grid-template-columns: 1fr;
       }
-      .intro-full {
+      .intro-full,
+      .metrics-full {
         min-height: auto;
         padding-top: 32px;
       }
@@ -519,7 +641,7 @@
       <div class="nav-links">
         <a href="#intro">Intro</a>
         <a href="#projects">Projects</a>
-        <a href="#ai-projects">AI Lab</a>
+        <a href="#ai-lab">AI Lab</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -547,10 +669,10 @@
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <div class="wrapper">
 
-    <!-- INTRO FULLSCREEN -->
+    <!-- INTRO -->
     <section id="intro" class="intro-full reveal">
       <div class="intro-grid">
         <div class="intro-main-text">
@@ -589,30 +711,38 @@
     </section>
 
     <!-- METRICS -->
-    <section id="metrics" class="reveal">
-      <div class="section-title">
-        <div class="section-title-bar"></div>
-        <h2>만들어온 변화</h2>
-      </div>
+    <section id="metrics" class="metrics-full reveal">
       <div class="metrics-grid">
-        <div class="metrics-list">
-          <div class="metrics-item active" data-index="0">
-            <div class="metrics-radio"></div>
-            <div>전환율 개선 (약 25%p 상승)</div>
+        <div>
+          <div class="section-title">
+            <div class="section-title-bar"></div>
+            <h2>만들어온 변화</h2>
           </div>
-          <div class="metrics-item" data-index="1">
-            <div class="metrics-radio"></div>
-            <div>객단가 상승 (약 20% 상승)</div>
+          <div class="metrics-list-title">일의 구조를 바꾸면서 생긴 결과들</div>
+          <div class="metrics-list-desc">
+            프로젝트 별 정량·정성 지표를 정리해 본 결과입니다.
+            숫자는 실제 경험을 기반으로 한 대략적인 수치입니다.
           </div>
-          <div class="metrics-item" data-index="2">
-            <div class="metrics-radio"></div>
-            <div>반복 문서 작성 단계 축소 (3단계 감소)</div>
-          </div>
-          <div class="metrics-item" data-index="3">
-            <div class="metrics-radio"></div>
-            <div>구조가 더 분명해졌다는 정성 피드백</div>
+          <div class="metrics-list">
+            <div class="metrics-item active" data-index="0">
+              <div class="metrics-radio"></div>
+              <div>전환율 개선 (약 25%p 상승)</div>
+            </div>
+            <div class="metrics-item" data-index="1">
+              <div class="metrics-radio"></div>
+              <div>객단가 상승 (약 20% 상승)</div>
+            </div>
+            <div class="metrics-item" data-index="2">
+              <div class="metrics-radio"></div>
+              <div>반복 문서 작성 단계 축소 (3단계 감소)</div>
+            </div>
+            <div class="metrics-item" data-index="3">
+              <div class="metrics-radio"></div>
+              <div>구조가 더 분명해졌다는 정성 피드백</div>
+            </div>
           </div>
         </div>
+
         <div class="metrics-visual">
           <div class="metrics-inner">
             <div id="metricsNumber" class="metrics-number">25%</div>
@@ -636,6 +766,9 @@
       </p>
 
       <div class="project-filter-row">
+        <button class="project-filter" data-filter="ai">
+          <span class="icon">🤖</span>AI 프로젝트
+        </button>
         <button class="project-filter active" data-filter="all">
           <span class="icon">📂</span>전체
         </button>
@@ -645,12 +778,10 @@
         <button class="project-filter" data-filter="ops">
           <span class="icon">⚙️</span>운영·프로세스
         </button>
-        <button class="project-filter" id="goAiProjects">
-          <span class="icon">🤖</span>AI 프로젝트
-        </button>
       </div>
 
       <div class="cards" id="projectCards">
+        <!-- CONTENT / OPS -->
         <div class="card" data-type="content">
           <div class="card-label">Content · Structure</div>
           <h3>VOD 상품 구조 재설계</h3>
@@ -675,37 +806,24 @@
             기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
           </p>
         </div>
-      </div>
-    </section>
 
-    <!-- AI PROJECTS -->
-    <section id="ai-projects" class="reveal">
-      <div class="section-title">
-        <div class="section-title-bar"></div>
-        <h2>AI Lab · Templates</h2>
-      </div>
-      <p class="section-desc">
-        JD·인터뷰·역할 정의 같은 비정형 텍스트를 구조화해,
-        채용·조직 운영 프로세스의 병목을 줄이도록 설계한 워크플로우형 템플릿들입니다.
-      </p>
-
-      <div class="cards">
-        <div class="card card-ai">
+        <!-- AI TEMPLATES (이제 여기로 이동) -->
+        <div class="card card-ai" data-type="ai">
           <div class="card-label">Role Design</div>
           <h3>Role Design Generator</h3>
           <p>역할 정의 요소를 분해·구조화해 포지션 설명과 기대 역할을 일관되게 정리하는 템플릿.</p>
         </div>
-        <div class="card card-ai">
+        <div class="card card-ai" data-type="ai">
           <div class="card-label">JD Benchmark</div>
           <h3>JD Benchmark Engine</h3>
           <p>시장 JD를 비교·정리하고, 핵심 요구역량과 책임 범위를 추출하는 자동화 템플릿.</p>
         </div>
-        <div class="card card-ai">
+        <div class="card card-ai" data-type="ai">
           <div class="card-label">Interview</div>
           <h3>Interview Feedback Summarizer</h3>
           <p>여러 인터뷰어의 피드백을 요약·정리해 의사결정에 필요한 관찰 포인트만 남기는 템플릿.</p>
         </div>
-        <div class="card card-ai">
+        <div class="card card-ai" data-type="ai">
           <div class="card-label">Branding</div>
           <h3>Branding Content Engine</h3>
           <p>포지션·조직 컨텍스트를 기반으로 채용 브랜딩 카피와 콘텐츠 초안을 빠르게 생성하는 템플릿.</p>
@@ -713,39 +831,65 @@
       </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- SKILLS (새 레이아웃) -->
     <section id="skills" class="reveal">
       <div class="section-title">
         <div class="section-title-bar"></div>
         <h2>Skills</h2>
       </div>
-      <div class="skills-grid">
-        <div class="skills-block">
-          <h3>Hard Skills</h3>
-          <ul>
-            <li>문제 구조화 & 프로세스 설계</li>
-            <li>콘텐츠·서비스 기획 (교육/콘텐츠 도메인)</li>
-            <li>정량 지표·피드백 기반 개선 방향 도출</li>
-            <li>AI 기반 문서/워크플로우 자동화 설계</li>
-          </ul>
+      <div class="skills-layout">
+        <div class="skills-left">
+          <h3>일을 설계할 때 쓰는 도구들</h3>
+          <p>
+            문제를 구조화하고, 사람·프로세스·콘텐츠를 연결하기 위해 사용해 온
+            하드스킬·소프트스킬·툴들입니다.
+          </p>
         </div>
-        <div class="skills-block">
-          <h3>Soft Skills</h3>
-          <ul>
-            <li>이해관계자 커뮤니케이션 & 협업 조율</li>
-            <li>본질 문제 도출 및 실행 중심 태도</li>
-            <li>사용자·수강생 관점에서 구조 다시 보기</li>
-            <li>피드백을 반영해 문서·프로세스 고도화</li>
-          </ul>
+        <div class="skills-card">
+          <div class="skills-tabs">
+            <button class="skills-tab active" data-category="hard">Hard</button>
+            <button class="skills-tab" data-category="soft">Soft</button>
+            <button class="skills-tab" data-category="tools">Tools</button>
+          </div>
+          <div class="skills-chips" id="skillsChips">
+            <!-- JS가 채움 -->
+          </div>
         </div>
-        <div class="skills-block">
-          <h3>Tools</h3>
-          <ul>
-            <li>Notion, PowerPoint, Google Docs</li>
-            <li>Google Sheets(기본), Slack</li>
-            <li>Figma(기본, 레이아웃·협업 확인)</li>
-            <li>ChatGPT, Claude, NotebookLM, Wisk</li>
-          </ul>
+      </div>
+    </section>
+
+    <!-- AI LAB PROFILE / 마지막 섹션 -->
+    <section id="ai-lab" class="reveal">
+      <div class="section-title">
+        <div class="section-title-bar"></div>
+        <h2>Profile & Strengths</h2>
+      </div>
+      <div class="ai-lab-layout">
+        <div class="ai-card-wrapper">
+          <div class="ai-card">
+            <div class="ai-card-image">
+              여기에 AI 이미지 삽입 (기획자 / AI 기획자 컨셉)
+            </div>
+            <div class="ai-card-caption">
+              콘텐츠·프로세스 기획자, AI 기반 자동화 기획자
+              <span>교육·콘텐츠 서비스, 채용·HR 도메인에서 반복 작업을 구조화하고 자동화하는 역할에 강점이 있습니다.</span>
+            </div>
+          </div>
+        </div>
+        <div class="ai-lab-right">
+          <h3>일을 대하는 방식</h3>
+          <p>
+            구조를 먼저 보고, 그 안에 들어갈 콘텐츠·경험·메시지를 채워 넣는 방식을 선호합니다.
+            AI는 이 구조를 더 빠르게 실험하고 고도화하기 위한 파트너라고 생각합니다.
+          </p>
+          <div class="ai-lab-chips" id="aiLabChips">
+            <div class="ai-lab-chip">문제 구조화 & 재정의</div>
+            <div class="ai-lab-chip">워크플로우·템플릿 설계</div>
+            <div class="ai-lab-chip">채용·HR 관점의 메시지</div>
+            <div class="ai-lab-chip">콘텐츠·서비스 기획 경험</div>
+            <div class="ai-lab-chip">이해관계자 커뮤니케이션</div>
+            <div class="ai-lab-chip">정량·정성 피드백 정리</div>
+          </div>
         </div>
       </div>
     </section>
@@ -758,7 +902,10 @@
       </div>
       <div class="contact-box">
         <div class="contact-item">
-          <span>📧 Email</span> your.email@example.com
+          <span>📧 Email</span> jeseokii@naver.com
+        </div>
+        <div class="contact-item">
+          <span>📱 Phone</span> +82 01-3267-4228
         </div>
         <div class="contact-item">
           <span>🔗 GitHub</span> github.com/yeonjeseok-code
@@ -768,11 +915,10 @@
         © 2025 Yeon Je Seok · Portfolio
       </footer>
     </section>
-
   </div>
 
   <script>
-    // 1) 히어로 역할 텍스트 자동 전환
+    /* 1) HERO ROLE 텍스트 자동 */
     const roleEl = document.getElementById('heroRoleDynamic');
     const roles = [
       '콘텐츠·교육 서비스 기획',
@@ -782,7 +928,6 @@
       '문서·프로세스 자동화 설계'
     ];
     let roleIndex = 0;
-
     function updateRole() {
       roleEl.classList.remove('show');
       setTimeout(() => {
@@ -794,18 +939,17 @@
     updateRole();
     setInterval(updateRole, 2600);
 
-    // 2) 스크롤 시 히어로 페이드아웃
+    /* 2) HERO 스크롤 시 페이드아웃 */
     const hero = document.querySelector('header.hero');
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
-      const fadeStart = 0;
       const fadeEnd = window.innerHeight * 0.8;
-      const ratio = Math.min(Math.max((y - fadeStart) / (fadeEnd - fadeStart), 0), 1);
+      const ratio = Math.min(Math.max(y / fadeEnd, 0), 1);
       hero.style.opacity = String(1 - ratio);
       hero.style.transform = `translateY(-${ratio * 40}px)`;
     });
 
-    // 3) 섹션 페이드 인
+    /* 3) SECTION REVEAL */
     const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(
       (entries) => {
@@ -819,10 +963,11 @@
     );
     revealEls.forEach((el) => observer.observe(el));
 
-    // 4) INTRO 칩 자동 회전
+    /* 4) INTRO 칩 애니메이션 (세 개 순차 하이라이트 + 세트 변경) */
     const chip1 = document.getElementById('chip1');
     const chip2 = document.getElementById('chip2');
     const chip3 = document.getElementById('chip3');
+    const chips = [chip1, chip2, chip3];
 
     const chipGroups = [
       [
@@ -842,24 +987,31 @@
       ]
     ];
     let chipGroupIndex = 0;
+    let chipHighlightIndex = 0;
 
-    function updateChips() {
+    function stepChips() {
+      // 모든 칩 활성화 제거
+      chips.forEach(c => c.classList.remove('active'));
+
+      // 현재 그룹의 텍스트 세팅
       const group = chipGroups[chipGroupIndex];
-      [chip1, chip2, chip3].forEach((chip, idx) => {
-        chip.classList.remove('active');
-        chip.style.opacity = '0';
-        setTimeout(() => {
-          chip.querySelector('.label').textContent = group[idx];
-          chip.style.opacity = '1';
-          if (idx === 0) chip.classList.add('active');
-        }, 200);
+      chips.forEach((chip, idx) => {
+        chip.querySelector('.label').textContent = group[idx];
       });
-      chipGroupIndex = (chipGroupIndex + 1) % chipGroups.length;
-    }
-    updateChips();
-    setInterval(updateChips, 3200);
 
-    // 5) METRICS 자동 순환 + 클릭 시 변경
+      // 현재 하이라이트 인덱스 활성화
+      chips[chipHighlightIndex].classList.add('active');
+
+      chipHighlightIndex++;
+      if (chipHighlightIndex >= chips.length) {
+        chipHighlightIndex = 0;
+        chipGroupIndex = (chipGroupIndex + 1) % chipGroups.length;
+      }
+    }
+    stepChips();
+    setInterval(stepChips, 1400);
+
+    /* 5) METRICS 자동 순환 + 클릭 */
     const metricsItems = document.querySelectorAll('.metrics-item');
     const metricsNumber = document.getElementById('metricsNumber');
     const metricsLabel = document.getElementById('metricsLabel');
@@ -903,25 +1055,24 @@
       const data = metricsData[index];
 
       if (index === 3) {
-        // 정성 카드
         metricsNumber.textContent = data.main;
       } else if (animate) {
         const target = parseInt(data.main, 10);
-        const isPercent = data.unit === '%';
+        const unit = data.unit || '';
         const start = 0;
         const duration = 900;
         const startTime = performance.now();
         function frame(now) {
           const progress = Math.min((now - startTime) / duration, 1);
           const value = Math.round(start + (target - start) * progress);
-          metricsNumber.textContent = value + data.unit;
+          metricsNumber.textContent = value + unit;
           if (progress < 1 && index === metricsIndex) {
             requestAnimationFrame(frame);
           }
         }
         requestAnimationFrame(frame);
       } else {
-        metricsNumber.textContent = data.main + data.unit;
+        metricsNumber.textContent = data.main + (data.unit || '');
       }
 
       metricsLabel.textContent = data.label;
@@ -948,31 +1099,111 @@
     showMetrics(0, false);
     resetMetricsTimer();
 
-    // 6) 프로젝트 필터 + AI 이동
+    /* 6) PROJECT 필터 + 카드 자동 강조 */
     const filterButtons = document.querySelectorAll('.project-filter');
     const cards = document.querySelectorAll('#projectCards .card');
 
     filterButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        if (btn.id === 'goAiProjects') {
-          document.getElementById('ai-projects')
-            .scrollIntoView({ behavior: 'smooth', block: 'start' });
-          return;
-        }
-
         filterButtons.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
 
         const filter = btn.dataset.filter;
-        if (!filter || filter === 'all') {
-          cards.forEach((card) => card.style.display = '');
-        } else {
-          cards.forEach((card) => {
+        cards.forEach((card) => {
+          if (!filter || filter === 'all') {
+            card.style.display = '';
+          } else {
             card.style.display = card.dataset.type === filter ? '' : 'none';
-          });
-        }
+          }
+        });
       });
     });
+
+    // 카드 자동 강조 (보이는 카드들만)
+    let projectActiveIndex = 0;
+    function highlightNextCard() {
+      const visibleCards = Array.from(cards).filter(
+        (c) => c.style.display !== 'none'
+      );
+      if (visibleCards.length === 0) return;
+
+      visibleCards.forEach((c) => c.classList.remove('active'));
+      visibleCards[projectActiveIndex].classList.add('active');
+      projectActiveIndex = (projectActiveIndex + 1) % visibleCards.length;
+    }
+    highlightNextCard();
+    setInterval(highlightNextCard, 3200);
+
+    /* 7) SKILLS 데이터 & 애니메이션 */
+    const skillsChipsEl = document.getElementById('skillsChips');
+    const skillsTabs = document.querySelectorAll('.skills-tab');
+
+    const skillsData = {
+      hard: [
+        '문제 구조화 & 프로세스 설계',
+        '콘텐츠·서비스 기획 (교육/콘텐츠)',
+        '정량·정성 지표 기반 개선',
+        'AI 기반 문서/워크플로우 자동화'
+      ],
+      soft: [
+        '이해관계자 커뮤니케이션',
+        '사용자·지원자 관점에서 다시 보기',
+        '피드백을 반영한 고도화',
+        '실행 중심 태도'
+      ],
+      tools: [
+        'Notion, PowerPoint, Google Docs',
+        'Google Sheets(기본 분석)',
+        'Figma(레이아웃·협업 확인)',
+        'ChatGPT, Claude, NotebookLM, Wisk'
+      ]
+    };
+
+    let currentSkillsCategory = 'hard';
+    let skillsHighlightIndex = 0;
+
+    function renderSkills(category) {
+      currentSkillsCategory = category;
+      skillsChipsEl.innerHTML = '';
+      skillsData[category].forEach((label, idx) => {
+        const chip = document.createElement('div');
+        chip.className = 'skills-chip';
+        chip.textContent = label;
+        if (idx === skillsHighlightIndex) chip.classList.add('active');
+        skillsChipsEl.appendChild(chip);
+      });
+    }
+
+    skillsTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        skillsTabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        skillsHighlightIndex = 0;
+        renderSkills(tab.dataset.category);
+      });
+    });
+
+    function stepSkillsHighlight() {
+      const chips = skillsChipsEl.querySelectorAll('.skills-chip');
+      if (!chips.length) return;
+      chips.forEach((c) => c.classList.remove('active'));
+      chips[skillsHighlightIndex].classList.add('active');
+      skillsHighlightIndex = (skillsHighlightIndex + 1) % chips.length;
+    }
+
+    renderSkills('hard');
+    setInterval(stepSkillsHighlight, 1700);
+
+    /* 8) AI LAB 칩 자동 하이라이트 */
+    const aiLabChips = document.querySelectorAll('#aiLabChips .ai-lab-chip');
+    let aiLabIndex = 0;
+    function stepAiLab() {
+      aiLabChips.forEach((c) => c.classList.remove('active'));
+      aiLabChips[aiLabIndex].classList.add('active');
+      aiLabIndex = (aiLabIndex + 1) % aiLabChips.length;
+    }
+    stepAiLab();
+    setInterval(stepAiLab, 1800);
   </script>
 </body>
 </html>
