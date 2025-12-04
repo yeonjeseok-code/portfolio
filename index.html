@@ -17,7 +17,7 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    /* NAV (히어로 위에 떠있는 느낌) */
     .top-nav {
       position: fixed;
       top: 0;
@@ -31,7 +31,7 @@
       justify-content: space-between;
       z-index: 20;
       color: #ffffff;
-      mix-blend-mode: difference; /* 히어로 위에서 잘 보이도록 */
+      mix-blend-mode: difference;
       pointer-events: none;
     }
     .top-nav-inner {
@@ -82,14 +82,14 @@
       color: #ffffff;
       padding: 0 20px;
       background-image:
-        linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.55)),
-        linear-gradient(135deg, #00a0ff, #2f7cff, #5469ff);
+        /* 어두운 오버레이 */
+        linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
+        /* 여기 두 번째 레이어를 나중에 이미지로 교체하면 됨 */
+        linear-gradient(135deg, #00d0e0, #2f7cff, #0b2f6a);
       background-size: cover;
       background-position: center;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
-    /* 실제 영상/이미지로 바꾸고 싶으면 위 두 번째 gradient 대신
-       url('images/hero.jpg') 넣으면 됨 */
-
     .hero-inner {
       max-width: 760px;
       transform: translateY(-20px);
@@ -210,12 +210,18 @@
       margin-bottom: 22px;
     }
 
-    /* INTRO / ROLE SECTION (화해 2번 느낌) */
+    /* INTRO FULLSCREEN (두 번째 화면) */
+    .intro-full {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
     .intro-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 32px;
       align-items: center;
+      width: 100%;
     }
     .intro-main-text h3 {
       font-size: 28px;
@@ -226,41 +232,58 @@
       font-size: 15px;
       opacity: 0.9;
     }
-    .intro-infographic {
-      display: grid;
-      grid-template-columns: 1.1fr 1.2fr;
-      gap: 14px;
-      align-items: center;
+
+    .intro-infographic-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 18px 20px 18px;
+      border: 1px solid rgba(19, 20, 26, 0.06);
+      box-shadow: 0 16px 44px rgba(8, 11, 27, 0.08);
     }
-    .intro-chip-col {
+    .intro-infographic-title {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8b90a0;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .intro-infographic-chips {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
     .intro-chip {
-      padding: 10px 14px;
+      padding: 9px 13px;
       border-radius: 999px;
       background: #f0fbff;
       border: 1px solid #a3ecff;
       font-size: 13px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .intro-tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .intro-chip span.label {
+      font-weight: 500;
     }
-    .intro-tag-pill {
-      padding: 8px 10px;
-      border-radius: 999px;
+    .intro-chip span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2f7cff;
+    }
+    .intro-chip.active {
+      background: #2f7cff;
+      color: #ffffff;
+      box-shadow: 0 10px 30px rgba(34, 64, 150, 0.35);
+      transform: translateY(-2px);
+    }
+    .intro-chip.active span.dot {
       background: #ffffff;
-      border: 1px solid #e1e5f3;
-      font-size: 12px;
     }
 
-    /* METRICS SECTION (화해 3번 느낌) */
+    /* METRICS SECTION */
     .metrics-grid {
       display: grid;
       grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr);
@@ -332,9 +355,11 @@
     .metrics-sub {
       font-size: 11px;
       opacity: 0.65;
+      text-align: center;
+      padding: 0 24px;
     }
 
-    /* PROJECTS (화해 4번 느낌+AI 이동) */
+    /* PROJECTS FILTER + CARDS (간단 버전 유지) */
     .project-filter-row {
       display: flex;
       flex-wrap: wrap;
@@ -348,12 +373,21 @@
       border: 1px solid #d9ddea;
       background: #ffffff;
       cursor: pointer;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .project-filter.active {
+    .project-filter span.icon {
+      font-size: 14px;
+    }
+    .project-filter.active,
+    .project-filter:hover {
       background: #2f7cff;
       color: #ffffff;
       border-color: #2f7cff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(34, 64, 150, 0.25);
     }
 
     .cards {
@@ -390,13 +424,12 @@
     }
     .card p { font-size: 13px; opacity: 0.85; }
 
-    /* AI 카드 전용 스타일 */
     .card-ai {
       background: #f8f9ff;
       border-color: rgba(47,124,255,0.4);
     }
 
-    /* SKILLS & CONTACT (간단 유지) */
+    /* SKILLS (간단 카드 버전 유지) */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -424,6 +457,7 @@
       opacity: 0.9;
     }
 
+    /* CONTACT */
     .contact-box {
       background: #111320;
       border-radius: 18px;
@@ -448,7 +482,7 @@
       text-align: right;
     }
 
-    /* REVEAL */
+    /* REVEAL 애니메이션 */
     .reveal {
       opacity: 0;
       transform: translateY(18px);
@@ -460,13 +494,19 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .hero-main { font-size: 32px; }
-      .hero-sub { font-size: 14px; }
+    @media (max-width: 900px) {
       .intro-grid,
       .metrics-grid {
         grid-template-columns: 1fr;
       }
+      .intro-full {
+        min-height: auto;
+        padding-top: 32px;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero-main { font-size: 32px; }
+      .hero-sub { font-size: 14px; }
     }
   </style>
 </head>
@@ -485,7 +525,7 @@
     </div>
   </div>
 
-  <!-- FULL HERO -->
+  <!-- HERO -->
   <header class="hero" id="top">
     <div class="hero-inner">
       <div class="hero-kicker">AI-DRIVEN CONTENT & OPS</div>
@@ -510,14 +550,14 @@
   <!-- MAIN CONTENT -->
   <div class="wrapper">
 
-    <!-- INTRO / ROLE (화해 2번 스타일) -->
-    <section id="intro" class="reveal">
-      <div class="section-title">
-        <div class="section-title-bar"></div>
-        <h2>저는 이런 일들을 설계합니다</h2>
-      </div>
+    <!-- INTRO FULLSCREEN -->
+    <section id="intro" class="intro-full reveal">
       <div class="intro-grid">
         <div class="intro-main-text">
+          <div class="section-title" style="margin-bottom: 10px;">
+            <div class="section-title-bar"></div>
+            <h2>저는 이런 일들을 설계합니다</h2>
+          </div>
           <h3>콘텐츠와 프로세스를<br>같이 보는 기획자</h3>
           <p>
             단순히 ‘콘텐츠를 만드는 사람’이 아니라,<br>
@@ -527,62 +567,65 @@
             사용자·지원자·동료 모두에게 더 이해하기 쉬운 구조를 만드는 데 관심이 많습니다.
           </p>
         </div>
-        <div class="intro-infographic">
-          <div class="intro-chip-col">
-            <div class="intro-chip">콘텐츠 기획자 · 교육 서비스 기획</div>
-            <div class="intro-chip">AI 기반 문서·프로세스 자동화 기획</div>
-            <div class="intro-chip">People/HR 관점의 메시지 설계</div>
-          </div>
-          <div class="intro-tag-col">
-            <div class="intro-tag-row">
-              <div class="intro-tag-pill">VOD 상품 구조 설계</div>
-              <div class="intro-tag-pill">전환·퍼널 관점의 운영</div>
+
+        <div class="intro-infographic-card">
+          <div class="intro-infographic-title">FOCUS AREAS</div>
+          <div class="intro-infographic-chips">
+            <div class="intro-chip" id="chip1">
+              <span class="label">콘텐츠 기획자 · 교육 서비스 기획</span>
+              <span class="dot"></span>
             </div>
-            <div class="intro-tag-row">
-              <div class="intro-tag-pill">Role Design · JD 정리</div>
-              <div class="intro-tag-pill">Interview Feedback 요약</div>
+            <div class="intro-chip" id="chip2">
+              <span class="label">AI 기반 문서·프로세스 자동화 기획</span>
+              <span class="dot"></span>
             </div>
-            <div class="intro-tag-row">
-              <div class="intro-tag-pill">채용 브랜딩 카피·콘텐츠</div>
-              <div class="intro-tag-pill">팀 간 커뮤니케이션 구조화</div>
+            <div class="intro-chip" id="chip3">
+              <span class="label">People/HR 관점의 메시지 설계</span>
+              <span class="dot"></span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- METRICS (화해 3번 스타일) -->
+    <!-- METRICS -->
     <section id="metrics" class="reveal">
       <div class="section-title">
         <div class="section-title-bar"></div>
-        <h2>제가 만들어 본 변화들 (예시)</h2>
+        <h2>만들어온 변화</h2>
       </div>
       <div class="metrics-grid">
         <div class="metrics-list">
-          <div class="metrics-item active" data-target="25" data-label="전환율 개선" data-sub="랜딩·상품 구조 재설계 프로젝트 기준">
+          <div class="metrics-item active" data-index="0">
             <div class="metrics-radio"></div>
             <div>전환율 개선 (약 25%p 상승)</div>
           </div>
-          <div class="metrics-item" data-target="20" data-label="객단가 상승" data-sub="VOD 번들 구성·SKU 조정 프로젝트 기준">
+          <div class="metrics-item" data-index="1">
             <div class="metrics-radio"></div>
             <div>객단가 상승 (약 20% 상승)</div>
           </div>
-          <div class="metrics-item" data-target="3" data-label="반복 업무 단계 축소" data-sub="문서·프로세스 자동화 템플릿 기준 (평균 단계 수)">
+          <div class="metrics-item" data-index="2">
             <div class="metrics-radio"></div>
-            <div>반복 문서 작성 단계 축소</div>
+            <div>반복 문서 작성 단계 축소 (3단계 감소)</div>
+          </div>
+          <div class="metrics-item" data-index="3">
+            <div class="metrics-radio"></div>
+            <div>구조가 더 분명해졌다는 정성 피드백</div>
           </div>
         </div>
         <div class="metrics-visual">
           <div class="metrics-inner">
             <div id="metricsNumber" class="metrics-number">25%</div>
             <div id="metricsLabel" class="metrics-label">전환율 개선</div>
-            <div id="metricsSub" class="metrics-sub">랜딩·상품 구조 재설계 프로젝트 기준</div>
+            <div id="metricsSub" class="metrics-sub">
+              랜딩·상품 구조 재설계 프로젝트 기준
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS (필터 + AI 섹션 이동) -->
+    <!-- PROJECTS -->
     <section id="projects" class="reveal">
       <div class="section-title">
         <div class="section-title-bar"></div>
@@ -593,10 +636,18 @@
       </p>
 
       <div class="project-filter-row">
-        <button class="project-filter active" data-filter="all">전체</button>
-        <button class="project-filter" data-filter="content">콘텐츠·상품 기획</button>
-        <button class="project-filter" data-filter="ops">운영·프로세스</button>
-        <button class="project-filter" id="goAiProjects">AI 프로젝트 보기</button>
+        <button class="project-filter active" data-filter="all">
+          <span class="icon">📂</span>전체
+        </button>
+        <button class="project-filter" data-filter="content">
+          <span class="icon">📺</span>콘텐츠·상품
+        </button>
+        <button class="project-filter" data-filter="ops">
+          <span class="icon">⚙️</span>운영·프로세스
+        </button>
+        <button class="project-filter" id="goAiProjects">
+          <span class="icon">🤖</span>AI 프로젝트
+        </button>
       </div>
 
       <div class="cards" id="projectCards">
@@ -627,7 +678,7 @@
       </div>
     </section>
 
-    <!-- AI PROJECTS 섹션 -->
+    <!-- AI PROJECTS -->
     <section id="ai-projects" class="reveal">
       <div class="section-title">
         <div class="section-title-bar"></div>
@@ -743,7 +794,18 @@
     updateRole();
     setInterval(updateRole, 2600);
 
-    // 2) 섹션 페이드 인
+    // 2) 스크롤 시 히어로 페이드아웃
+    const hero = document.querySelector('header.hero');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      const fadeStart = 0;
+      const fadeEnd = window.innerHeight * 0.8;
+      const ratio = Math.min(Math.max((y - fadeStart) / (fadeEnd - fadeStart), 0), 1);
+      hero.style.opacity = String(1 - ratio);
+      hero.style.transform = `translateY(-${ratio * 40}px)`;
+    });
+
+    // 3) 섹션 페이드 인
     const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(
       (entries) => {
@@ -757,62 +819,159 @@
     );
     revealEls.forEach((el) => observer.observe(el));
 
-    // 3) Metrics 카운트업 & 텍스트 변경
+    // 4) INTRO 칩 자동 회전
+    const chip1 = document.getElementById('chip1');
+    const chip2 = document.getElementById('chip2');
+    const chip3 = document.getElementById('chip3');
+
+    const chipGroups = [
+      [
+        '콘텐츠 기획자 · 교육 서비스 기획',
+        'AI 기반 문서·프로세스 자동화 기획',
+        'People/HR 관점의 메시지 설계'
+      ],
+      [
+        'VOD 상품 구조 설계',
+        '전환·퍼널 관점의 운영',
+        'Role Design · JD 정리'
+      ],
+      [
+        'Interview Feedback 요약',
+        '채용 브랜딩 카피·콘텐츠',
+        '팀 간 커뮤니케이션 구조화'
+      ]
+    ];
+    let chipGroupIndex = 0;
+
+    function updateChips() {
+      const group = chipGroups[chipGroupIndex];
+      [chip1, chip2, chip3].forEach((chip, idx) => {
+        chip.classList.remove('active');
+        chip.style.opacity = '0';
+        setTimeout(() => {
+          chip.querySelector('.label').textContent = group[idx];
+          chip.style.opacity = '1';
+          if (idx === 0) chip.classList.add('active');
+        }, 200);
+      });
+      chipGroupIndex = (chipGroupIndex + 1) % chipGroups.length;
+    }
+    updateChips();
+    setInterval(updateChips, 3200);
+
+    // 5) METRICS 자동 순환 + 클릭 시 변경
     const metricsItems = document.querySelectorAll('.metrics-item');
     const metricsNumber = document.getElementById('metricsNumber');
     const metricsLabel = document.getElementById('metricsLabel');
     const metricsSub = document.getElementById('metricsSub');
 
-    function animateNumber(target) {
-      const isPercent = true;
-      const start = 0;
-      const duration = 900;
-      const startTime = performance.now();
-      function frame(now) {
-        const progress = Math.min((now - startTime) / duration, 1);
-        const value = Math.round(start + (target - start) * progress);
-        metricsNumber.textContent = value + '%';
-        if (progress < 1) requestAnimationFrame(frame);
+    const metricsData = [
+      {
+        label: '전환율 개선',
+        main: '25',
+        unit: '%',
+        sub: '랜딩·상품 구조 재설계 프로젝트 기준'
+      },
+      {
+        label: '객단가 상승',
+        main: '20',
+        unit: '%',
+        sub: 'VOD 번들 구성·SKU 조정 프로젝트 기준'
+      },
+      {
+        label: '반복 문서 작성 단계 축소',
+        main: '3',
+        unit: '단계',
+        sub: '문서·프로세스 자동화 템플릿 기준 (평균 7단계 → 4단계)'
+      },
+      {
+        label: '정성적 변화',
+        main: 'Clear',
+        unit: '',
+        sub: '“이해하기 쉬운 구조였다”는 인터뷰·슬랙 피드백 등 정성 응답 다수'
       }
-      requestAnimationFrame(frame);
+    ];
+
+    let metricsIndex = 0;
+    let metricsTimer;
+
+    function showMetrics(index, animate = true) {
+      metricsIndex = index;
+      metricsItems.forEach((item) => item.classList.remove('active'));
+      metricsItems[index].classList.add('active');
+
+      const data = metricsData[index];
+
+      if (index === 3) {
+        // 정성 카드
+        metricsNumber.textContent = data.main;
+      } else if (animate) {
+        const target = parseInt(data.main, 10);
+        const isPercent = data.unit === '%';
+        const start = 0;
+        const duration = 900;
+        const startTime = performance.now();
+        function frame(now) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const value = Math.round(start + (target - start) * progress);
+          metricsNumber.textContent = value + data.unit;
+          if (progress < 1 && index === metricsIndex) {
+            requestAnimationFrame(frame);
+          }
+        }
+        requestAnimationFrame(frame);
+      } else {
+        metricsNumber.textContent = data.main + data.unit;
+      }
+
+      metricsLabel.textContent = data.label;
+      metricsSub.textContent = data.sub;
     }
 
     metricsItems.forEach((item) => {
       item.addEventListener('click', () => {
-        metricsItems.forEach((i) => i.classList.remove('active'));
-        item.classList.add('active');
-        const target = parseInt(item.dataset.target, 10);
-        metricsLabel.textContent = item.dataset.label;
-        metricsSub.textContent = item.dataset.sub;
-        animateNumber(target);
+        const idx = parseInt(item.dataset.index, 10);
+        showMetrics(idx);
+        resetMetricsTimer();
       });
     });
 
-    // 4) 프로젝트 필터링
+    function nextMetrics() {
+      const nextIndex = (metricsIndex + 1) % metricsData.length;
+      showMetrics(nextIndex);
+    }
+    function resetMetricsTimer() {
+      if (metricsTimer) clearInterval(metricsTimer);
+      metricsTimer = setInterval(nextMetrics, 3500);
+    }
+
+    showMetrics(0, false);
+    resetMetricsTimer();
+
+    // 6) 프로젝트 필터 + AI 이동
     const filterButtons = document.querySelectorAll('.project-filter');
     const cards = document.querySelectorAll('#projectCards .card');
 
     filterButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
+        if (btn.id === 'goAiProjects') {
+          document.getElementById('ai-projects')
+            .scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+
         filterButtons.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
 
         const filter = btn.dataset.filter;
         if (!filter || filter === 'all') {
           cards.forEach((card) => card.style.display = '');
-        } else if (filter === 'content' || filter === 'ops') {
+        } else {
           cards.forEach((card) => {
             card.style.display = card.dataset.type === filter ? '' : 'none';
           });
         }
       });
-    });
-
-    // 5) AI 프로젝트 섹션으로 스크롤
-    const goAiBtn = document.getElementById('goAiProjects');
-    const aiSection = document.getElementById('ai-projects');
-    goAiBtn.addEventListener('click', () => {
-      aiSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   </script>
 </body>
