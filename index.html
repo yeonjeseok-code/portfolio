@@ -63,8 +63,6 @@
       list-style: none;
     }
 
-    /* 공통 레이아웃 */
-
     .page {
       min-height: 100vh;
       background: var(--bg-page);
@@ -77,6 +75,8 @@
       margin: 0 auto;
       padding: 0 24px;
     }
+
+    /* NAV */
 
     .top-nav {
       position: fixed;
@@ -176,6 +176,7 @@
                   radial-gradient(circle at 100% 0%, #7c3aed26 0, transparent 55%),
                   linear-gradient(145deg, var(--bg-hero-grad-from), var(--bg-hero-grad-to));
       color: #f9fafb;
+      will-change: opacity, transform;
     }
 
     .hero-inner {
@@ -187,7 +188,6 @@
       grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
       gap: 64px;
       align-items: center;
-      will-change: opacity, transform;
     }
 
     .hero-kicker {
@@ -603,7 +603,7 @@
       color: var(--text-muted);
     }
 
-    /* SKILLS – 중앙 슬라이더 */
+    /* SKILLS – 중앙 + 호버 설명 */
 
     .section-skills {
       background: radial-gradient(circle at 0 0, #e0edff 0, transparent 55%),
@@ -644,28 +644,28 @@
     }
 
     .skills-main-title {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
       margin-bottom: 12px;
       opacity: 0;
-      transform: translateX(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .skills-main-desc {
       font-size: 15px;
       color: var(--text-sub);
-      max-width: 600px;
+      max-width: 620px;
       margin: 0 auto;
       opacity: 0;
-      transform: translateX(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .skills-main-title.fade-in,
     .skills-main-desc.fade-in {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
 
     .skills-tag-list {
@@ -682,7 +682,8 @@
       background: #e5edff;
       color: #4b5563;
       border: 1px solid transparent;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+      cursor: default;
     }
 
     .skills-tag.active {
@@ -690,6 +691,7 @@
       color: #f9fafb;
       border-color: transparent;
       box-shadow: 0 15px 35px rgba(37, 99, 235, 0.45);
+      transform: translateY(-1px);
     }
 
     /* PROFILE & STRENGTHS */
@@ -832,7 +834,7 @@
       padding-top: 16px;
     }
 
-    /* SCROLL FADE-IN (기존 느낌 유지용) */
+    /* SCROLL FADE-IN */
 
     .fade-section {
       opacity: 0;
@@ -903,7 +905,7 @@
       }
 
       .skills-main-title {
-        font-size: 22px;
+        font-size: 20px;
       }
     }
   </style>
@@ -936,8 +938,8 @@
             <h1 class="hero-title">새로운 일의 구조를<br>다시 설계하는 사람</h1>
             <div class="hero-role">AI 기반 문서·워크플로우 자동화 기획자</div>
             <p class="hero-desc">
-              AI와 구조적 사고를 활용해 콘텐츠·운영·HR에서 반복되는 문서와 프로세스를 재정의하고,
-              조직 전체의 의사결정 속도와 메시지 일관성을 높이는 기획을 합니다.
+              AI와 구조적 사고를 활용해 콘텐츠·운영·HR에서 반복되는 문서와 프로세스를<br>
+              재정의하고, 조직 전체의 의사결정 속도와 메시지 일관성을 높이는 기획을 합니다.
             </p>
             <div class="hero-tags">
               <div class="tag-pill">
@@ -981,7 +983,7 @@
               <div class="hero-focus-item" data-hero-index="2">
                 <div class="hero-focus-item-main">
                   <div class="hero-focus-label">도구</div>
-                  <div class="hero-focus-item-title">Notion · AI 템플릿 · 문서 자동화</div>
+                  <div class="hero-focus-item-title">Notion·AI 템플릿·문서 자동화</div>
                 </div>
                 <span class="hero-focus-pill-tag">실험</span>
               </div>
@@ -1006,12 +1008,12 @@
               <h2 class="section-headline">콘텐츠와 프로세스를<br>같이 보는 기획자</h2>
               <div class="focus-body">
                 <p>
-                  단순히 ‘콘텐츠를 만드는 사람’이 아니라, 어떤 목표를 위해 어떤 경험과 프로세스가
-                  필요한지부터 정의하고 그 안에 들어갈 콘텐츠·메시지를 설계해 왔습니다.
+                  단순히 ‘콘텐츠를 만드는 사람’이 아니라, 어떤 목표를 위해 어떤 경험과<br>
+                  프로세스가 필요한지부터 정의하고 그 안에 들어갈 콘텐츠·메시지를 설계해 왔습니다.
                 </p>
                 <p>
-                  교육·콘텐츠 서비스, 채용·HR 도메인의 경험을 바탕으로 사용자·지원자·동료 모두에게
-                  더 이해하기 쉬운 구조를 만드는 데 관심이 많습니다.
+                  교육·콘텐츠 서비스, 채용·HR 도메인의 경험을 바탕으로 사용자·지원자·동료<br>
+                  모두에게 더 이해하기 쉬운 구조를 만드는 데 관심이 많습니다.
                 </p>
               </div>
             </div>
@@ -1053,8 +1055,8 @@
               <div class="section-title">만들어온 변화</div>
               <h2 class="section-headline">숫자와 정성 피드백으로<br>확인한 변화들</h2>
               <p class="section-subtitle">
-                전환·객단가 같은 지표뿐 아니라, 실제로 함께 일한 동료·사용자들의 피드백을 통해
-                구조를 바꾸었을 때의 변화를 함께 보고 있습니다.
+                전환·객단가 같은 지표뿐 아니라, 실제로 함께 일한 동료·사용자들의 피드백을<br>
+                통해 구조를 변경하고 새로운 변화를 함께 살펴보고 있습니다.
               </p>
 
               <div class="impact-list">
@@ -1120,7 +1122,7 @@
               <div class="project-tag">CONTENT · STRUCTURE</div>
               <div class="project-title">VOD 상품 구조 재설계</div>
               <p class="project-desc">
-                전환율을 중심으로 카테고리·SKU·가격 구조를 다시 정의하고,
+                전환율을 중심으로 카테고리·SKU·가격 구조를 다시 정의하고<br>
                 수강 상품 구성이 한눈에 이해되도록 재설계한 프로젝트입니다.
               </p>
               <div class="project-meta">객단가 약 20% 상승 · 전환 구조 개선</div>
@@ -1130,7 +1132,8 @@
               <div class="project-tag">GLOBAL · SKU</div>
               <div class="project-title">글로벌 콘텐츠 현지화 및 SKU 확장</div>
               <p class="project-desc">
-                해외 콘텐츠를 국내 사용자 흐름에 맞춰 재배치하고, 상품 SKU를 확장해 카테고리별 선택지를 설계했습니다.
+                해외 콘텐츠를 국내 사용자 흐름에 맞춰 재배치하고<br>
+                상품 SKU를 확장해 카테고리별 선택지를 설계했습니다.
               </p>
               <div class="project-meta">SKU 확장 · 현지 사용자 흐름 정렬</div>
             </article>
@@ -1139,7 +1142,8 @@
               <div class="project-tag">OPS · PROCESS</div>
               <div class="project-title">Ops & Process Optimization - 미니 프로젝트</div>
               <p class="project-desc">
-                반복적인 운영 업무를 묶어 프로세스로 정의하고, 기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
+                반복적인 운영 업무를 묶어 프로세스로 정의하고<br>
+                기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
               </p>
               <div class="project-meta">반복 업무 단계 축소 · 기준 문서화</div>
             </article>
@@ -1148,7 +1152,8 @@
               <div class="project-tag">VOD · OPS</div>
               <div class="project-title">Kollus VOD 업로드 프로세스 전사 가이드 제작</div>
               <p class="project-desc">
-                내부 시스템·업로드 플로우를 표준화하고, 전사 공통으로 사용할 수 있는 가이드와 체크리스트를 제작했습니다.
+                내부 시스템·업로드 플로우를 표준화하고, 전사 공통으로 사용할 수 있는<br>
+                가이드와 체크리스트를 제작했습니다.
               </p>
               <div class="project-meta">교육 비용 절감 · 온보딩 시간 단축</div>
             </article>
@@ -1157,7 +1162,8 @@
               <div class="project-tag">VOD · OPS</div>
               <div class="project-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
               <p class="project-desc">
-                성과 지표·사용자 피드백을 기반으로 VOD 콘텐츠 개선 사이클을 정의하고, 반복 가능한 운영 프로세스를 설계했습니다.
+                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
+                기획하고, 프로모션·구성 전략을 함께 설계했습니다.
               </p>
               <div class="project-meta">지표 기반 개선 사이클 수립</div>
             </article>
@@ -1166,7 +1172,8 @@
               <div class="project-tag">CONTENT · PRODUCT</div>
               <div class="project-title">온라인 VOD 콘텐츠 상품 기획</div>
               <p class="project-desc">
-                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를 기획하고, 프로모션·구성 전략을 함께 설계했습니다.
+                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
+                기획하고, 프로모션·구성 전략을 함께 설계했습니다.
               </p>
               <div class="project-meta">상품 포트폴리오 정리 · 신규 패키지 기획</div>
             </article>
@@ -1176,7 +1183,8 @@
               <div class="project-tag">ROLE DESIGN</div>
               <div class="project-title">Role Design Generator</div>
               <p class="project-desc">
-                역할 정의 요소를 분해·구조화해 포지션 설명과 기대 역할을 일관되게 정리하는 AI 템플릿입니다.
+                역할 정의 요소를 분해·구조화해 포지션 설명과<br>
+                기대 역할을 일관되게 정리하는 AI 템플릿입니다.
               </p>
               <div class="project-meta">개인 프로젝트 · Role Design 정렬</div>
             </article>
@@ -1185,7 +1193,8 @@
               <div class="project-tag">JD BENCHMARK</div>
               <div class="project-title">JD Benchmark Engine</div>
               <p class="project-desc">
-                시장 JD를 비교·정리하고, 핵심 요구역량·책임 범위를 추출해 하이어링 매니저와 정렬하는 템플릿입니다.
+                시장 JD를 비교·정리하고, 핵심 요구역량·책임 범위를<br>
+                추출해 하이어링 매니저와 정렬하는 템플릿입니다.
               </p>
               <div class="project-meta">개인 프로젝트 · JD 구조화</div>
             </article>
@@ -1194,7 +1203,8 @@
               <div class="project-tag">INTERVIEW</div>
               <div class="project-title">Interview Feedback Summarizer</div>
               <p class="project-desc">
-                여러 인터뷰어의 피드백을 요약·정리해, 의사결정에 필요한 관찰 포인트만 남기는 템플릿입니다.
+                여러 인터뷰어의 피드백을 요약·정리해, 의사결정에<br>
+                필요한 관찰 포인트만 남기는 템플릿입니다.
               </p>
               <div class="project-meta">개인 프로젝트 · 피드백 구조화</div>
             </article>
@@ -1203,7 +1213,8 @@
               <div class="project-tag">BRANDING</div>
               <div class="project-title">Branding Content Engine</div>
               <p class="project-desc">
-                포지션·조직 컨텍스트를 기반으로 채용 브랜딩 카피·콘텐츠 초안을 빠르게 생성하는 템플릿입니다.
+                포지션·조직 컨텍스트를 기반으로 채용 브랜딩 카피<br>
+                콘텐츠 초안을 빠르게 생성하는 템플릿입니다.
               </p>
               <div class="project-meta">개인 프로젝트 · 브랜딩 메시지 정렬</div>
             </article>
@@ -1211,14 +1222,14 @@
         </div>
       </section>
 
-      <!-- SKILLS – 중앙 슬라이더 -->
+      <!-- SKILLS – 중앙 + 호버 설명 -->
       <section id="skills" class="section section-skills fade-section">
         <div class="skills-inner">
           <div class="skills-label">Skills</div>
-          <div class="skills-headline">일을 설계할 때 쓰는 도구와 사고방식</div>
+          <div class="skills-headline">구조를 만들 때 사용하는 스킬과 도구들</div>
           <p class="skills-lead">
-            문제를 구조화하고, 사람·프로세스·콘텐츠를 연결하기 위해 사용해 온 하드스킬·소프트스킬·툴들을
-            키워드 중심으로 정리했습니다.
+            문제를 구조화하고, 사람·프로세스·콘텐츠를 연결하기 위해 사용해 온<br>
+            하드스킬·소프트스킬·툴들을 키워드 중심으로 정리했습니다.
           </p>
 
           <div class="skills-main">
@@ -1227,7 +1238,7 @@
           </div>
 
           <div class="skills-tag-list" id="skillsTagList">
-            <!-- JS에서 활성 태그 표시 -->
+            <!-- JS에서 렌더링 -->
           </div>
         </div>
       </section>
@@ -1297,7 +1308,7 @@
   </div>
 
   <script>
-    // 부드러운 섹션 페이드인
+    // 섹션 페이드인
     const fadeSections = document.querySelectorAll('.fade-section');
     const observer = new IntersectionObserver(
       (entries) => {
@@ -1311,22 +1322,24 @@
     );
     fadeSections.forEach((sec) => observer.observe(sec));
 
-    // HERO 스크롤 페이드아웃 (강도 조절)
-    const heroInner = document.querySelector('.hero-inner');
+    // HERO 스크롤 페이드아웃 (배경 포함)
+    const heroSection = document.querySelector('.hero');
     let latestScrollY = 0;
     let ticking = false;
 
     function updateHeroFade() {
       const heroHeight = window.innerHeight;
-      const maxScroll = heroHeight * 0.6; // 페이드아웃이 걸리는 스크롤 범위
+      const maxScroll = heroHeight * 0.6;
       const s = Math.min(Math.max(latestScrollY, 0), maxScroll);
-      const t = s / maxScroll;          // 0 ~ 1
-      const eased = Math.pow(t, 1.7);   // 처음엔 천천히, 후반에 확 사라지게
+      const t = s / maxScroll;
+      const eased = Math.pow(t, 1.7);
       const opacity = 1 - eased;
-      const translate = -20 * eased;    // 살짝 위로 이동
+      const translate = -40 * eased; // 살짝 더 강하게
 
-      heroInner.style.opacity = opacity.toString();
-      heroInner.style.transform = `translateY(${translate}px)`;
+      if (heroSection) {
+        heroSection.style.opacity = opacity.toString();
+        heroSection.style.transform = `translateY(${translate}px)`;
+      }
       ticking = false;
     }
 
@@ -1338,7 +1351,7 @@
       }
     });
 
-    // HERO 오른쪽 버블 자동 롤링 (타이틀은 고정)
+    // HERO 오른쪽 버블 자동 롤링 (타이틀 고정)
     const heroFocusItems = document.querySelectorAll('.hero-focus-item');
     let heroFocusIndex = 0;
 
@@ -1356,7 +1369,7 @@
       }, 3000);
     }
 
-    // IMPACT 카드 자동 전환 (숫자 / 정성 혼합 유지)
+    // IMPACT 카드 자동 전환
     const impactStates = [
       {
         value: '20%',
@@ -1420,32 +1433,47 @@
       });
     });
 
-    // SKILLS 중앙 슬라이더
+    // SKILLS – 호버 기반 설명
     const skills = [
       {
         key: '구조화된 문제 정의',
         title: '구조화된 문제 정의',
-        desc: '현상을 나열하기보다, 반복되는 패턴과 병목 지점을 찾아 문제를 다시 정의하는 데 강점이 있습니다.'
+        desc: '현상을 나열하기보다, 반복되는 패턴과 병목 지점을 찾아<br>문제를 다시 정의하는 데 강점이 있습니다.'
       },
       {
-        key: '워크플로우 설계',
+        key: '워크플로우·템플릿 설계',
         title: '워크플로우·템플릿 설계',
-        desc: '반복 업무를 단계별 플로우와 템플릿으로 옮겨, 누구나 따라 할 수 있는 형태로 만드는 일을 좋아합니다.'
+        desc: '반복 업무를 단계별 플로우와 템플릿으로 옮겨<br>누구나 따라 할 수 있는 형태로 만드는 일을 좋아합니다.'
       },
       {
-        key: '콘텐츠·서비스 기획',
-        title: '콘텐츠·서비스 기획 경험',
-        desc: '교육·콘텐츠 서비스 도메인에서 VOD 상품·온보딩·학습 경험을 중심으로 여러 프로젝트를 진행해 왔습니다.'
+        key: '교육·콘텐츠 도메인 이해',
+        title: '교육·콘텐츠 서비스 도메인 경험',
+        desc: '교육·콘텐츠 서비스 도메인에서 VOD 상품·온보딩·학습 경험을 중심으로<br>여러 프로젝트를 진행해 왔습니다.'
       },
       {
-        key: 'HR 관점 메시지',
-        title: '채용·HR 관점 메시지 설계',
-        desc: 'Role Design, JD, 인터뷰 피드백을 정리해 하이어링 매니저·후보자 모두에게 명확한 메시지를 전달하는 데 관심이 있습니다.'
+        key: 'Notion · Docs · Slides',
+        title: 'Notion · PowerPoint · Google Docs',
+        desc: '문서·기획서·회의 노트를 Notion, PowerPoint, Google Docs로 정리하며<br>정보 구조와 히스토리를 한눈에 보이게 설계합니다.'
       },
       {
-        key: 'AI 활용',
-        title: 'AI 기반 문서·워크플로우 자동화',
-        desc: 'ChatGPT, Claude, NotebookLM, WisK 등 도구를 활용해 JD·피드백·보고서 등 텍스트 작업을 자동화하는 실험을 계속하고 있습니다.'
+        key: '데이터 · 스프레드시트',
+        title: 'Google Sheets(기본 분석)',
+        desc: 'Google Sheets를 사용해 간단한 지표를 정리하고<br>전환·객단가 변화 등을 비교·관찰합니다.'
+      },
+      {
+        key: '채용 메시지 정리',
+        title: '채용·HR 관점 메시지 정리',
+        desc: 'Role Design, JD, 인터뷰 피드백을 정리해 하이어링 매니저·후보자 모두에게<br>명확한 메시지를 전달하는 데 관심이 있습니다.'
+      },
+      {
+        key: 'AI 도구 활용',
+        title: 'ChatGPT · Claude · NotebookLM · WisK',
+        desc: 'ChatGPT, Claude, NotebookLM, WisK 등 도구를 활용해<br>JD·피드백·보고서 등 텍스트 작업을 자동화하는 실험을 계속하고 있습니다.'
+      },
+      {
+        key: '디자인 협업',
+        title: 'Figma(레이아웃·협업 확인)',
+        desc: 'Figma로 간단한 와이어프레임과 레이아웃을 만들고<br>디자이너·동료와의 커뮤니케이션에 활용합니다.'
       }
     ];
 
@@ -1455,44 +1483,43 @@
 
     let skillsIndex = 0;
 
+    function showSkill(idx) {
+      const s = skills[idx];
+      // 리셋 후 재생
+      skillsMainTitle.classList.remove('fade-in');
+      skillsMainDesc.classList.remove('fade-in');
+      void skillsMainTitle.offsetWidth;
+
+      skillsMainTitle.innerHTML = s.title;
+      skillsMainDesc.innerHTML = s.desc;
+
+      skillsMainTitle.classList.add('fade-in');
+      skillsMainDesc.classList.add('fade-in');
+
+      const tags = skillsTagList.querySelectorAll('.skills-tag');
+      tags.forEach((t, i) => t.classList.toggle('active', i === idx));
+    }
+
     function renderSkillsTags() {
       skillsTagList.innerHTML = '';
       skills.forEach((s, i) => {
         const span = document.createElement('span');
         span.className = 'skills-tag' + (i === skillsIndex ? ' active' : '');
         span.textContent = s.key;
+        span.addEventListener('mouseenter', () => {
+          skillsIndex = i;
+          showSkill(i);
+        });
         skillsTagList.appendChild(span);
       });
-    }
-
-    function showSkill(idx) {
-      const s = skills[idx];
-      // 재생 위해 클래스 제거 후 강제 리플로우
-      skillsMainTitle.classList.remove('fade-in');
-      skillsMainDesc.classList.remove('fade-in');
-      void skillsMainTitle.offsetWidth;
-
-      skillsMainTitle.textContent = s.title;
-      skillsMainDesc.textContent = s.desc;
-
-      skillsMainTitle.classList.add('fade-in');
-      skillsMainDesc.classList.add('fade-in');
-
-      // 태그 업데이트
-      const tags = skillsTagList.querySelectorAll('.skills-tag');
-      tags.forEach((t, i) => t.classList.toggle('active', i === idx));
     }
 
     if (skillsMainTitle && skillsMainDesc && skillsTagList) {
       renderSkillsTags();
       showSkill(skillsIndex);
-      setInterval(() => {
-        skillsIndex = (skillsIndex + 1) % skills.length;
-        showSkill(skillsIndex);
-      }, 3400);
     }
 
-    // 내비게이션 스무스 스크롤 (기본 smooth + 보정)
+    // 내비게이션 스크롤 보정
     document.querySelectorAll('.nav-link').forEach((link) => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
