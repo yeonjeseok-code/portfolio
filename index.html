@@ -137,6 +137,7 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
     .section-inner {
@@ -408,6 +409,7 @@
       justify-content: space-between;
       font-size: 13px;
       color: var(--text-main);
+      transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     }
 
     .focus-pill-tag {
@@ -471,6 +473,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      min-height: 190px; /* 높이 변화 최소화 */
     }
 
     .impact-metric-main {
@@ -559,6 +562,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
+      margin-bottom: 20px;
     }
 
     .project-card {
@@ -603,7 +607,30 @@
       color: var(--text-muted);
     }
 
-    /* SKILLS – 중앙 + 호버 설명 */
+    .project-toggle-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .project-toggle-btn {
+      border-radius: 999px;
+      padding: 8px 16px;
+      border: 1px solid #d0ddff;
+      background: #ffffff;
+      font-size: 12px;
+      color: #4b5563;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(148, 163, 184, 0.3);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .project-toggle-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(148, 163, 184, 0.45);
+    }
+
+    /* SKILLS – Hard / Soft / Tools */
 
     .section-skills {
       background: radial-gradient(circle at 0 0, #e0edff 0, transparent 55%),
@@ -613,7 +640,7 @@
 
     .skills-inner {
       text-align: center;
-      max-width: 840px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 80px 24px;
     }
@@ -638,37 +665,43 @@
       margin-bottom: 40px;
     }
 
-    .skills-main {
-      margin-bottom: 32px;
-      min-height: 120px;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      text-align: left;
     }
 
-    .skills-main-title {
-      font-size: 24px;
+    .skills-column-title {
+      font-size: 16px;
       font-weight: 700;
-      margin-bottom: 12px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      margin-bottom: 14px;
+      color: var(--text-main);
     }
 
-    .skills-main-desc {
-      font-size: 15px;
+    .skills-group {
+      margin-bottom: 16px;
+    }
+
+    .skills-group-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .skills-list {
+      font-size: 13px;
       color: var(--text-sub);
-      max-width: 620px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      line-height: 1.8;
     }
 
-    .skills-main-title.fade-in,
-    .skills-main-desc.fade-in {
-      opacity: 1;
-      transform: translateY(0);
+    .skills-list li + li {
+      margin-top: 2px;
     }
 
     .skills-tag-list {
+      margin-top: 24px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -676,22 +709,11 @@
     }
 
     .skills-tag {
-      font-size: 12px;
-      padding: 8px 14px;
+      font-size: 11px;
+      padding: 6px 10px;
       border-radius: 999px;
       background: #e5edff;
       color: #4b5563;
-      border: 1px solid transparent;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
-      cursor: default;
-    }
-
-    .skills-tag.active {
-      background: #2f7cff;
-      color: #f9fafb;
-      border-color: transparent;
-      box-shadow: 0 15px 35px rgba(37, 99, 235, 0.45);
-      transform: translateY(-1px);
     }
 
     /* PROFILE & STRENGTHS */
@@ -823,6 +845,40 @@
       color: #9ca3af;
     }
 
+    .contact-availability {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    .availability-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+      animation: availabilityBlink 2.4s ease-in-out infinite;
+    }
+
+    .availability-text {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @keyframes availabilityBlink {
+      0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+
     .contact-footer {
       font-size: 12px;
       color: #6b7280;
@@ -834,12 +890,11 @@
       padding-top: 16px;
     }
 
-    /* SCROLL FADE-IN */
+    /* SCROLL FADE-IN / OUT */
 
     .fade-section {
       opacity: 0;
       transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
     .fade-section.visible {
@@ -876,6 +931,10 @@
         padding-top: 72px;
         padding-bottom: 72px;
       }
+
+      .skills-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     @media (max-width: 720px) {
@@ -902,10 +961,6 @@
 
       .impact-card {
         border-radius: 32px;
-      }
-
-      .skills-main-title {
-        font-size: 20px;
       }
     }
   </style>
@@ -963,7 +1018,6 @@
           <aside class="hero-focus-card">
             <div class="hero-focus-header">
               <span>현재 집중하는 것들</span>
-              <span style="font-size:11px; color:#9ca3af;">자동 강조</span>
             </div>
             <div class="hero-focus-list">
               <div class="hero-focus-item" data-hero-index="0">
@@ -1070,7 +1124,7 @@
                 </div>
                 <div class="impact-item">
                   <span class="impact-dot"></span>
-                  <span>반복 문서 작성 단계 3단계 감소 (템플릿 기반 자동화)</span>
+                  <span>AI 템플릿 기반 자동화를 통한 반복 문서 작성 3단계 감소.</span>
                 </div>
                 <div class="impact-item">
                   <span class="impact-dot"></span>
@@ -1219,26 +1273,150 @@
               <div class="project-meta">개인 프로젝트 · 브랜딩 메시지 정렬</div>
             </article>
           </div>
+
+          <div class="project-toggle-wrapper">
+            <button type="button" id="projectToggleBtn" class="project-toggle-btn">전체 보기</button>
+          </div>
         </div>
       </section>
 
-      <!-- SKILLS – 중앙 + 호버 설명 -->
+      <!-- SKILLS – Hard / Soft / Tools -->
       <section id="skills" class="section section-skills fade-section">
         <div class="skills-inner">
           <div class="skills-label">Skills</div>
           <div class="skills-headline">구조를 만들 때 사용하는 스킬과 도구들</div>
           <p class="skills-lead">
             문제를 구조화하고, 사람·프로세스·콘텐츠를 연결하기 위해 사용해 온<br>
-            하드스킬·소프트스킬·툴들을 키워드 중심으로 정리했습니다.
+            하드스킬·소프트스킬·툴들을 정리했습니다.
           </p>
 
-          <div class="skills-main">
-            <h3 id="skillsMainTitle" class="skills-main-title"></h3>
-            <p id="skillsMainDesc" class="skills-main-desc"></p>
+          <div class="skills-grid">
+            <!-- Hard Skills -->
+            <div>
+              <h3 class="skills-column-title">Hard Skills</h3>
+
+              <div class="skills-group">
+                <div class="skills-group-title">구조적 문제 정의 & 프로세스 설계</div>
+                <ul class="skills-list">
+                  <li>문제 구조화(Logical Structuring)</li>
+                  <li>프로세스 맵, 플로우 설계</li>
+                  <li>전환·퍼널·운영 프로세스 최적화</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">AI 기반 자동화 디자인</div>
+                <ul class="skills-list">
+                  <li>비정형 데이터(JD, 인터뷰, 문서) 구조화</li>
+                  <li>자동화 템플릿 설계 (워크플로우 기반)</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">데이터 분석 & 인사이트 도출</div>
+                <ul class="skills-list">
+                  <li>KPI/매출 지표 분석</li>
+                  <li>사용자 행동 데이터 분석</li>
+                  <li>전환 퍼널 진단 및 개선 방향 도출</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">콘텐츠·서비스 기획</div>
+                <ul class="skills-list">
+                  <li>VOD/라이브 콘텐츠 상품화</li>
+                  <li>SKU, 카테고리 전략 설계</li>
+                  <li>사용자 흐름 기반 UX/서비스 기획</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Soft Skills -->
+            <div>
+              <h3 class="skills-column-title">Soft Skills</h3>
+
+              <div class="skills-group">
+                <div class="skills-group-title">커뮤니케이션 & 협업</div>
+                <ul class="skills-list">
+                  <li>이해관계자 Alignment</li>
+                  <li>부서 간 요구사항 조정</li>
+                  <li>투명한 정보 공유 & 구조적 설명 능력</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">문제 해결 & 결정 능력</div>
+                <ul class="skills-list">
+                  <li>본질 문제 도출</li>
+                  <li>대안 비교, 우선순위 설정</li>
+                  <li>리스크 최소화 의사결정</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">실행력 & 프로젝트 드라이브</div>
+                <ul class="skills-list">
+                  <li>End-to-End 프로젝트 오너십</li>
+                  <li>일정 관리, 리소스 배분</li>
+                  <li>개선안 실행 및 고도화</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">사용자 중심 사고</div>
+                <ul class="skills-list">
+                  <li>Pain-point 도출</li>
+                  <li>사용자 흐름 이해</li>
+                  <li>경험 품질(UX) 기준 수립</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tools -->
+            <div>
+              <h3 class="skills-column-title">Tools</h3>
+
+              <div class="skills-group">
+                <div class="skills-group-title">문서·기획</div>
+                <ul class="skills-list">
+                  <li>Notion — 문서 정리, 운영 매뉴얼, 프로젝트 정보 구조화</li>
+                  <li>PowerPoint — 기획안, 정리 슬라이드 제작</li>
+                  <li>Google Docs / Word — 기본 문서 작성 및 협업</li>
+                  <li>Google Sheets(기본) — 표·체크리스트·운영 데이터 관리</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">AI 도구</div>
+                <ul class="skills-list">
+                  <li>ChatGPT — 기획 구조 잡기, 초안 작성, 문서 자동화 템플릿 설계</li>
+                  <li>Claude — 긴 문서 요약·정리·분석형 리서치</li>
+                  <li>NotebookLM — 자료 묶음 요약·핵심 정리 자동화</li>
+                  <li>Wisk — 이미지 컨셉 스케치·콘셉트 리서치 보조</li>
+                  <li>Vrew — 텍스트 기반 영상 콘텐츠 제작</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">협업</div>
+                <ul class="skills-list">
+                  <li>Slack — 팀 커뮤니케이션 및 프로젝트 단위 대화 관리</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <div class="skills-group-title">디자인 서포팅</div>
+                <ul class="skills-list">
+                  <li>Figma(기본) — 와이어프레임·레이아웃 확인, 구조 협업</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div class="skills-tag-list" id="skillsTagList">
-            <!-- JS에서 렌더링 -->
+          <div class="skills-tag-list">
+            <span class="skills-tag">AI 기반 구조화</span>
+            <span class="skills-tag">People · HR · Ops</span>
+            <span class="skills-tag">문서·프로세스 자동화</span>
           </div>
         </div>
       </section>
@@ -1287,14 +1465,20 @@
             </div>
           </div>
 
-          <div class="contact-info-list">
-            <div class="contact-pill">
-              <span class="contact-pill-label">E-mail</span>
-              <span>jeseokii@naver.com</span>
+          <div>
+            <div class="contact-info-list">
+              <div class="contact-pill">
+                <span class="contact-pill-label">E-mail</span>
+                <span>jeseokii@naver.com</span>
+              </div>
+              <div class="contact-pill">
+                <span class="contact-pill-label">Phone</span>
+                <span>+82 01-3267-4228</span>
+              </div>
             </div>
-            <div class="contact-pill">
-              <span class="contact-pill-label">Phone</span>
-              <span>+82 01-3267-4228</span>
+            <div class="contact-availability">
+              <span class="availability-dot"></span>
+              <span class="availability-text">available</span>
             </div>
           </div>
 
@@ -1308,13 +1492,15 @@
   </div>
 
   <script>
-    // 섹션 페이드인
+    // 섹션 페이드 인/아웃 (fade-section 전용)
     const fadeSections = document.querySelectorAll('.fade-section');
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
           }
         });
       },
@@ -1322,19 +1508,19 @@
     );
     fadeSections.forEach((sec) => observer.observe(sec));
 
-    // HERO 스크롤 페이드아웃 (배경 포함)
+    // HERO 스크롤 페이드아웃 (배경 포함) – 조금 더 완만하게 조정
     const heroSection = document.querySelector('.hero');
     let latestScrollY = 0;
     let ticking = false;
 
     function updateHeroFade() {
       const heroHeight = window.innerHeight;
-      const maxScroll = heroHeight * 0.6;
+      const maxScroll = heroHeight * 0.7; // 조금 더 길게
       const s = Math.min(Math.max(latestScrollY, 0), maxScroll);
       const t = s / maxScroll;
-      const eased = Math.pow(t, 1.7);
-      const opacity = 1 - eased;
-      const translate = -40 * eased; // 살짝 더 강하게
+      const eased = Math.pow(t, 1.2); // 곡선 완화
+      const opacity = 1 - eased * 0.9; // 완전히 사라지지 않고 살짝 남도록
+      const translate = -20 * eased;   // 위로 살짝만 이동
 
       if (heroSection) {
         heroSection.style.opacity = opacity.toString();
@@ -1351,7 +1537,7 @@
       }
     });
 
-    // HERO 오른쪽 버블 자동 롤링 (타이틀 고정)
+    // HERO 오른쪽 버블 자동 롤링
     const heroFocusItems = document.querySelectorAll('.hero-focus-item');
     let heroFocusIndex = 0;
 
@@ -1369,7 +1555,25 @@
       }, 3000);
     }
 
-    // IMPACT 카드 자동 전환
+    // FOCUS 섹션 오른쪽 버블 자동 롤링
+    const focusPills = document.querySelectorAll('.focus-pill');
+    let focusIndex = 0;
+
+    function setFocusActive(idx) {
+      focusPills.forEach((pill, i) => {
+        pill.classList.toggle('active', i === idx);
+      });
+    }
+
+    if (focusPills.length > 0) {
+      setFocusActive(focusIndex);
+      setInterval(() => {
+        focusIndex = (focusIndex + 1) % focusPills.length;
+        setFocusActive(focusIndex);
+      }, 3200);
+    }
+
+    // IMPACT 카드 자동 전환 (속도 약간 빠르게)
     const impactStates = [
       {
         value: '20%',
@@ -1409,115 +1613,68 @@
       setInterval(() => {
         impactIndex = (impactIndex + 1) % impactStates.length;
         setImpactState(impactIndex);
-      }, 3800);
+      }, 2600);
     }
 
-    // PROJECT 필터
+    // PROJECT 필터 + 전체보기 토글
     const projectFilterBtns = document.querySelectorAll('.project-filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+    const projectCards = Array.from(document.querySelectorAll('.project-card'));
+    const projectToggleBtn = document.getElementById('projectToggleBtn');
+    const INITIAL_VISIBLE = 6;
+    let currentFilter = 'all';
+    let showAllProjects = false;
+
+    function updateProjectVisibility() {
+      let visibleCount = 0;
+
+      projectCards.forEach((card) => {
+        const type = card.dataset.type;
+
+        // 필터 적용
+        const matchesFilter = currentFilter === 'all' || currentFilter === type;
+
+        if (!matchesFilter) {
+          card.style.display = 'none';
+          return;
+        }
+
+        // 전체보기 여부에 따라 노출 개수 제한
+        if (!showAllProjects && visibleCount >= INITIAL_VISIBLE) {
+          card.style.display = 'none';
+        } else {
+          card.style.display = 'flex';
+          visibleCount++;
+        }
+      });
+
+      if (showAllProjects) {
+        projectToggleBtn.textContent = '접기';
+      } else {
+        projectToggleBtn.textContent = '전체 보기';
+      }
+    }
 
     projectFilterBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
+        currentFilter = filter;
         projectFilterBtns.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
-
-        projectCards.forEach((card) => {
-          const type = card.dataset.type;
-          if (filter === 'all' || filter === type) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+        // 필터 변경 시 기본은 접힌 상태 유지
+        showAllProjects = false;
+        updateProjectVisibility();
       });
     });
 
-    // SKILLS – 호버 기반 설명
-    const skills = [
-      {
-        key: '구조화된 문제 정의',
-        title: '구조화된 문제 정의',
-        desc: '현상을 나열하기보다, 반복되는 패턴과 병목 지점을 찾아<br>문제를 다시 정의하는 데 강점이 있습니다.'
-      },
-      {
-        key: '워크플로우·템플릿 설계',
-        title: '워크플로우·템플릿 설계',
-        desc: '반복 업무를 단계별 플로우와 템플릿으로 옮겨<br>누구나 따라 할 수 있는 형태로 만드는 일을 좋아합니다.'
-      },
-      {
-        key: '교육·콘텐츠 도메인 이해',
-        title: '교육·콘텐츠 서비스 도메인 경험',
-        desc: '교육·콘텐츠 서비스 도메인에서 VOD 상품·온보딩·학습 경험을 중심으로<br>여러 프로젝트를 진행해 왔습니다.'
-      },
-      {
-        key: 'Notion · Docs · Slides',
-        title: 'Notion · PowerPoint · Google Docs',
-        desc: '문서·기획서·회의 노트를 Notion, PowerPoint, Google Docs로 정리하며<br>정보 구조와 히스토리를 한눈에 보이게 설계합니다.'
-      },
-      {
-        key: '데이터 · 스프레드시트',
-        title: 'Google Sheets(기본 분석)',
-        desc: 'Google Sheets를 사용해 간단한 지표를 정리하고<br>전환·객단가 변화 등을 비교·관찰합니다.'
-      },
-      {
-        key: '채용 메시지 정리',
-        title: '채용·HR 관점 메시지 정리',
-        desc: 'Role Design, JD, 인터뷰 피드백을 정리해 하이어링 매니저·후보자 모두에게<br>명확한 메시지를 전달하는 데 관심이 있습니다.'
-      },
-      {
-        key: 'AI 도구 활용',
-        title: 'ChatGPT · Claude · NotebookLM · WisK',
-        desc: 'ChatGPT, Claude, NotebookLM, WisK 등 도구를 활용해<br>JD·피드백·보고서 등 텍스트 작업을 자동화하는 실험을 계속하고 있습니다.'
-      },
-      {
-        key: '디자인 협업',
-        title: 'Figma(레이아웃·협업 확인)',
-        desc: 'Figma로 간단한 와이어프레임과 레이아웃을 만들고<br>디자이너·동료와의 커뮤니케이션에 활용합니다.'
-      }
-    ];
-
-    const skillsMainTitle = document.getElementById('skillsMainTitle');
-    const skillsMainDesc = document.getElementById('skillsMainDesc');
-    const skillsTagList = document.getElementById('skillsTagList');
-
-    let skillsIndex = 0;
-
-    function showSkill(idx) {
-      const s = skills[idx];
-      // 리셋 후 재생
-      skillsMainTitle.classList.remove('fade-in');
-      skillsMainDesc.classList.remove('fade-in');
-      void skillsMainTitle.offsetWidth;
-
-      skillsMainTitle.innerHTML = s.title;
-      skillsMainDesc.innerHTML = s.desc;
-
-      skillsMainTitle.classList.add('fade-in');
-      skillsMainDesc.classList.add('fade-in');
-
-      const tags = skillsTagList.querySelectorAll('.skills-tag');
-      tags.forEach((t, i) => t.classList.toggle('active', i === idx));
-    }
-
-    function renderSkillsTags() {
-      skillsTagList.innerHTML = '';
-      skills.forEach((s, i) => {
-        const span = document.createElement('span');
-        span.className = 'skills-tag' + (i === skillsIndex ? ' active' : '');
-        span.textContent = s.key;
-        span.addEventListener('mouseenter', () => {
-          skillsIndex = i;
-          showSkill(i);
-        });
-        skillsTagList.appendChild(span);
+    if (projectToggleBtn) {
+      projectToggleBtn.addEventListener('click', () => {
+        showAllProjects = !showAllProjects;
+        updateProjectVisibility();
       });
     }
 
-    if (skillsMainTitle && skillsMainDesc && skillsTagList) {
-      renderSkillsTags();
-      showSkill(skillsIndex);
-    }
+    // 초기 상태 설정
+    updateProjectVisibility();
 
     // 내비게이션 스크롤 보정
     document.querySelectorAll('.nav-link').forEach((link) => {
