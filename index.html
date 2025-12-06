@@ -137,7 +137,6 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
     .section-inner {
@@ -409,7 +408,6 @@
       justify-content: space-between;
       font-size: 13px;
       color: var(--text-main);
-      transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     }
 
     .focus-pill-tag {
@@ -473,7 +471,6 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      min-height: 190px; /* 높이 변화 최소화 */
     }
 
     .impact-metric-main {
@@ -562,7 +559,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .project-card {
@@ -607,30 +604,33 @@
       color: var(--text-muted);
     }
 
-    .project-toggle-wrapper {
+    .project-view-more-wrap {
       display: flex;
       justify-content: center;
-      margin-top: 4px;
+      margin-top: 8px;
     }
 
-    .project-toggle-btn {
+    .project-view-more-btn {
       border-radius: 999px;
       padding: 8px 16px;
-      border: 1px solid #d0ddff;
-      background: #ffffff;
+      border: 1px solid #c7d2fe;
+      background: #eef2ff;
       font-size: 12px;
-      color: #4b5563;
+      color: #374151;
       cursor: pointer;
-      box-shadow: 0 10px 24px rgba(148, 163, 184, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     }
 
-    .project-toggle-btn:hover {
+    .project-view-more-btn:hover {
+      background: #e0e7ff;
       transform: translateY(-1px);
-      box-shadow: 0 16px 32px rgba(148, 163, 184, 0.45);
+      box-shadow: 0 10px 25px rgba(148, 163, 184, 0.35);
     }
 
-    /* SKILLS – Hard / Soft / Tools */
+    /* SKILLS – 중앙 + 호버 설명 */
 
     .section-skills {
       background: radial-gradient(circle at 0 0, #e0edff 0, transparent 55%),
@@ -640,7 +640,7 @@
 
     .skills-inner {
       text-align: center;
-      max-width: 1120px;
+      max-width: 840px;
       margin: 0 auto;
       padding: 80px 24px;
     }
@@ -665,55 +665,39 @@
       margin-bottom: 40px;
     }
 
-    .skills-grid {
+    .skills-columns {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 28px;
       text-align: left;
+      font-size: 14px;
+      color: var(--text-sub);
     }
 
     .skills-column-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      color: var(--text-main);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      margin-bottom: 10px;
     }
 
-    .skills-group {
-      margin-bottom: 16px;
-    }
-
-    .skills-group-title {
+    .skills-column h4 {
       font-size: 14px;
       font-weight: 600;
+      margin-top: 14px;
       margin-bottom: 6px;
       color: var(--text-main);
     }
 
-    .skills-list {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.8;
+    .skills-column ul {
+      list-style: disc;
+      padding-left: 18px;
     }
 
-    .skills-list li + li {
-      margin-top: 2px;
-    }
-
-    .skills-tag-list {
-      margin-top: 24px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .skills-tag {
-      font-size: 11px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #e5edff;
-      color: #4b5563;
+    .skills-column li + li {
+      margin-top: 4px;
     }
 
     /* PROFILE & STRENGTHS */
@@ -848,34 +832,35 @@
     .contact-availability {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: #9ca3af;
-      margin-top: 4px;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
     }
 
     .availability-dot {
-      width: 7px;
-      height: 7px;
+      width: 10px;
+      height: 10px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
-      animation: availabilityBlink 2.4s ease-in-out infinite;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+      animation: pulse-dot 1.4s ease-in-out infinite;
     }
 
     .availability-text {
-      letter-spacing: 0.08em;
+      font-size: 12px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      color: #d1d5db;
     }
 
-    @keyframes availabilityBlink {
+    @keyframes pulse-dot {
       0%, 100% {
-        opacity: 0.4;
-        transform: scale(1);
+        opacity: 0.55;
+        transform: scale(0.9);
       }
       50% {
         opacity: 1;
-        transform: scale(1.05);
+        transform: scale(1);
       }
     }
 
@@ -890,17 +875,25 @@
       padding-top: 16px;
     }
 
-    /* SCROLL FADE-IN / OUT */
+    /* STACKED VIEWPORT (데스크탑만) */
 
-    .fade-section {
-      opacity: 0;
-      transform: translateY(32px);
+    .stacked-wrapper {
+      position: relative;
     }
 
-    .fade-section.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .stacked-viewport {
+      position: relative;
     }
+
+    .stacked-spacer {
+      height: 0;
+    }
+
+    .stack-section {
+      /* 모바일 기본값은 아래 media에서 다시 정의 */
+    }
+
+    /* SCROLL FADE-IN (기존 섹션용은 제거) */
 
     /* RESPONSIVE */
 
@@ -918,7 +911,6 @@
 
       .focus-grid,
       .impact-layout,
-      .project-grid,
       .profile-grid {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -932,8 +924,24 @@
         padding-bottom: 72px;
       }
 
-      .skills-grid {
+      .skills-columns {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .stacked-viewport {
+        position: static;
+        height: auto;
+        overflow: visible;
+      }
+
+      .stack-section {
+        position: static;
+        opacity: 1;
+        transform: none;
+      }
+
+      .stacked-spacer {
+        height: 0;
       }
     }
 
@@ -963,6 +971,28 @@
         border-radius: 32px;
       }
     }
+
+    @media (min-width: 961px) {
+      .stacked-viewport {
+        position: sticky;
+        top: var(--nav-height);
+        height: calc(100vh - var(--nav-height));
+        overflow: hidden;
+      }
+
+      .stack-section {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .stack-section.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 
@@ -985,472 +1015,446 @@
     </header>
 
     <main>
-      <!-- HERO -->
-      <section id="intro" class="section hero">
-        <div class="hero-inner">
-          <div>
-            <div class="hero-kicker">AI-DRIVEN CONTENT & OPS</div>
-            <h1 class="hero-title">새로운 일의 구조를<br>다시 설계하는 사람</h1>
-            <div class="hero-role">AI 기반 문서·워크플로우 자동화 기획자</div>
-            <p class="hero-desc">
-              AI와 구조적 사고를 활용해 콘텐츠·운영·HR에서 반복되는 문서와 프로세스를<br>
-              재정의하고, 조직 전체의 의사결정 속도와 메시지 일관성을 높이는 기획을 합니다.
-            </p>
-            <div class="hero-tags">
-              <div class="tag-pill">
-                <span class="tag-dot"></span>
-                <span>채용·HR 관점의 메시지 설계</span>
-              </div>
-              <div class="tag-pill">
-                <span class="tag-dot"></span>
-                <span>AI 기반 문서·워크플로우 자동화</span>
-              </div>
-              <div class="tag-pill">
-                <span class="tag-dot"></span>
-                <span>콘텐츠·교육 서비스 도메인</span>
-              </div>
-            </div>
-            <div class="hero-scroll-indicator">
-              <span class="hero-scroll-line"></span> SCROLL
-            </div>
-          </div>
-
-          <aside class="hero-focus-card">
-            <div class="hero-focus-header">
-              <span>현재 집중하는 것들</span>
-            </div>
-            <div class="hero-focus-list">
-              <div class="hero-focus-item" data-hero-index="0">
-                <div class="hero-focus-item-main">
-                  <div class="hero-focus-label">관점</div>
-                  <div class="hero-focus-item-title">People · Product · Process 교차 시야</div>
-                </div>
-                <span class="hero-focus-pill-tag">조직 구조</span>
-              </div>
-              <div class="hero-focus-item" data-hero-index="1">
-                <div class="hero-focus-item-main">
-                  <div class="hero-focus-label">문제 정의</div>
-                  <div class="hero-focus-item-title">반복 업무·병목을 구조화해 보는 것</div>
-                </div>
-                <span class="hero-focus-pill-tag">문제 정의</span>
-              </div>
-              <div class="hero-focus-item" data-hero-index="2">
-                <div class="hero-focus-item-main">
-                  <div class="hero-focus-label">도구</div>
-                  <div class="hero-focus-item-title">Notion·AI 템플릿·문서 자동화</div>
-                </div>
-                <span class="hero-focus-pill-tag">실험</span>
-              </div>
-              <div class="hero-focus-item" data-hero-index="3">
-                <div class="hero-focus-item-main">
-                  <div class="hero-focus-label">결과</div>
-                  <div class="hero-focus-item-title">일관된 의사결정·투명한 커뮤니케이션</div>
-                </div>
-                <span class="hero-focus-pill-tag">정렬</span>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <!-- ABOUT / FOCUS -->
-      <section id="about" class="section section-focus fade-section">
-        <div class="section-inner">
-          <div class="focus-grid">
-            <div>
-              <div class="section-title">저는 이런 일들을 설계합니다</div>
-              <h2 class="section-headline">콘텐츠와 프로세스를<br>같이 보는 기획자</h2>
-              <div class="focus-body">
-                <p>
-                  단순히 ‘콘텐츠를 만드는 사람’이 아니라, 어떤 목표를 위해 어떤 경험과<br>
-                  프로세스가 필요한지부터 정의하고 그 안에 들어갈 콘텐츠·메시지를 설계해 왔습니다.
-                </p>
-                <p>
-                  교육·콘텐츠 서비스, 채용·HR 도메인의 경험을 바탕으로 사용자·지원자·동료<br>
-                  모두에게 더 이해하기 쉬운 구조를 만드는 데 관심이 많습니다.
-                </p>
-              </div>
-            </div>
-
-            <aside class="focus-card">
-              <div class="focus-card-header">FOCUS AREAS</div>
-              <div class="focus-pill-list">
-                <div class="focus-pill active">
-                  <span>VOD 상품 구조 설계</span>
-                  <span class="focus-pill-tag">콘텐츠·구성 전략</span>
-                </div>
-                <div class="focus-pill">
-                  <span>전환·퍼널 관점의 운영</span>
-                  <span class="focus-pill-tag">운영·프로세스</span>
-                </div>
-                <div class="focus-pill">
-                  <span>Role Design · JD 정리</span>
-                  <span class="focus-pill-tag">채용·역할 정의</span>
-                </div>
-                <div class="focus-pill">
-                  <span>Interview Feedback 요약</span>
-                  <span class="focus-pill-tag">의사결정 지원</span>
-                </div>
-                <div class="focus-pill">
-                  <span>팀 간 커뮤니케이션 구조화</span>
-                  <span class="focus-pill-tag">메시지·정렬</span>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- IMPACT -->
-      <section id="impact" class="section section-impact fade-section">
-        <div class="section-inner">
-          <div class="impact-layout">
-            <div>
-              <div class="section-title">만들어온 변화</div>
-              <h2 class="section-headline">숫자와 정성 피드백으로<br>확인한 변화들</h2>
-              <p class="section-subtitle">
-                전환·객단가 같은 지표뿐 아니라, 실제로 함께 일한 동료·사용자들의 피드백을<br>
-                통해 구조를 변경하고 새로운 변화를 함께 살펴보고 있습니다.
-              </p>
-
-              <div class="impact-list">
-                <div class="impact-item">
-                  <span class="impact-dot"></span>
-                  <span>VOD 상품 구성 리디자인으로 객단가 약 20% 상승</span>
-                </div>
-                <div class="impact-item">
-                  <span class="impact-dot"></span>
-                  <span>카테고리·SKU 구조 개편 후 전환율 약 25% 개선</span>
-                </div>
-                <div class="impact-item">
-                  <span class="impact-dot"></span>
-                  <span>AI 템플릿 기반 자동화를 통한 반복 문서 작성 3단계 감소.</span>
-                </div>
-                <div class="impact-item">
-                  <span class="impact-dot"></span>
-                  <span>“구조가 더 분명해졌다”는 동료 피드백 다수</span>
-                </div>
-              </div>
-            </div>
-
-            <aside class="impact-card">
+      <div class="stacked-wrapper">
+        <div class="stacked-viewport">
+          <!-- HERO -->
+          <section id="intro" class="section hero stack-section">
+            <div class="hero-inner">
               <div>
-                <div class="impact-metric-main" id="impactNumber">20%</div>
-                <div class="impact-metric-label" id="impactLabel">객단가 상승</div>
-                <div class="impact-metric-sub" id="impactSub">
-                  VOD 번들 구성·SKU 조정 프로젝트 기준
+                <div class="hero-kicker">AI-DRIVEN CONTENT & OPS</div>
+                <h1 class="hero-title">새로운 일의 구조를<br>다시 설계하는 사람</h1>
+                <div class="hero-role">AI 기반 문서·워크플로우 자동화 기획자</div>
+                <p class="hero-desc">
+                  AI와 구조적 사고를 활용해 콘텐츠·운영·HR에서 반복되는 문서와 프로세스를<br>
+                  재정의하고, 조직 전체의 의사결정 속도와 메시지 일관성을 높이는 기획을 합니다.
+                </p>
+                <div class="hero-tags">
+                  <div class="tag-pill">
+                    <span class="tag-dot"></span>
+                    <span>채용·HR 관점의 메시지 설계</span>
+                  </div>
+                  <div class="tag-pill">
+                    <span class="tag-dot"></span>
+                    <span>AI 기반 문서·워크플로우 자동화</span>
+                  </div>
+                  <div class="tag-pill">
+                    <span class="tag-dot"></span>
+                    <span>콘텐츠·교육 서비스 도메인</span>
+                  </div>
+                </div>
+                <div class="hero-scroll-indicator">
+                  <span class="hero-scroll-line"></span> SCROLL
+                </div>
+              </div>
+
+              <aside class="hero-focus-card">
+                <div class="hero-focus-header">
+                  <span>현재 집중하는 것들</span>
+                </div>
+                <div class="hero-focus-list">
+                  <div class="hero-focus-item" data-hero-index="0">
+                    <div class="hero-focus-item-main">
+                      <div class="hero-focus-label">관점</div>
+                      <div class="hero-focus-item-title">People · Product · Process 교차 시야</div>
+                    </div>
+                    <span class="hero-focus-pill-tag">조직 구조</span>
+                  </div>
+                  <div class="hero-focus-item" data-hero-index="1">
+                    <div class="hero-focus-item-main">
+                      <div class="hero-focus-label">문제 정의</div>
+                      <div class="hero-focus-item-title">반복 업무·병목을 구조화해 보는 것</div>
+                    </div>
+                    <span class="hero-focus-pill-tag">문제 정의</span>
+                  </div>
+                  <div class="hero-focus-item" data-hero-index="2">
+                    <div class="hero-focus-item-main">
+                      <div class="hero-focus-label">도구</div>
+                      <div class="hero-focus-item-title">Notion·AI 템플릿·문서 자동화</div>
+                    </div>
+                    <span class="hero-focus-pill-tag">실험</span>
+                  </div>
+                  <div class="hero-focus-item" data-hero-index="3">
+                    <div class="hero-focus-item-main">
+                      <div class="hero-focus-label">결과</div>
+                      <div class="hero-focus-item-title">일관된 의사결정·투명한 커뮤니케이션</div>
+                    </div>
+                    <span class="hero-focus-pill-tag">정렬</span>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <!-- ABOUT / FOCUS -->
+          <section id="about" class="section section-focus stack-section">
+            <div class="section-inner">
+              <div class="focus-grid">
+                <div>
+                  <div class="section-title">저는 이런 일들을 설계합니다</div>
+                  <h2 class="section-headline">콘텐츠와 프로세스를<br>같이 보는 기획자</h2>
+                  <div class="focus-body">
+                    <p>
+                      단순히 ‘콘텐츠를 만드는 사람’이 아니라, 어떤 목표를 위해 어떤 경험과<br>
+                      프로세스가 필요한지부터 정의하고 그 안에 들어갈 콘텐츠·메시지를 설계해 왔습니다.
+                    </p>
+                    <p>
+                      교육·콘텐츠 서비스, 채용·HR 도메인의 경험을 바탕으로 사용자·지원자·동료<br>
+                      모두에게 더 이해하기 쉬운 구조를 만드는 데 관심이 많습니다.
+                    </p>
+                  </div>
                 </div>
 
-                <div class="impact-badge-list">
-                  <span class="impact-badge">전환/객단가 지표</span>
-                  <span class="impact-badge">반복 작업 단계 수</span>
-                  <span class="impact-badge">동료 정성 피드백</span>
+                <aside class="focus-card">
+                  <div class="focus-card-header">FOCUS AREAS</div>
+                  <div class="focus-pill-list">
+                    <div class="focus-pill active">
+                      <span>VOD 상품 구조 설계</span>
+                      <span class="focus-pill-tag">콘텐츠·구성 전략</span>
+                    </div>
+                    <div class="focus-pill">
+                      <span>전환·퍼널 관점의 운영</span>
+                      <span class="focus-pill-tag">운영·프로세스</span>
+                    </div>
+                    <div class="focus-pill">
+                      <span>Role Design · JD 정리</span>
+                      <span class="focus-pill-tag">채용·역할 정의</span>
+                    </div>
+                    <div class="focus-pill">
+                      <span>Interview Feedback 요약</span>
+                      <span class="focus-pill-tag">의사결정 지원</span>
+                    </div>
+                    <div class="focus-pill">
+                      <span>팀 간 커뮤니케이션 구조화</span>
+                      <span class="focus-pill-tag">메시지·정렬</span>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+
+          <!-- IMPACT -->
+          <section id="impact" class="section section-impact stack-section">
+            <div class="section-inner">
+              <div class="impact-layout">
+                <div>
+                  <div class="section-title">만들어온 변화</div>
+                  <h2 class="section-headline">숫자와 정성 피드백으로<br>확인한 변화들</h2>
+                  <p class="section-subtitle">
+                    전환·객단가 같은 지표뿐 아니라, 실제로 함께 일한 동료·사용자들의 피드백을<br>
+                    통해 구조를 변경하고 새로운 변화를 함께 살펴보고 있습니다.
+                  </p>
+
+                  <div class="impact-list">
+                    <div class="impact-item">
+                      <span class="impact-dot"></span>
+                      <span>VOD 상품 구성 리디자인으로 객단가 약 20% 상승</span>
+                    </div>
+                    <div class="impact-item">
+                      <span class="impact-dot"></span>
+                      <span>카테고리·SKU 구조 개편 후 전환율 약 25% 개선</span>
+                    </div>
+                    <div class="impact-item">
+                      <span class="impact-dot"></span>
+                      <span>Ai 템플릿 기반 자동화를 통한 반복 문서 작성 3단계 감소.</span>
+                    </div>
+                    <div class="impact-item">
+                      <span class="impact-dot"></span>
+                      <span>“구조가 더 분명해졌다”는 동료 피드백 다수</span>
+                    </div>
+                  </div>
+                </div>
+
+                <aside class="impact-card">
+                  <div>
+                    <div class="impact-metric-main" id="impactNumber">20%</div>
+                    <div class="impact-metric-label" id="impactLabel">객단가 상승</div>
+                    <div class="impact-metric-sub" id="impactSub">
+                      VOD 번들 구성·SKU 조정 프로젝트 기준
+                    </div>
+
+                    <div class="impact-badge-list">
+                      <span class="impact-badge">전환/객단가 지표</span>
+                      <span class="impact-badge">반복 작업 단계 수</span>
+                      <span class="impact-badge">동료 정성 피드백</span>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+
+          <!-- PROJECTS -->
+          <section id="projects" class="section section-projects stack-section">
+            <div class="section-inner">
+              <div class="projects-header">
+                <div class="section-title">Projects</div>
+                <h2 class="section-headline">실제 문제에서 시작한<br>콘텐츠·프로세스 기획 사례</h2>
+                <p>
+                  실무 영역에서 발생한 문제를 진단하고, 구조화해 개선 솔루션을 설계한 프로젝트들입니다.
+                </p>
+              </div>
+
+              <div class="project-filters">
+                <button class="project-filter-btn active" data-filter="all">전체</button>
+                <button class="project-filter-btn" data-filter="ai">AI 템플릿</button>
+                <button class="project-filter-btn" data-filter="content">콘텐츠·상품</button>
+                <button class="project-filter-btn" data-filter="ops">운영·프로세스</button>
+              </div>
+
+              <div class="project-grid" id="projectGrid">
+                <!-- 콘텐츠 / 운영 프로젝트 6개 -->
+                <article class="project-card" data-type="content">
+                  <div class="project-tag">CONTENT · STRUCTURE</div>
+                  <div class="project-title">VOD 상품 구조 재설계</div>
+                  <p class="project-desc">
+                    전환율을 중심으로 카테고리·SKU·가격 구조를 다시 정의하고<br>
+                    수강 상품 구성이 한눈에 이해되도록 재설계한 프로젝트입니다.
+                  </p>
+                  <div class="project-meta">객단가 약 20% 상승 · 전환 구조 개선</div>
+                </article>
+
+                <article class="project-card" data-type="content">
+                  <div class="project-tag">GLOBAL · SKU</div>
+                  <div class="project-title">글로벌 콘텐츠 현지화 및 SKU 확장</div>
+                  <p class="project-desc">
+                    해외 콘텐츠를 국내 사용자 흐름에 맞춰 재배치하고<br>
+                    상품 SKU를 확장해 카테고리별 선택지를 설계했습니다.
+                  </p>
+                  <div class="project-meta">SKU 확장 · 현지 사용자 흐름 정렬</div>
+                </article>
+
+                <article class="project-card" data-type="ops">
+                  <div class="project-tag">OPS · PROCESS</div>
+                  <div class="project-title">Ops & Process Optimization - 미니 프로젝트</div>
+                  <p class="project-desc">
+                    반복적인 운영 업무를 묶어 프로세스로 정의하고<br>
+                    기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
+                  </p>
+                  <div class="project-meta">반복 업무 단계 축소 · 기준 문서화</div>
+                </article>
+
+                <article class="project-card" data-type="content">
+                  <div class="project-tag">VOD · OPS</div>
+                  <div class="project-title">Kollus VOD 업로드 프로세스 전사 가이드 제작</div>
+                  <p class="project-desc">
+                    내부 시스템·업로드 플로우를 표준화하고, 전사 공통으로 사용할 수 있는<br>
+                    가이드와 체크리스트를 제작했습니다.
+                  </p>
+                  <div class="project-meta">교육 비용 절감 · 온보딩 시간 단축</div>
+                </article>
+
+                <article class="project-card" data-type="content">
+                  <div class="project-tag">VOD · OPS</div>
+                  <div class="project-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
+                  <p class="project-desc">
+                    학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
+                    기획하고, 프로모션·구성 전략을 함께 설계했습니다.
+                  </p>
+                  <div class="project-meta">지표 기반 개선 사이클 수립</div>
+                </article>
+
+                <article class="project-card" data-type="content">
+                  <div class="project-tag">CONTENT · PRODUCT</div>
+                  <div class="project-title">온라인 VOD 콘텐츠 상품 기획</div>
+                  <p class="project-desc">
+                    학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
+                    기획하고, 프로모션·구성 전략을 함께 설계했습니다.
+                  </p>
+                  <div class="project-meta">상품 포트폴리오 정리 · 신규 패키지 기획</div>
+                </article>
+
+                <!-- AI 템플릿 4개 -->
+                <article class="project-card" data-type="ai">
+                  <div class="project-tag">ROLE DESIGN</div>
+                  <div class="project-title">Role Design Generator</div>
+                  <p class="project-desc">
+                    역할 정의 요소를 분해·구조화해 포지션 설명과<br>
+                    기대 역할을 일관되게 정리하는 AI 템플릿입니다.
+                  </p>
+                  <div class="project-meta">개인 프로젝트 · Role Design 정렬</div>
+                </article>
+
+                <article class="project-card" data-type="ai">
+                  <div class="project-tag">JD BENCHMARK</div>
+                  <div class="project-title">JD Benchmark Engine</div>
+                  <p class="project-desc">
+                    시장 JD를 비교·정리하고, 핵심 요구역량·책임 범위를<br>
+                    추출해 하이어링 매니저와 정렬하는 템플릿입니다.
+                  </p>
+                  <div class="project-meta">개인 프로젝트 · JD 구조화</div>
+                </article>
+
+                <article class="project-card" data-type="ai">
+                  <div class="project-tag">INTERVIEW</div>
+                  <div class="project-title">Interview Feedback Summarizer</div>
+                  <p class="project-desc">
+                    여러 인터뷰어의 피드백을 요약·정리해, 의사결정에<br>
+                    필요한 관찰 포인트만 남기는 템플릿입니다.
+                  </p>
+                  <div class="project-meta">개인 프로젝트 · 피드백 구조화</div>
+                </article>
+
+                <article class="project-card" data-type="ai">
+                  <div class="project-tag">BRANDING</div>
+                  <div class="project-title">Branding Content Engine</div>
+                  <p class="project-desc">
+                    포지션·조직 컨텍스트를 기반으로 채용 브랜딩 카피<br>
+                    콘텐츠 초안을 빠르게 생성하는 템플릿입니다.
+                  </p>
+                  <div class="project-meta">개인 프로젝트 · 브랜딩 메시지 정렬</div>
+                </article>
+              </div>
+
+              <div class="project-view-more-wrap">
+                <button id="projectViewMoreBtn" class="project-view-more-btn">
+                  전체 보기
+                  <span aria-hidden="true">▾</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- SKILLS – 하드/소프트/툴 -->
+          <section id="skills" class="section section-skills stack-section">
+            <div class="skills-inner">
+              <div class="skills-label">Skills</div>
+              <div class="skills-headline">구조를 만들 때 사용하는 스킬과 도구들</div>
+              <p class="skills-lead">
+                문제를 구조화하고, 사람·프로세스·콘텐츠를 연결하기 위해 사용해 온<br>
+                하드스킬·소프트스킬·툴 활용 능력을 정리했습니다.
+              </p>
+
+              <div class="skills-columns">
+                <!-- Hard Skills -->
+                <div class="skills-column">
+                  <div class="skills-column-title">Hard Skills</div>
+
+                  <h4>구조적 문제 정의 & 프로세스 설계</h4>
+                  <ul>
+                    <li>문제 구조화(Logical Structuring)</li>
+                    <li>프로세스 맵·플로우 설계</li>
+                    <li>전환·퍼널·운영 프로세스 최적화</li>
+                  </ul>
+
+                  <h4>AI 기반 자동화 디자인</h4>
+                  <ul>
+                    <li>비정형 데이터(JD, 인터뷰, 문서) 구조화</li>
+                    <li>자동화 템플릿 설계(워크플로우 기반)</li>
+                  </ul>
+
+                  <h4>데이터 분석 & 인사이트 도출</h4>
+                  <ul>
+                    <li>KPI/매출 지표 분석</li>
+                    <li>사용자 행동 데이터 분석</li>
+                    <li>전환 퍼널 진단 및 개선 방향 도출</li>
+                  </ul>
+
+                  <h4>콘텐츠·서비스 기획</h4>
+                  <ul>
+                    <li>VOD/라이브 콘텐츠 상품화</li>
+                    <li>SKU·카테고리 전략 설계</li>
+                    <li>사용자 흐름 기반 UX/서비스 기획</li>
+                  </ul>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skills-column">
+                  <div class="skills-column-title">Soft Skills</div>
+
+                  <h4>커뮤니케이션 & 협업</h4>
+                  <ul>
+                    <li>이해관계자 Alignment</li>
+                    <li>부서 간 요구사항 조정</li>
+                    <li>투명한 정보 공유 & 구조적 설명</li>
+                  </ul>
+
+                  <h4>문제 해결 & 결정 능력</h4>
+                  <ul>
+                    <li>본질 문제 도출</li>
+                    <li>대안 비교, 우선순위 설정</li>
+                    <li>리스크 최소화 의사결정</li>
+                  </ul>
+
+                  <h4>실행력 & 프로젝트 드라이브</h4>
+                  <ul>
+                    <li>End-to-End 프로젝트 오너십</li>
+                    <li>일정 관리·리소스 배분</li>
+                    <li>개선안 실행 및 고도화</li>
+                  </ul>
+
+                  <h4>사용자 중심 사고</h4>
+                  <ul>
+                    <li>Pain-point 도출</li>
+                    <li>사용자 흐름 이해</li>
+                    <li>경험 품질(UX) 기준 수립</li>
+                  </ul>
+                </div>
+
+                <!-- Tools -->
+                <div class="skills-column">
+                  <div class="skills-column-title">Tools</div>
+
+                  <h4>문서·기획</h4>
+                  <ul>
+                    <li>Notion – 문서 정리·운영 매뉴얼·프로젝트 정보 구조화</li>
+                    <li>PowerPoint – 기획안·정리 슬라이드 제작</li>
+                    <li>Google Docs / Word – 기본 문서 작성 및 협업</li>
+                    <li>Google Sheets(기본) – 표 정리·체크리스트·운영 데이터 관리</li>
+                  </ul>
+
+                  <h4>AI 도구</h4>
+                  <ul>
+                    <li>ChatGPT – 기획 구조 잡기·초안 작성·문서 자동화 템플릿 설계</li>
+                    <li>Claude – 긴 문서 요약·정리·분석적 리서치</li>
+                    <li>NotebookLM – 자료 묶음 요약·핵심 정리 자동화</li>
+                    <li>Wisk – 이미지 컨셉 스케치·콘셉트 리서치 보조</li>
+                    <li>Vrew – 텍스트 기반 영상 콘텐츠 제작</li>
+                  </ul>
+
+                  <h4>협업 & 디자인 서포트</h4>
+                  <ul>
+                    <li>Slack – 팀 커뮤니케이션·프로젝트 단위 대화 관리</li>
+                    <li>Figma(기본) – 와이어프레임·레이아웃 확인·구조 협업</li>
+                  </ul>
                 </div>
               </div>
-            </aside>
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
 
-      <!-- PROJECTS -->
-      <section id="projects" class="section section-projects fade-section">
-        <div class="section-inner">
-          <div class="projects-header">
-            <div class="section-title">Projects</div>
-            <h2 class="section-headline">실제 문제에서 시작한<br>콘텐츠·프로세스 기획 사례</h2>
-            <p>
-              실무 영역에서 발생한 문제를 진단하고, 구조화해 개선 솔루션을 설계한 프로젝트들입니다.
-            </p>
-          </div>
+          <!-- PROFILE & STRENGTHS -->
+          <section id="profile" class="section section-profile stack-section">
+            <div class="section-inner">
+              <div class="profile-grid">
+                <aside class="profile-card">
+                  <div class="profile-image-placeholder"></div>
+                  <div class="profile-caption">
+                    여기에 AI 이미지 삽입 (기획자 / AI 기획자 컨셉)
+                  </div>
+                </aside>
 
-          <div class="project-filters">
-            <button class="project-filter-btn active" data-filter="all">전체</button>
-            <button class="project-filter-btn" data-filter="ai">AI 템플릿</button>
-            <button class="project-filter-btn" data-filter="content">콘텐츠·상품</button>
-            <button class="project-filter-btn" data-filter="ops">운영·프로세스</button>
-          </div>
-
-          <div class="project-grid" id="projectGrid">
-            <!-- 콘텐츠 / 운영 프로젝트 6개 -->
-            <article class="project-card" data-type="content">
-              <div class="project-tag">CONTENT · STRUCTURE</div>
-              <div class="project-title">VOD 상품 구조 재설계</div>
-              <p class="project-desc">
-                전환율을 중심으로 카테고리·SKU·가격 구조를 다시 정의하고<br>
-                수강 상품 구성이 한눈에 이해되도록 재설계한 프로젝트입니다.
-              </p>
-              <div class="project-meta">객단가 약 20% 상승 · 전환 구조 개선</div>
-            </article>
-
-            <article class="project-card" data-type="content">
-              <div class="project-tag">GLOBAL · SKU</div>
-              <div class="project-title">글로벌 콘텐츠 현지화 및 SKU 확장</div>
-              <p class="project-desc">
-                해외 콘텐츠를 국내 사용자 흐름에 맞춰 재배치하고<br>
-                상품 SKU를 확장해 카테고리별 선택지를 설계했습니다.
-              </p>
-              <div class="project-meta">SKU 확장 · 현지 사용자 흐름 정렬</div>
-            </article>
-
-            <article class="project-card" data-type="ops">
-              <div class="project-tag">OPS · PROCESS</div>
-              <div class="project-title">Ops & Process Optimization - 미니 프로젝트</div>
-              <p class="project-desc">
-                반복적인 운영 업무를 묶어 프로세스로 정의하고<br>
-                기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
-              </p>
-              <div class="project-meta">반복 업무 단계 축소 · 기준 문서화</div>
-            </article>
-
-            <article class="project-card" data-type="content">
-              <div class="project-tag">VOD · OPS</div>
-              <div class="project-title">Kollus VOD 업로드 프로세스 전사 가이드 제작</div>
-              <p class="project-desc">
-                내부 시스템·업로드 플로우를 표준화하고, 전사 공통으로 사용할 수 있는<br>
-                가이드와 체크리스트를 제작했습니다.
-              </p>
-              <div class="project-meta">교육 비용 절감 · 온보딩 시간 단축</div>
-            </article>
-
-            <article class="project-card" data-type="content">
-              <div class="project-tag">VOD · OPS</div>
-              <div class="project-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
-              <p class="project-desc">
-                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
-                기획하고, 프로모션·구성 전략을 함께 설계했습니다.
-              </p>
-              <div class="project-meta">지표 기반 개선 사이클 수립</div>
-            </article>
-
-            <article class="project-card" data-type="content">
-              <div class="project-tag">CONTENT · PRODUCT</div>
-              <div class="project-title">온라인 VOD 콘텐츠 상품 기획</div>
-              <p class="project-desc">
-                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
-                기획하고, 프로모션·구성 전략을 함께 설계했습니다.
-              </p>
-              <div class="project-meta">상품 포트폴리오 정리 · 신규 패키지 기획</div>
-            </article>
-
-            <!-- AI 템플릿 4개 -->
-            <article class="project-card" data-type="ai">
-              <div class="project-tag">ROLE DESIGN</div>
-              <div class="project-title">Role Design Generator</div>
-              <p class="project-desc">
-                역할 정의 요소를 분해·구조화해 포지션 설명과<br>
-                기대 역할을 일관되게 정리하는 AI 템플릿입니다.
-              </p>
-              <div class="project-meta">개인 프로젝트 · Role Design 정렬</div>
-            </article>
-
-            <article class="project-card" data-type="ai">
-              <div class="project-tag">JD BENCHMARK</div>
-              <div class="project-title">JD Benchmark Engine</div>
-              <p class="project-desc">
-                시장 JD를 비교·정리하고, 핵심 요구역량·책임 범위를<br>
-                추출해 하이어링 매니저와 정렬하는 템플릿입니다.
-              </p>
-              <div class="project-meta">개인 프로젝트 · JD 구조화</div>
-            </article>
-
-            <article class="project-card" data-type="ai">
-              <div class="project-tag">INTERVIEW</div>
-              <div class="project-title">Interview Feedback Summarizer</div>
-              <p class="project-desc">
-                여러 인터뷰어의 피드백을 요약·정리해, 의사결정에<br>
-                필요한 관찰 포인트만 남기는 템플릿입니다.
-              </p>
-              <div class="project-meta">개인 프로젝트 · 피드백 구조화</div>
-            </article>
-
-            <article class="project-card" data-type="ai">
-              <div class="project-tag">BRANDING</div>
-              <div class="project-title">Branding Content Engine</div>
-              <p class="project-desc">
-                포지션·조직 컨텍스트를 기반으로 채용 브랜딩 카피<br>
-                콘텐츠 초안을 빠르게 생성하는 템플릿입니다.
-              </p>
-              <div class="project-meta">개인 프로젝트 · 브랜딩 메시지 정렬</div>
-            </article>
-          </div>
-
-          <div class="project-toggle-wrapper">
-            <button type="button" id="projectToggleBtn" class="project-toggle-btn">전체 보기</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- SKILLS – Hard / Soft / Tools -->
-      <section id="skills" class="section section-skills fade-section">
-        <div class="skills-inner">
-          <div class="skills-label">Skills</div>
-          <div class="skills-headline">구조를 만들 때 사용하는 스킬과 도구들</div>
-          <p class="skills-lead">
-            문제를 구조화하고, 사람·프로세스·콘텐츠를 연결하기 위해 사용해 온<br>
-            하드스킬·소프트스킬·툴들을 정리했습니다.
-          </p>
-
-          <div class="skills-grid">
-            <!-- Hard Skills -->
-            <div>
-              <h3 class="skills-column-title">Hard Skills</h3>
-
-              <div class="skills-group">
-                <div class="skills-group-title">구조적 문제 정의 & 프로세스 설계</div>
-                <ul class="skills-list">
-                  <li>문제 구조화(Logical Structuring)</li>
-                  <li>프로세스 맵, 플로우 설계</li>
-                  <li>전환·퍼널·운영 프로세스 최적화</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">AI 기반 자동화 디자인</div>
-                <ul class="skills-list">
-                  <li>비정형 데이터(JD, 인터뷰, 문서) 구조화</li>
-                  <li>자동화 템플릿 설계 (워크플로우 기반)</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">데이터 분석 & 인사이트 도출</div>
-                <ul class="skills-list">
-                  <li>KPI/매출 지표 분석</li>
-                  <li>사용자 행동 데이터 분석</li>
-                  <li>전환 퍼널 진단 및 개선 방향 도출</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">콘텐츠·서비스 기획</div>
-                <ul class="skills-list">
-                  <li>VOD/라이브 콘텐츠 상품화</li>
-                  <li>SKU, 카테고리 전략 설계</li>
-                  <li>사용자 흐름 기반 UX/서비스 기획</li>
-                </ul>
+                <div>
+                  <div class="section-title">Profile & Strengths</div>
+                  <div class="profile-body-title">일을 대하는 방식</div>
+                  <p class="profile-body-desc">
+                    구조를 먼저 보고, 그 안에 들어갈 콘텐츠·경험·메시지를 채워 넣는 방식을 선호합니다.
+                    AI는 이 구조를 더 빠르게 실행하고 고도화하기 위한 파트너라고 생각합니다.
+                  </p>
+                  <div class="profile-chip-list">
+                    <span class="profile-chip highlight">문제 구조화 & 재정의</span>
+                    <span class="profile-chip">워크플로우·템플릿 설계</span>
+                    <span class="profile-chip">채용·HR 관점의 메시지</span>
+                    <span class="profile-chip">콘텐츠·서비스 기획 경험</span>
+                    <span class="profile-chip">이해관계자 커뮤니케이션</span>
+                    <span class="profile-chip">정량·정성 피드백 정리</span>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <!-- Soft Skills -->
-            <div>
-              <h3 class="skills-column-title">Soft Skills</h3>
-
-              <div class="skills-group">
-                <div class="skills-group-title">커뮤니케이션 & 협업</div>
-                <ul class="skills-list">
-                  <li>이해관계자 Alignment</li>
-                  <li>부서 간 요구사항 조정</li>
-                  <li>투명한 정보 공유 & 구조적 설명 능력</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">문제 해결 & 결정 능력</div>
-                <ul class="skills-list">
-                  <li>본질 문제 도출</li>
-                  <li>대안 비교, 우선순위 설정</li>
-                  <li>리스크 최소화 의사결정</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">실행력 & 프로젝트 드라이브</div>
-                <ul class="skills-list">
-                  <li>End-to-End 프로젝트 오너십</li>
-                  <li>일정 관리, 리소스 배분</li>
-                  <li>개선안 실행 및 고도화</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">사용자 중심 사고</div>
-                <ul class="skills-list">
-                  <li>Pain-point 도출</li>
-                  <li>사용자 흐름 이해</li>
-                  <li>경험 품질(UX) 기준 수립</li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Tools -->
-            <div>
-              <h3 class="skills-column-title">Tools</h3>
-
-              <div class="skills-group">
-                <div class="skills-group-title">문서·기획</div>
-                <ul class="skills-list">
-                  <li>Notion — 문서 정리, 운영 매뉴얼, 프로젝트 정보 구조화</li>
-                  <li>PowerPoint — 기획안, 정리 슬라이드 제작</li>
-                  <li>Google Docs / Word — 기본 문서 작성 및 협업</li>
-                  <li>Google Sheets(기본) — 표·체크리스트·운영 데이터 관리</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">AI 도구</div>
-                <ul class="skills-list">
-                  <li>ChatGPT — 기획 구조 잡기, 초안 작성, 문서 자동화 템플릿 설계</li>
-                  <li>Claude — 긴 문서 요약·정리·분석형 리서치</li>
-                  <li>NotebookLM — 자료 묶음 요약·핵심 정리 자동화</li>
-                  <li>Wisk — 이미지 컨셉 스케치·콘셉트 리서치 보조</li>
-                  <li>Vrew — 텍스트 기반 영상 콘텐츠 제작</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">협업</div>
-                <ul class="skills-list">
-                  <li>Slack — 팀 커뮤니케이션 및 프로젝트 단위 대화 관리</li>
-                </ul>
-              </div>
-
-              <div class="skills-group">
-                <div class="skills-group-title">디자인 서포팅</div>
-                <ul class="skills-list">
-                  <li>Figma(기본) — 와이어프레임·레이아웃 확인, 구조 협업</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="skills-tag-list">
-            <span class="skills-tag">AI 기반 구조화</span>
-            <span class="skills-tag">People · HR · Ops</span>
-            <span class="skills-tag">문서·프로세스 자동화</span>
-          </div>
+          </section>
         </div>
-      </section>
-
-      <!-- PROFILE & STRENGTHS -->
-      <section id="profile" class="section section-profile fade-section">
-        <div class="section-inner">
-          <div class="profile-grid">
-            <aside class="profile-card">
-              <div class="profile-image-placeholder"></div>
-              <div class="profile-caption">
-                여기에 AI 이미지 삽입 (기획자 / AI 기획자 컨셉)
-              </div>
-            </aside>
-
-            <div>
-              <div class="section-title">Profile & Strengths</div>
-              <div class="profile-body-title">일을 대하는 방식</div>
-              <p class="profile-body-desc">
-                구조를 먼저 보고, 그 안에 들어갈 콘텐츠·경험·메시지를 채워 넣는 방식을 선호합니다.
-                AI는 이 구조를 더 빠르게 실행하고 고도화하기 위한 파트너라고 생각합니다.
-              </p>
-              <div class="profile-chip-list">
-                <span class="profile-chip highlight">문제 구조화 & 재정의</span>
-                <span class="profile-chip">워크플로우·템플릿 설계</span>
-                <span class="profile-chip">채용·HR 관점의 메시지</span>
-                <span class="profile-chip">콘텐츠·서비스 기획 경험</span>
-                <span class="profile-chip">이해관계자 커뮤니케이션</span>
-                <span class="profile-chip">정량·정성 피드백 정리</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <div class="stacked-spacer"></div>
+      </div>
 
       <!-- CONTACT -->
       <section id="contact" class="section section-contact">
@@ -1465,21 +1469,20 @@
             </div>
           </div>
 
-          <div>
-            <div class="contact-info-list">
-              <div class="contact-pill">
-                <span class="contact-pill-label">E-mail</span>
-                <span>jeseokii@naver.com</span>
-              </div>
-              <div class="contact-pill">
-                <span class="contact-pill-label">Phone</span>
-                <span>+82 01-3267-4228</span>
-              </div>
+          <div class="contact-info-list">
+            <div class="contact-pill">
+              <span class="contact-pill-label">E-mail</span>
+              <span>jeseokii@naver.com</span>
             </div>
-            <div class="contact-availability">
-              <span class="availability-dot"></span>
-              <span class="availability-text">available</span>
+            <div class="contact-pill">
+              <span class="contact-pill-label">Phone</span>
+              <span>+82 01-3267-4228</span>
             </div>
+          </div>
+
+          <div class="contact-availability">
+            <span class="availability-dot"></span>
+            <span class="availability-text">AVAILABLE</span>
           </div>
 
           <div class="contact-footer">
@@ -1492,39 +1495,104 @@
   </div>
 
   <script>
-    // 섹션 페이드 인/아웃 (fade-section 전용)
-    const fadeSections = document.querySelectorAll('.fade-section');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    fadeSections.forEach((sec) => observer.observe(sec));
+    // STACKED VIEWPORT (데스크탑) -------------------------------------------------
+    const stackedWrapper = document.querySelector('.stacked-wrapper');
+    const stackedViewport = document.querySelector('.stacked-viewport');
+    const stackSections = Array.from(document.querySelectorAll('.stack-section'));
+    const stackedSpacer = document.querySelector('.stacked-spacer');
 
-    // HERO 스크롤 페이드아웃 (배경 포함) – 조금 더 완만하게 조정
+    let stackingEnabled = false;
+    let viewportHeight = 0;
+    let wrapperTop = 0;
+
+    function setActiveSection(index) {
+      stackSections.forEach((sec, i) => {
+        sec.classList.toggle('active', i === index);
+      });
+    }
+
+    function enableStacking() {
+      if (!stackedWrapper || !stackSections.length) return;
+      stackingEnabled = true;
+      const navHeight = parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue('--nav-height')
+      ) || 64;
+      viewportHeight = window.innerHeight - navHeight;
+      if (viewportHeight < 400) viewportHeight = 400; // 너무 작아지는 것 방지
+      if (stackedSpacer) {
+        stackedSpacer.style.height = (stackSections.length * viewportHeight) + 'px';
+      }
+      wrapperTop = stackedWrapper.offsetTop;
+      setActiveSection(0);
+    }
+
+    function disableStacking() {
+      stackingEnabled = false;
+      if (stackedSpacer) stackedSpacer.style.height = '0px';
+      stackSections.forEach((sec) => sec.classList.add('active'));
+    }
+
+    function handleStackScroll() {
+      if (!stackingEnabled || !stackSections.length) return;
+
+      const scrollY = window.scrollY;
+      const start = wrapperTop;
+      const spacerHeight = stackedSpacer ? stackedSpacer.offsetHeight : 0;
+
+      if (scrollY <= start) {
+        setActiveSection(0);
+        return;
+      }
+
+      if (scrollY >= start + spacerHeight) {
+        setActiveSection(stackSections.length - 1);
+        return;
+      }
+
+      const progress = (scrollY - start) / (spacerHeight || 1);
+      const index = Math.round(progress * (stackSections.length - 1));
+      setActiveSection(index);
+    }
+
+    function handleResize() {
+      if (window.innerWidth >= 961) {
+        enableStacking();
+      } else {
+        disableStacking();
+      }
+    }
+
+    window.addEventListener('scroll', handleStackScroll);
+    window.addEventListener('resize', () => {
+      if (!stackedWrapper) return;
+      wrapperTop = stackedWrapper.offsetTop;
+      handleResize();
+    });
+
+    handleResize();
+
+    // HERO 스크롤 페이드아웃 (배경 포함) -----------------------------------------
     const heroSection = document.querySelector('.hero');
     let latestScrollY = 0;
     let ticking = false;
 
     function updateHeroFade() {
       const heroHeight = window.innerHeight;
-      const maxScroll = heroHeight * 0.7; // 조금 더 길게
+      const maxScroll = heroHeight * 0.6;
       const s = Math.min(Math.max(latestScrollY, 0), maxScroll);
       const t = s / maxScroll;
-      const eased = Math.pow(t, 1.2); // 곡선 완화
-      const opacity = 1 - eased * 0.9; // 완전히 사라지지 않고 살짝 남도록
-      const translate = -20 * eased;   // 위로 살짝만 이동
+      const eased = Math.pow(t, 1.7);
+      const opacity = 1 - eased;
+      const translate = -40 * eased;
 
-      if (heroSection) {
+      if (heroSection && window.innerWidth < 961) {
+        // 모바일에서는 기존처럼 사용
         heroSection.style.opacity = opacity.toString();
         heroSection.style.transform = `translateY(${translate}px)`;
+      } else if (heroSection && window.innerWidth >= 961) {
+        // 데스크탑에서는 섹션 스택과 함께 자연스럽게만 약하게 적용
+        heroSection.style.opacity = (0.8 + opacity * 0.2).toString();
+        heroSection.style.transform = `translateY(${translate * 0.4}px)`;
       }
       ticking = false;
     }
@@ -1537,7 +1605,7 @@
       }
     });
 
-    // HERO 오른쪽 버블 자동 롤링
+    // HERO 오른쪽 버블 자동 롤링 (타이틀 고정) -----------------------------------
     const heroFocusItems = document.querySelectorAll('.hero-focus-item');
     let heroFocusIndex = 0;
 
@@ -1555,25 +1623,7 @@
       }, 3000);
     }
 
-    // FOCUS 섹션 오른쪽 버블 자동 롤링
-    const focusPills = document.querySelectorAll('.focus-pill');
-    let focusIndex = 0;
-
-    function setFocusActive(idx) {
-      focusPills.forEach((pill, i) => {
-        pill.classList.toggle('active', i === idx);
-      });
-    }
-
-    if (focusPills.length > 0) {
-      setFocusActive(focusIndex);
-      setInterval(() => {
-        focusIndex = (focusIndex + 1) % focusPills.length;
-        setFocusActive(focusIndex);
-      }, 3200);
-    }
-
-    // IMPACT 카드 자동 전환 (속도 약간 빠르게)
+    // IMPACT 카드 자동 전환 ------------------------------------------------------
     const impactStates = [
       {
         value: '20%',
@@ -1613,81 +1663,108 @@
       setInterval(() => {
         impactIndex = (impactIndex + 1) % impactStates.length;
         setImpactState(impactIndex);
-      }, 2600);
+      }, 2600); // 기존보다 조금 더 빠르게
     }
 
-    // PROJECT 필터 + 전체보기 토글
+    // PROJECT 필터 + 전체 보기 ---------------------------------------------------
     const projectFilterBtns = document.querySelectorAll('.project-filter-btn');
-    const projectCards = Array.from(document.querySelectorAll('.project-card'));
-    const projectToggleBtn = document.getElementById('projectToggleBtn');
-    const INITIAL_VISIBLE = 6;
-    let currentFilter = 'all';
-    let showAllProjects = false;
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectViewMoreBtn = document.getElementById('projectViewMoreBtn');
 
-    function updateProjectVisibility() {
-      let visibleCount = 0;
+    let projectShowAll = false;
+    const PROJECT_VISIBLE_COUNT = 6; // 기본으로 페이지 안에 보일 카드 개수
+
+    function applyProjectVisibility() {
+      const activeFilterBtn = document.querySelector('.project-filter-btn.active');
+      const filter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+      let shownCount = 0;
 
       projectCards.forEach((card) => {
         const type = card.dataset.type;
+        const match = filter === 'all' || filter === type;
 
-        // 필터 적용
-        const matchesFilter = currentFilter === 'all' || currentFilter === type;
-
-        if (!matchesFilter) {
+        if (!match) {
           card.style.display = 'none';
           return;
         }
 
-        // 전체보기 여부에 따라 노출 개수 제한
-        if (!showAllProjects && visibleCount >= INITIAL_VISIBLE) {
+        if (!projectShowAll && shownCount >= PROJECT_VISIBLE_COUNT) {
           card.style.display = 'none';
-        } else {
-          card.style.display = 'flex';
-          visibleCount++;
+          return;
         }
+
+        card.style.display = 'flex';
+        shownCount += 1;
       });
 
-      if (showAllProjects) {
-        projectToggleBtn.textContent = '접기';
-      } else {
-        projectToggleBtn.textContent = '전체 보기';
+      if (projectViewMoreBtn) {
+        const totalMatch = Array.from(projectCards).filter((card) => {
+          const type = card.dataset.type;
+          return filter === 'all' || filter === type;
+        }).length;
+
+        if (totalMatch <= PROJECT_VISIBLE_COUNT) {
+          projectViewMoreBtn.style.display = 'none';
+        } else {
+          projectViewMoreBtn.style.display = 'inline-flex';
+          projectViewMoreBtn.innerHTML = projectShowAll
+            ? '접기 <span aria-hidden="true">▴</span>'
+            : '전체 보기 <span aria-hidden="true">▾</span>';
+        }
       }
     }
 
     projectFilterBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
-        currentFilter = filter;
+        projectShowAll = false;
         projectFilterBtns.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
-        // 필터 변경 시 기본은 접힌 상태 유지
-        showAllProjects = false;
-        updateProjectVisibility();
+        applyProjectVisibility();
       });
     });
 
-    if (projectToggleBtn) {
-      projectToggleBtn.addEventListener('click', () => {
-        showAllProjects = !showAllProjects;
-        updateProjectVisibility();
+    if (projectViewMoreBtn) {
+      projectViewMoreBtn.addEventListener('click', () => {
+        projectShowAll = !projectShowAll;
+        applyProjectVisibility();
       });
     }
 
-    // 초기 상태 설정
-    updateProjectVisibility();
+    applyProjectVisibility();
 
-    // 내비게이션 스크롤 보정
-    document.querySelectorAll('.nav-link').forEach((link) => {
+    // 내비게이션 스크롤 보정 + 스택 섹션 연동 ------------------------------------
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (!target) return;
-          const rect = target.getBoundingClientRect();
-          const offset = rect.top + window.scrollY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 64);
-          window.scrollTo({ top: offset, behavior: 'smooth' });
+        if (!href || !href.startsWith('#')) return;
+
+        const targetId = href.slice(1);
+        const targetEl = document.getElementById(targetId);
+        if (!targetEl) return;
+
+        e.preventDefault();
+
+        const navHeight = parseInt(
+          getComputedStyle(document.documentElement).getPropertyValue('--nav-height')
+        ) || 64;
+
+        if (window.innerWidth >= 961 && stackSections.length && targetId !== 'contact') {
+          const idx = stackSections.findIndex((sec) => sec.id === targetId);
+          if (idx !== -1 && stackedWrapper) {
+            const base = stackedWrapper.offsetTop;
+            const vh = viewportHeight || (window.innerHeight - navHeight);
+            const targetScroll = base + idx * vh;
+            window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+            return;
+          }
         }
+
+        const rect = targetEl.getBoundingClientRect();
+        const offset = rect.top + window.scrollY - navHeight;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
       });
     });
   </script>
