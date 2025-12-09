@@ -1,696 +1,155 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>Kollus VOD 업로드 프로세스 전사 가이드 제작 · Yeon Je Seok</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Kollus VOD 업로드를 누구나 실수 없이 한 번에 할 수 있도록 표준 프로세스와 전사 가이드를 설계·문서화한 프로젝트 상세 페이지" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kollus VOD 업로드 프로세스 전사 가이드</title>
 
-  <!-- 폰트 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
-    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <style>
-    :root {
-      --bg-body: #050816;
-      --bg-page: #f5f7fb;
-      --bg-card: #ffffff;
-      --bg-card-soft: #f7f9ff;
-      --accent: #2f7cff;
-      --accent-soft: #e0ebff;
-      --accent-strong: #0b68ff;
-      --text-main: #111827;
-      --text-sub: #4b5563;
-      --text-muted: #9ca3af;
-      --border-soft: #e5e7eb;
-      --shadow-soft: 0 16px 40px rgba(148, 163, 184, 0.32);
-      --radius-card: 28px;
-      --nav-height: 64px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-    }
-
+<style>
     body {
-      background: var(--bg-body);
-      color: var(--text-main);
-      font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: #0f1214;
+        color: #e4ebff;
+        line-height: 1.6;
     }
-
-    a { color: inherit; text-decoration: none; }
 
     .page {
-      min-height: 100vh;
-      background: var(--bg-page);
+        padding: 120px 120px 180px;
+        max-width: 1080px;
+        margin: auto;
     }
 
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
+    h1 {
+        font-size: 44px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
     }
 
-    /* NAV */
-    .top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.86), rgba(5, 8, 22, 0.0));
-      color: #e5e7eb;
+    h2 {
+        margin-top: 80px;
+        font-size: 28px;
+        font-weight: 700;
     }
 
-    .top-nav-inner {
-      width: 100%;
-      max-width: 1120px;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
+    p {
+        opacity: 0.9;
+        font-size: 18px;
+        margin-bottom: 24px;
     }
 
-    .nav-logo {
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      font-size: 14px;
+    .section-card {
+        background: #161a1e;
+        border-radius: 24px;
+        padding: 48px;
+        margin-bottom: 48px;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.3);
     }
 
-    .back-link {
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      opacity: 0.8;
-      cursor: pointer;
+    .section-card h3 {
+        font-size: 22px;
+        margin-bottom: 18px;
+        font-weight: 700;
     }
 
-    .back-link span {
-      font-size: 16px;
-      transform: translateY(-1px);
+    ul {
+        list-style: disc;
+        padding-left: 24px;
+        opacity: 0.95;
+        font-size: 17px;
+        margin-bottom: 24px;
     }
 
-    main {
-      padding: 40px 0 72px;
+    /* 버튼 */
+    .project-button {
+        display: inline-block;
+        padding: 14px 24px;
+        background: #2f7cff;
+        color: white;
+        border-radius: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 24px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        transition: 0.25s ease;
     }
 
-    section {
-      padding: 32px 0;
+    .project-button:hover {
+        background: #4a91ff;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.45);
     }
 
-    /* HERO */
-    .hero {
-      padding-top: 8px;
-      padding-bottom: 24px;
-    }
-
-    .hero-card {
-      border-radius: 32px;
-      padding: 32px 30px 28px;
-      background:
-        radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.18), transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.24), transparent 60%),
-        linear-gradient(135deg, #0b63ff, #001b5f);
-      color: #f9fafb;
-      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.6);
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(191, 219, 254, 0.45);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .hero-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #38bdf8;
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
-    }
-
-    .hero-title {
-      font-size: 30px;
-      line-height: 1.5;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .hero-role {
-      font-size: 14px;
-      font-weight: 500;
-      color: #dbeafe;
-      margin-bottom: 10px;
-    }
-
-    .hero-text {
-      font-size: 14px;
-      line-height: 1.8;
-      color: #e5e7eb;
-      margin-bottom: 18px;
-    }
-
-    .hero-meta-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 12px;
-      color: #e5e7eb;
-    }
-
-    .hero-meta-chip {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-    }
-
-    .hero-side {
-      align-self: stretch;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      font-size: 13px;
-    }
-
-    .hero-side-card {
-      border-radius: 20px;
-      padding: 16px 18px;
-      background: rgba(15, 23, 42, 0.78);
-      border: 1px solid rgba(191, 219, 254, 0.4);
-    }
-
-    .hero-side-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #e5e7eb;
-    }
-
-    .hero-side-list {
-      list-style: none;
-      color: #cbd5f5;
-      line-height: 1.6;
-    }
-
-    .hero-side-list li + li {
-      margin-top: 4px;
-    }
-
-    /* 공통 카드 */
-    .project-card {
-      border-radius: var(--radius-card);
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      padding: 22px 24px 20px;
-    }
-
-    .project-card-header {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .project-card-body {
-      font-size: 14px;
-      color: var(--text-sub);
-      line-height: 1.75;
-    }
-
-    .project-card-body ul {
-      list-style: disc;
-      padding-left: 20px;
-      margin-top: 6px;
-    }
-
-    .project-card-body li + li {
-      margin-top: 3px;
-    }
-
-    .project-card-body b {
-      font-weight: 600;
-      color: #111827;
-    }
-
-    .project-section-sub {
-      font-size: 13px;
-      color: var(--text-sub);
-      margin-bottom: 14px;
-      line-height: 1.7;
-    }
-
-    /* Overview 카드 (Before / After) */
-    .overview-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 18px;
-      margin-top: 14px;
-    }
-
-    .overview-label {
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .overview-list {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.7;
-      padding-left: 18px;
-      list-style: disc;
-    }
-
-    .overview-list li + li {
-      margin-top: 4px;
-    }
-
-    /* 역할 & 세부 업무 */
-    .meta-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
-      gap: 18px;
-      margin-top: 14px;
-    }
-
-    .equal-card {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      min-height: 260px;
-    }
-
-    .equal-card .project-card-body {
-      flex: 1;
-    }
-
-    .dotted-list {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .dotted-list li {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .dotted-list li + li {
-      margin-top: 4px;
-    }
-
-    .dotted-list span.label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent-strong);
-      margin-right: 4px;
-      white-space: nowrap;
-    }
-
-    .dotted-list span.text {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.7;
-    }
-
-    /* 업로드 플로우 비주얼 */
-    .flow-card {
-      border-radius: 24px;
-      padding: 18px 22px 18px;
-      background: var(--bg-card-soft);
-      border: 1px solid var(--accent-soft);
-      box-shadow: 0 12px 30px rgba(148, 163, 184, 0.25);
-      font-size: 13px;
-      color: var(--text-sub);
-    }
-
-    .flow-title {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-main);
-      text-align: center;
-    }
-
-    .flow-steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .flow-step {
-      flex: 1 1 140px;
-      min-width: 0;
-      border-radius: 999px;
-      background: #e5edff;
-      padding: 8px 10px;
-      text-align: center;
-      font-size: 12px;
-      color: #111827;
-      font-weight: 500;
-    }
-
-    .flow-arrow-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 4px;
-      font-size: 12px;
-      color: #9ca3af;
-      margin-bottom: 10px;
-    }
-
-    .flow-arrow-row span {
-      transform: translateY(-1px);
-    }
-
-    .flow-caption-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      font-size: 11px;
-    }
-
-    .flow-caption {
-      border-radius: 12px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      padding: 8px 8px;
-      line-height: 1.5;
-      color: #4b5563;
-    }
-
-    /* RESULT */
-    .overview-list.result li {
-      margin-top: 4px;
-    }
-
-    .project-footer {
-      margin-top: 32px;
-      font-size: 12px;
-      color: var(--text-muted);
-      text-align: right;
-    }
-
-    /* Responsive */
-    @media (max-width: 960px) {
-      .hero-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .overview-grid,
-      .meta-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .flow-caption-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 720px) {
-      main {
-        padding-top: 32px;
-      }
-
-      .hero-card {
-        padding: 24px 20px 22px;
-      }
-
-      section {
-        padding: 24px 0;
-      }
-
-      .flow-steps {
-        flex-direction: column;
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
-  <div class="page">
-    <!-- NAV -->
-    <header class="top-nav">
-      <div class="top-nav-inner">
-        <div class="nav-logo">YEON JE SEOK</div>
-        <a href="index.html#projects" class="back-link">
-          <span>←</span> Back to Projects
-        </a>
-      </div>
-    </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container">
-          <div class="hero-card">
-            <div>
-              <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                <span>VOD · OPS</span>
-              </div>
-              <h1 class="hero-title">Kollus VOD 업로드 프로세스 전사 가이드 제작</h1>
-              <p class="hero-role">“누가 하든 한 번에, 같은 방식으로” 만들기 위한 업로드 표준화 프로젝트</p>
-              <p class="hero-text">
-                Kollus VOD를 도입한 뒤 사람마다 기억과 방법이 제각각이라
-                매번 물어보고, 실수하고, 재업로드하는 비효율이 반복되고 있었습니다.
-                업로드 플로우를 구조화하고, 누구나 같은 기준으로 작업할 수 있는
-                전사 가이드 문서를 설계·작성한 프로젝트입니다.
-              </p>
-              <div class="hero-meta-chips">
-                <span class="hero-meta-chip">콘솔·업로더·암호화 옵션까지 단일 플로우로 정리</span>
-                <span class="hero-meta-chip">파일명·폴더 구조·주의사항까지 표준 규칙화</span>
-                <span class="hero-meta-chip">신규 담당자 온보딩용 레퍼런스로 정착</span>
-              </div>
-            </div>
+<div class="page">
 
-            <aside class="hero-side">
-              <div class="hero-side-card">
-                <div class="hero-side-title">프로젝트 한 줄 요약</div>
-                <ul class="hero-side-list">
-                  <li>업무가 ‘몇 명 머릿속에만 있는 상태’를 벗어나도록 구조화한 프로젝트</li>
-                  <li>Kollus 업로드를 전사 차원의 “표준 작업”으로 만든 가이드 제작</li>
-                </ul>
-              </div>
-              <div class="hero-side-card">
-                <div class="hero-side-title">역할</div>
-                <ul class="hero-side-list">
-                  <li>실무 수행자이자 기획자로서 문제 지점 직접 수집</li>
-                  <li>전체 업로드 플로우 설계 및 가이드 문서 작성</li>
-                  <li>팀·조직 공유 및 신규 담당자 온보딩 레퍼런스로 정착 주도</li>
-                </ul>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
+    <h1>Kollus VOD 업로드 프로세스 전사 가이드 제작</h1>
+    <p>
+        Kollus VOD를 도입한 이후, 업로드·암호화·카테고리·파일명·미디어키 설정 등
+        복잡한 요소들로 인해 반복적인 실수와 재작업이 발생했습니다.
+        누구나 실수 없이 한 번에 업로드할 수 있는
+        <strong>표준 업로드 가이드 & 체크리스트</strong>를 제작했습니다.
+    </p>
 
-      <!-- OVERVIEW -->
-      <section>
-        <div class="container">
-          <div class="project-card">
-            <div class="project-card-header">프로젝트 개요</div>
-            <div class="project-card-body">
-              <p class="project-section-sub">
-                Kollus VOD 도입 이후, 콘솔·업로더·암호화·카테고리·미디어키 등 고려해야 할 요소가 많아지면서
-                “이건 어떻게 올려요?”라는 질문과 업로드 실패가 반복되고 있었습니다.
-                이를 해결하기 위해 <b>표준 업로드·암호화 프로세스 + 전사 가이드</b>를 만드는 것을 목표로 했습니다.
-              </p>
+    <!-- 버튼 -->
+    <a href="https://www.notion.so/Kollus-VOD-v1-2beb0b5e777580c686b9ee047c159f24?source=copy_link"
+       target="_blank"
+       class="project-button">
+        📄 실제 가이드 문서 보기 (Notion)
+    </a>
 
-              <div class="overview-grid">
-                <div>
-                  <div class="overview-label">Before (문제 상황)</div>
-                  <ul class="overview-list">
-                    <li>“콜러스로 어떻게 올려요?”라는 질문이 계속 반복</li>
-                    <li>암호화/비암호화, 파일명 규칙, 업로드 개수 제한 등을 몰라 업로드 실패·중복·재작업 발생</li>
-                    <li>잘못된 카테고리에 올렸다가 다시 작업하는 비효율</li>
-                    <li>업무가 특정 몇 명 머릿속에만 있는 상태 → 인수인계·휴가·퇴사 시 리스크 큼</li>
-                  </ul>
-                </div>
-                <div>
-                  <div class="overview-label">After (지향점)</div>
-                  <ul class="overview-list">
-                    <li>누가 하든 같은 플로우로 한 번에 업로드할 수 있는 구조</li>
-                    <li>콘솔/업로더/암호화/카테고리 설정이 한 장의 플로우로 정리된 상태</li>
-                    <li>파일명·폴더·주의사항이 문서로 명확히 정의되어 재업로드 최소화</li>
-                    <li>신규 담당자가 들어와도 가이드를 보고 바로 작업 가능한 상태</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <h2>배경</h2>
+    <div class="section-card">
+        <h3>문제 상황</h3>
+        <ul>
+            <li>“콜러스로 어떻게 올려요?” 질문 반복</li>
+            <li>암호화 체크, 파일명 규칙 미준수 → 업로드 실패/중복 발생</li>
+            <li>업무가 특정 인원의 머릿속에만 존재 → 인수인계 리스크</li>
+        </ul>
+    </div>
 
-      <!-- ROLE & TASKS -->
-      <section>
-        <div class="container">
-          <div class="meta-grid">
-            <!-- 역할 & 기여도 -->
-            <article class="project-card equal-card">
-              <div class="project-card-header">역할 & 기여도</div>
-              <div class="project-card-body">
-                <ul>
-                  <li>Kollus 도입 이후 실제 실무를 맡으며 <b>헷갈리는 지점·자주 나오는 질문·실패 케이스 직접 수집</b></li>
-                  <li>웹 콘솔 / 업로더 / 드롭박스 / 채널 설정 흐름을 하나의 <b>엔드 투 엔드 플로우</b>로 재구성</li>
-                  <li>스크린샷, 체크 포인트, 주의사항을 포함한 <b>실무 매뉴얼 작성</b></li>
-                  <li>폴더 구조·파일명 규칙·암호화 옵션 기준 정의</li>
-                  <li>완성본을 팀/조직에 공유하고, <b>신규 담당자 온보딩 시 표준 레퍼런스</b>로 활용되도록 정착</li>
-                </ul>
-              </div>
-            </article>
+    <h2>역할</h2>
+    <div class="section-card">
+        <ul>
+            <li>실제 실무 담당자로서 문제 포인트 분석</li>
+            <li>콘솔/업로더/드롭박스/채널 구조를 통합해 전체 플로우 설계</li>
+            <li>스크린샷, 체크포인트, 파일명 규칙 포함한 가이드 제작</li>
+            <li>전사 공유 및 신규 담당자 온보딩 표준 레퍼런스 정착</li>
+        </ul>
+    </div>
 
-            <!-- 주요 세부 업무 -->
-            <article class="project-card equal-card">
-              <div class="project-card-header">주요 세부 업무 (What & How)</div>
-              <div class="project-card-body">
-                <ol class="dotted-list">
-                  <li>
-                    <span class="label">① 플로우 구조화</span>
-                    <span class="text">
-                      드롭박스 최종 편집본 → Kollus 업로더/콘솔 → 암호화 여부 결정 → 카테고리/채널 세팅 →
-                      미디어키 입력까지의 전체 흐름을 단계별로 끊어 한 장으로 정리했습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">② 업로드 방식별 구분 가이드</span>
-                    <span class="text">
-                      콘솔(단일 업로드) vs 업로더(다량 업로드)를 용도별로 구분하고,
-                      각 방식별 클릭 경로, 암호화 체크 위치, 주의사항을 스크린샷과 함께 문서화했습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">③ 파일명·암호화 규칙 정의</span>
-                    <span class="text">
-                      <b>“카테고리_연사명_주차_정규수업 (암호화/암호화X)”</b> 형태로 파일명 규칙을 통일하고,
-                      이름이 같으면 업로드가 되지 않는 제약을 문서에 명확히 명시했습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">④ 실패를 줄이는 운영 팁 명문화</span>
-                    <span class="text">
-                      카테고리별 4~6개씩 나눠 올리기, 업로더 100% 완료 후 콘솔 상태 확인,
-                      미디어키 위치 등 실무에서 자주 실수하던 포인트를 “체크 포인트”로 묶어 안내했습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">⑤ 주의사항 모듈화</span>
-                    <span class="text">
-                      자주 실패하는 포인트를 체크박스·경고 아이콘·볼드 강조로 표기해,
-                      처음 보는 사람도 가이드를 따라만 하면 실수를 줄일 수 있게 설계했습니다.
-                    </span>
-                  </li>
-                </ol>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+    <h2>What & How</h2>
+    <div class="section-card">
+        <ul>
+            <li>업로드 플로우 한 장 시각화</li>
+            <li>콘솔 vs 업로더 구분 가이드</li>
+            <li>파일명·암호화 규칙 명문화</li>
+            <li>업로드 실패 줄이기 위한 운영 팁</li>
+            <li>주의 포인트를 체크박스/경고 아이콘으로 구성</li>
+        </ul>
+    </div>
 
-      <!-- FLOW VISUAL -->
-      <section>
-        <div class="container">
-          <div class="project-card">
-            <div class="project-card-header">업로드 플로우 요약 (시각화)</div>
-            <div class="project-card-body">
-              <p class="project-section-sub">
-                실제 문서에서는 각 단계별 스크린샷과 체크 포인트를 함께 보여주지만,
-                여기서는 전체 흐름이 어떻게 구조화되어 있는지 텍스트 기반으로 정리했습니다.
-              </p>
+    <h2>결과</h2>
+    <div class="section-card">
+        <ul>
+            <li>업로드 실수/재작업 감소</li>
+            <li>담당자 누구나 동일한 방식으로 처리 가능</li>
+            <li>온보딩 시간 단축</li>
+            <li>전사 표준 레퍼런스 정착</li>
+        </ul>
+    </div>
 
-              <div class="flow-card">
-                <div class="flow-title">Kollus VOD 업로드 엔드 투 엔드 플로우</div>
+    <a href="../index.html" class="project-button" style="margin-top: 80px;">
+        ← 돌아가기
+    </a>
 
-                <div class="flow-steps">
-                  <div class="flow-step">1. 드롭박스 최종 편집본 정리</div>
-                  <div class="flow-step">2. Kollus 업로더 / 콘솔 선택</div>
-                  <div class="flow-step">3. 암호화 여부 설정</div>
-                  <div class="flow-step">4. 카테고리·채널 세팅 & 미디어키 관리</div>
-                </div>
+</div>
 
-                <div class="flow-arrow-row">
-                  <span>드롭박스</span> → <span>Kollus 업로더/콘솔</span> → <span>암호화 옵션</span> →
-                  <span>카테고리/채널</span> → <span>미디어키</span>
-                </div>
-
-                <div class="flow-caption-grid">
-                  <div class="flow-caption">
-                    최종 편집본만 남겨둔 폴더 구조 정리<br>
-                    (버전 관리, 파일명 규칙 적용)
-                  </div>
-                  <div class="flow-caption">
-                    단일 업로드(콘솔) vs 다량 업로드(업로더)<br>
-                    용도에 맞게 선택하도록 기준 제공
-                  </div>
-                  <div class="flow-caption">
-                    암호화/비암호화 기준 정의<br>
-                    민감도·라이선스 조건에 따라 선택
-                  </div>
-                  <div class="flow-caption">
-                    카테고리·채널·미디어키를 한 시트로 관리<br>
-                    업로드 후 상태 확인 체크리스트 포함
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- RESULT -->
-      <section>
-        <div class="container">
-          <div class="project-card">
-            <div class="project-card-header">성과 & 인사이트</div>
-            <div class="project-card-body">
-              <ul class="overview-list result">
-                <li>반복되던 “어떻게 올려요?” 질문 감소, 동일 질문에 대한 대응 시간 절감</li>
-                <li>파일명·암호화·카테고리 설정 오류로 인한 <b>업로드 실패·재작업 횟수 감소</b></li>
-                <li>업무가 특정 인원에게 묶여 있던 상태에서 <b>전사 공유 가능한 레퍼런스</b>로 전환</li>
-                <li>신규 담당자 온보딩 시 “가이드 문서 + 짧은 구두 설명”만으로도 작업 가능</li>
-                <li>향후 유사한 외부 시스템 도입 시 참고할 수 있는 <b>업무 표준화 템플릿</b> 역할 수행</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="project-footer">
-            실제 가이드는 내부 시스템 화면과 회사 정책이 포함되어 있어, 포트폴리오용 페이지에서는 구조와 방법론 중심으로만 재구성했습니다.
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
 </body>
 </html>
