@@ -187,10 +187,57 @@
     }
 
     .hero-meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 6px 12px;
       border-radius: 999px;
       background: rgba(15, 23, 42, 0.6);
       border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    /* Notion 링크용 강조 pill */
+    .hero-meta-chip-primary {
+      background: #f9fafb;
+      color: #0f172a;
+      border-color: #a5b4fc;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.55);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.18s ease;
+    }
+
+    .hero-meta-chip-primary:hover {
+      background: #e5edff;
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-meta-chip-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
+      animation: pulse-dot 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .hero-meta-chip-icon {
+      font-size: 11px;
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% {
+        opacity: 0.7;
+        transform: scale(0.9);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .hero-side {
@@ -490,17 +537,18 @@
                 전사 가이드 문서를 설계·작성한 프로젝트입니다.
               </p>
               <div class="hero-meta-chips">
-                <span class="hero-meta-chip">콘솔·업로더·암호화 옵션까지 단일 플로우로 정리</span>
-                <span class="hero-meta-chip">파일명·폴더 구조·주의사항까지 표준 규칙화</span>
-                <span class="hero-meta-chip">신규 담당자 온보딩용 레퍼런스로 정착</span>
-                <!-- 🔹 여기 한 줄만 추가됨: Notion 링크 칩 -->
                 <a
                   href="https://www.notion.so/Kollus-VOD-v1-2beb0b5e777580c686b9ee047c159f24?source=copy_link"
+                  class="hero-meta-chip hero-meta-chip-primary"
                   target="_blank"
-                  class="hero-meta-chip"
+                  rel="noopener noreferrer"
                 >
-                  실제 Kollus VOD 가이드 문서 보기 (Notion)
+                  <span class="hero-meta-chip-dot"></span>
+                  <span>실제 Kollus VOD 가이드 문서 보기 (Notion)</span>
+                  <span class="hero-meta-chip-icon" aria-hidden="true">↗</span>
                 </a>
+                <span class="hero-meta-chip">콘솔·업로더·암호화 옵션까지 단일 플로우로 정리</span>
+                <span class="hero-meta-chip">파일명·폴더 구조·주의사항까지 표준 규칙화</span>
               </div>
             </div>
 
