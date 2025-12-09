@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VOD 콘텐츠 개선 운영 프로세스 구축</title>
+
+<style>
+/* === PAGE LAYOUT === */
+body {
+  font-family: "Pretendard", sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background: #f9f9fb;
+  color: #111;
+}
+
+section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+h1, h2, h3 {
+  margin: 0 0 16px 0;
+  font-weight: 700;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  background: #e8f0ff;
+  color: #2f7cff;
+  margin-right: 8px;
+}
+
+.hero {
+  padding: 120px 24px 80px;
+  text-align: left;
+  background: linear-gradient(135deg, #eaf3ff, #f9fbff);
+}
+
+.hero h1 {
+  font-size: 44px;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 720px;
+}
+
+.block {
+  background: white;
+  border-radius: 16px;
+  padding: 48px 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.highlight {
+  font-weight: 700;
+  color: #2f7cff;
+}
+
+.return-button {
+  display: inline-block;
+  margin-top: 48px;
+  padding: 12px 20px;
+  background: #2f7cff;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+.return-button:hover {
+  opacity: 0.85;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= HERO ========================= -->
+<section class="hero">
+  <div class="tag">Ops · Process Design</div>
+  <h1>VOD 콘텐츠 개선 운영 프로세스 구축</h1>
+  <p>
+    콘텐츠 검수·피드백·개선이 한 사람에게 몰려 있던 구조를 해결하기 위해 <br>
+    <span class="highlight">지속 가능한 운영 프로세스 0→1 설계</span>를 진행한 프로젝트입니다.
+  </p>
+</section>
+
+<!-- ========================= OVERVIEW ========================= -->
+<section>
+  <div class="block">
+    <h2>프로젝트 개요</h2>
+    <h3>As-Is</h3>
+    <ul>
+      <li>검수, 개선, 체크가 기획자 개인에게 과도하게 집중</li>
+      <li>멘토, 수강생, 연사, 운영팀이 모두 참여하지만 역할·기준 불명확</li>
+      <li>주차별 피드백 기준 부재, 기술/커리큘럼 문제 혼재</li>
+    </ul>
+
+    <h3>To-Be</h3>
+    <ul>
+      <li><b>지속 가능한 개선 구조</b> 구축</li>
+      <li><b>역할 정의 기반 협업 체계</b> 정착</li>
+      <li>누구를 갈아 넣지 않아도 굴러가는 운영 시스템 설계</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========================= ROLE ========================= -->
+<section>
+  <div class="block">
+    <h2>역할 & 기여도</h2>
+    <ul>
+      <li>문제 정의 → 프로세스 설계 → 문서화까지 <b>전 과정 단독 수행</b></li>
+      <li>이해관계자 전체(멘토·수강생·운영·연사) <b>피드백 루프 구조 설계</b></li>
+      <li>주차별 진단 기준 및 n-1주차 선행 확인 체계 구축</li>
+      <li><b>기획자 인풋 16h → 3~5h 감소</b></li>
+      <li>모든 문서, 타임라인, R&R 산출물 직접 제작</li>
+      <li>전체 일정, 품질 기준 포함 <b>PM 역할 수행</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========================= PROBLEM ========================= -->
+<section>
+  <div class="block">
+    <h2>문제 분석</h2>
+    <ul>
+      <li>운영 구조가 1인 집중 → 병목 및 리스크</li>
+      <li>멘토/수강생 피드백이 감정적 후기 수준에 머무름</li>
+      <li>기술적 이슈와 커리큘럼 이슈가 혼재해 재작업 반복</li>
+      <li>참여 기준·데이터 기준 부재 → 확장성 떨어짐</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========================= SOLUTION ========================= -->
+<section>
+  <div class="block">
+    <h2>설계한 솔루션</h2>
+
+    <h3>① 새로운 프로세스 플로우</h3>
+    <ul>
+      <li>멘토: 콘텐츠 사전 숙지 → 주차별 피드백 초안</li>
+      <li>테스터: n-1주차에 n주차 강의 확인 → 타임스탬프 기반 제출</li>
+      <li><b>2중 피드백 구조</b> (테스터 + 정규 수강생)</li>
+      <li>기술적 편집 vs 커리큘럼 문제 <b>판단 기준 분리</b></li>
+      <li>개선 사항을 A+2 기수까지 반영</li>
+    </ul>
+
+    <h3>② 역할·협업체계(R&R)</h3>
+    <ul>
+      <li>멘토 / 수강생 / 기획자 / 운영 / 연사 역할 명확화</li>
+      <li>운영팀 체크리스트 및 설문 기준 재설계</li>
+      <li>주차별 개선 흐름 정렬</li>
+    </ul>
+
+    <h3>③ 문서화 & 시각화</h3>
+    <ul>
+      <li>Mermaid 기반 타임라인 다이어그램 제작</li>
+      <li>개선 기준, 역할, 절차를 한 문서에 통합</li>
+      <li>신규 PM 온보딩용 레퍼런스 제작</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========================= TIMELINE ========================= -->
+<section>
+  <div class="block">
+    <h2>프로세스 타임라인</h2>
+
+    <h3>테스터 타임라인</h3>
+    <pre>
+Week 0: n주차 강의 사전 확인, 선정
+Week 1~8: n-1주차 확인 → 피드백 제출 + 정규 강의 참여
+Week 8~9: 총괄 피드백 제출 → 기획자 취합
+    </pre>
+
+    <h3>멘토 타임라인</h3>
+    <pre>
+Week 0: 커리큘럼 숙지, 피드백 초안
+Week 1~8: 멘토링 & 주차별 피드백 확정
+Week 8~9: 피드백 전달 및 A+2 반영 논의
+    </pre>
+
+  </div>
+</section>
+
+<!-- ========================= RESULTS ========================= -->
+<section>
+  <div class="block">
+    <h2>성과</h2>
+    <ul>
+      <li><b>기획자 인풋 16h → 3~5h (65~80% 감소)</b></li>
+      <li>협업 비용 절감, 주차별 기준 정착 → 품질 균일화</li>
+      <li>기술/커리큘럼 문제 분리 → 재작업 최소화</li>
+      <li>A+2 기수 반영되는 <b>지속 개선 시스템</b></li>
+      <li>온보딩 속도 향상, 클래스 품질 안정화</li>
+    </ul>
+
+    <a href="../index.html" class="return-button">← 메인으로 돌아가기</a>
+  </div>
+</section>
+
+</body>
+</html>
