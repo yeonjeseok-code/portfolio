@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>VOD 콘텐츠 개선 운영 프로세스 구축 · 프로젝트 상세</title>
+  <title>VOD 콘텐츠 개선 운영 프로세스 구축 · Yeon Je Seok</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="VOD 콘텐츠 운영의 비효율을 해결하기 위해 검수·피드백·개선 전체 프로세스를 0→1로 설계한 프로젝트 상세 페이지" />
+  <meta name="description" content="VOD 콘텐츠 운영의 비효율을 줄이기 위해 검수·피드백·개선 프로세스를 0→1로 설계한 프로젝트 상세 페이지" />
 
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,31 +13,23 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
     rel="stylesheet">
 
-  <!-- Mermaid.js (타임라인 다이어그램) -->
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: 'neutral',
-        securityLevel: 'loose'
-      });
-    });
-  </script>
-
   <style>
     :root {
+      --bg-body: #050816;
       --bg-page: #f5f7fb;
+      --bg-section: #f5f7fb;
       --bg-card: #ffffff;
-      --bg-card-soft: #f9fafb;
-      --text-main: #111827;
-      --text-sub: #6b7280;
-      --text-muted: #9ca3af;
+      --bg-card-soft: #f7f9ff;
       --accent: #2f7cff;
-      --accent-soft: #dbe8ff;
+      --accent-soft: #e0ebff;
+      --accent-strong: #0b68ff;
+      --text-main: #111827;
+      --text-sub: #4b5563;
+      --text-muted: #9ca3af;
       --border-soft: #e5e7eb;
-      --shadow-soft: 0 14px 30px rgba(148, 163, 184, 0.32);
-      --radius-card: 22px;
+      --shadow-soft: 0 16px 40px rgba(148, 163, 184, 0.32);
+      --radius-card: 28px;
+      --nav-height: 64px;
     }
 
     * {
@@ -49,236 +41,491 @@
     html, body {
       width: 100%;
       height: 100%;
-      background: var(--bg-page);
+    }
+
+    body {
+      background: var(--bg-body);
       color: var(--text-main);
       font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    body {
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .page {
       min-height: 100vh;
+      background: var(--bg-page);
     }
 
     .container {
       width: 100%;
-      max-width: 960px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 32px 20px 56px;
+      padding: 0 24px;
     }
 
-    /* 상단 헤더 */
+    /* 간단 상단 바 (메인 포트폴리오랑 톤만 맞추기) */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.86), rgba(5, 8, 22, 0.0));
+      color: #e5e7eb;
+    }
 
-    .top-bar {
+    .top-nav-inner {
+      width: 100%;
+      max-width: 1120px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
-      font-size: 13px;
-      color: var(--text-muted);
+      font-size: 14px;
     }
 
-    .top-back {
+    .nav-logo {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-size: 14px;
+    }
+
+    .back-link {
+      font-size: 13px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(209, 213, 219, 0.8);
+      opacity: 0.8;
       cursor: pointer;
-      font-size: 12px;
-      color: #4b5563;
-      box-shadow: 0 8px 18px rgba(148, 163, 184, 0.35);
     }
 
-    .top-back:hover {
-      background: #ffffff;
+    .back-link span {
+      font-size: 16px;
+      transform: translateY(-1px);
     }
 
-    .hero-card {
-      background: radial-gradient(circle at 0 0, #e0edff, transparent 55%),
-                  radial-gradient(circle at 100% 100%, #e0f2fe, transparent 55%),
-                  linear-gradient(135deg, #ffffff, #f3f4ff);
-      border-radius: 30px;
-      padding: 26px 26px 22px;
-      box-shadow: 0 18px 40px rgba(148, 163, 184, 0.45);
-      margin-bottom: 28px;
-      border: 1px solid rgba(209, 213, 219, 0.9);
+    main {
+      padding: 40px 0 72px;
     }
 
-    .hero-kicker {
-      font-size: 12px;
+    section {
+      padding: 32px 0;
+    }
+
+    .section-title-kicker {
+      font-size: 13px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-strong);
       margin-bottom: 8px;
     }
 
-    .hero-title {
+    .section-headline {
       font-size: 26px;
       font-weight: 700;
+      line-height: 1.4;
       margin-bottom: 10px;
     }
 
-    .hero-sub {
+    .section-subtext {
       font-size: 14px;
       color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 8px;
+      padding-bottom: 24px;
+    }
+
+    .hero-card {
+      border-radius: 32px;
+      padding: 32px 30px 28px;
+      background:
+        radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.24), transparent 60%),
+        linear-gradient(135deg, #0b63ff, #001b5f);
+      color: #f9fafb;
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.6);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(191, 219, 254, 0.45);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       margin-bottom: 16px;
     }
 
-    .hero-meta {
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
+    }
+
+    .hero-title {
+      font-size: 30px;
+      line-height: 1.5;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .hero-role {
+      font-size: 14px;
+      font-weight: 500;
+      color: #dbeafe;
+      margin-bottom: 10px;
+    }
+
+    .hero-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #e5e7eb;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       font-size: 12px;
-      color: var(--text-muted);
+      color: #e5e7eb;
     }
 
-    .meta-pill {
-      padding: 5px 10px;
+    .hero-meta-chip {
+      padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(209, 213, 219, 0.8);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.6);
     }
 
-    /* 섹션 공통 */
-
-    .section {
-      margin-bottom: 24px;
+    .hero-side {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
     }
 
-    .card {
-      background: var(--bg-card);
+    .hero-side-card {
+      border-radius: 20px;
+      padding: 16px 18px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(191, 219, 254, 0.4);
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #e5e7eb;
+    }
+
+    .hero-side-list {
+      list-style: none;
+      color: #cbd5f5;
+      line-height: 1.6;
+    }
+
+    .hero-side-list li + li {
+      margin-top: 4px;
+    }
+
+    /* 공통 카드 */
+    .project-card {
       border-radius: var(--radius-card);
-      padding: 24px 24px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
       box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(209, 213, 219, 0.9);
+      padding: 22px 24px 20px;
     }
 
-    .card + .card {
-      margin-top: 18px;
-    }
-
-    .section-title {
+    .project-card-header {
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 10px;
     }
 
-    .section-subtitle {
-      font-size: 14px;
-      color: var(--text-sub);
-      margin-bottom: 8px;
-    }
-
-    .section-lead {
-      font-size: 14px;
-      color: var(--text-sub);
-      margin-bottom: 8px;
-    }
-
-    h3 {
-      font-size: 15px;
+    .project-card-kicker {
+      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
-    ul {
-      list-style: disc;
-      padding-left: 18px;
+    .project-card-body {
       font-size: 14px;
       color: var(--text-sub);
+      line-height: 1.75;
     }
 
-    ul li + li {
+    .project-card-body ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 6px;
+    }
+
+    .project-card-body li + li {
+      margin-top: 3px;
+    }
+
+    .project-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .project-section-sub {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    /* As-Is / To-Be */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .overview-card {
+      background: var(--bg-card);
+    }
+
+    .overview-label {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .overview-list {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
+      padding-left: 18px;
+      list-style: disc;
+    }
+
+    .overview-list li + li {
       margin-top: 4px;
     }
 
-    .mt-8 { margin-top: 8px; }
-    .mt-12 { margin-top: 12px; }
-    .mt-16 { margin-top: 16px; }
+    /* 역할 & 기여도 / 주요 세부 업무 */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
 
-    strong {
+    .equal-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 260px;
+    }
+
+    .equal-card .project-card-body {
+      flex: 1;
+    }
+
+    .meta-grid-wrapper {
+      display: grid;
+      gap: 14px;
+      align-items: stretch;
+      grid-auto-rows: 1fr;
+    }
+
+    .project-card-body ul.tight li + li {
+      margin-top: 2px;
+    }
+
+    .project-card-body b {
       font-weight: 600;
       color: #111827;
     }
 
-    /* 코드/타임라인 영역 */
-
-    .code-block {
-      background: #0f172a;
-      padding: 14px 16px;
-      border-radius: 12px;
-      overflow-x: auto;
-      margin-top: 10px;
-      margin-bottom: 12px;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #e5e7eb;
+    /* 세부 업무 리스트 왼쪽 번호 */
+    .dotted-list {
+      list-style: none;
+      padding-left: 0;
     }
 
-    .code-block code {
+    .dotted-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .dotted-list li + li {
+      margin-top: 4px;
+    }
+
+    .dotted-list span.label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-strong);
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    .dotted-list span.text {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* 타임라인 섹션 */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .code-block {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      background: #020617;
+      color: #e5e7eb;
+      border-radius: 18px;
+      padding: 16px 18px;
+      overflow-x: auto;
+      border: 1px solid #111827;
+    }
+
+    .code-block pre {
       white-space: pre;
     }
 
-    .timeline-box {
-      margin-top: 10px;
-      background: #111827;
-      border-radius: 12px;
-      padding: 12px 10px 6px;
-      overflow-x: auto;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    .timeline-visual {
+      border-radius: 22px;
+      padding: 18px 22px 18px;
+      background: var(--bg-card-soft);
+      border: 1px solid var(--accent-soft);
+      box-shadow: 0 12px 30px rgba(148, 163, 184, 0.25);
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .timeline-visual-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-main);
+      text-align: center;
+    }
+
+    .timeline-bar-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-bar-step {
+      border-radius: 999px;
+      background: #e5edff;
+      padding: 8px 10px;
+      text-align: center;
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .timeline-weeks {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 4px;
+      margin-bottom: 12px;
+      font-size: 11px;
+    }
+
+    .timeline-week {
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      padding: 5px 6px;
+      text-align: center;
+      color: #374151;
+    }
+
+    .timeline-axis {
+      height: 1px;
+      background: #cbd5f5;
+      margin: 8px 0 10px;
+    }
+
+    .timeline-caption-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      font-size: 11px;
+      color: #4b5563;
     }
 
     .timeline-caption {
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 8px 8px;
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .project-footer {
+      margin-top: 32px;
       font-size: 12px;
       color: var(--text-muted);
-      margin-top: 6px;
+      text-align: right;
     }
 
-    /* 두 칼럼 레이아웃 (역할 & 기여도 / 세부 업무) */
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-      gap: 18px;
+      .overview-grid,
+      .meta-grid,
+      .timeline-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .timeline-caption-row,
+      .timeline-weeks {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
 
-    /* 모바일 대응 */
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 20px 16px 40px;
+    @media (max-width: 720px) {
+      main {
+        padding-top: 32px;
       }
 
       .hero-card {
-        padding: 22px 18px 18px;
-        border-radius: 24px;
+        padding: 24px 20px 22px;
       }
 
-      .hero-title {
-        font-size: 22px;
-      }
-
-      .section {
-        margin-bottom: 20px;
-      }
-
-      .card {
-        padding: 20px 18px 18px;
-      }
-
-      .two-col {
-        grid-template-columns: minmax(0, 1fr);
+      section {
+        padding: 24px 0;
       }
     }
   </style>
@@ -286,126 +533,171 @@
 
 <body>
   <div class="page">
-    <div class="container">
-
-      <!-- 상단 헤더 / 히어로 -->
-      <div class="top-bar">
-        <button class="top-back" onclick="window.history.back()">
-          ← Back
-        </button>
-        <span>Project · VOD Ops</span>
+    <!-- NAV -->
+    <header class="top-nav">
+      <div class="top-nav-inner">
+        <div class="nav-logo">YEON JE SEOK</div>
+        <a href="index.html#projects" class="back-link">
+          <span>←</span> Back to Projects
+        </a>
       </div>
+    </header>
 
-      <section class="hero-card">
-        <div class="hero-kicker">PROJECT 01 · VOD CONTENTS & OPS</div>
-        <h1 class="hero-title">VOD 콘텐츠 개선 운영 프로세스 구축</h1>
-        <p class="hero-sub">
-          콘텐츠 운영의 비효율을 해결하기 위해<br>
-          강의 검수, 피드백, 개선까지 이어지는 전체 프로세스를 0→1로 설계한 프로젝트입니다.
-        </p>
-        <div class="hero-meta">
-          <span class="meta-pill">역할: 기획 & PM (End-to-End)</span>
-          <span class="meta-pill">도메인: 온라인 교육 · VOD</span>
-          <span class="meta-pill">키워드: 프로세스 설계 · 역할 정의 · 피드백 루프</span>
-        </div>
-      </section>
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card">
+            <div>
+              <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>OPS · PROCESS</span>
+              </div>
+              <h1 class="hero-title">VOD 콘텐츠 개선 운영 프로세스 구축</h1>
+              <p class="hero-role">콘텐츠 운영 비효율을 줄이기 위한 0→1 프로세스 설계 프로젝트</p>
+              <p class="hero-text">
+                기획자 개인에게 쏠려 있던 검수·개선·체크 업무를 구조화하고,
+                멘토·수강생·연사·운영팀이 각자의 역할을 갖고 움직일 수 있는
+                지속 가능한 개선 시스템을 설계한 프로젝트입니다.
+              </p>
+              <div class="hero-meta-chips">
+                <span class="hero-meta-chip">문제 정의 → 프로세스 설계 → 문서화 전 과정 단독 수행</span>
+                <span class="hero-meta-chip">피드백 루프·타임라인·R&R 구조 설계</span>
+                <span class="hero-meta-chip">기획자 인풋 16h → 3~5h로 감소</span>
+              </div>
+            </div>
 
-      <!-- 1. 프로젝트 개요 -->
-      <section class="section">
-        <div class="card">
-          <h2 class="section-title">프로젝트 개요</h2>
-
-          <h3 class="mt-8">As-Is</h3>
-          <ul>
-            <li>검수, 개선, 체크가 기획자 개인에게 과도하게 집중</li>
-            <li>멘토, 수강생, 연사, 운영팀이 모두 참여하지만 역할·기준 불명확</li>
-            <li>주차별 피드백 기준 부재, 기술/커리큘럼 문제 혼재</li>
-          </ul>
-
-          <h3 class="mt-16">To-Be</h3>
-          <ul>
-            <li><strong>지속 가능한 개선 구조</strong> 구축</li>
-            <li><strong>역할 정의 기반 협업 체계</strong> 정착</li>
-            <li>누구를 갈아 넣지 않아도 굴러가는 운영 시스템 설계</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- 2. 역할 & 기여도 + 3. 주요 세부 업무 -->
-      <section class="section">
-        <div class="two-col">
-
-          <!-- 역할 & 기여도 -->
-          <div class="card">
-            <h2 class="section-title">역할 & 기여도</h2>
-
-            <ul class="mt-8">
-              <li>문제 정의 → 프로세스 설계 → 문서화까지 <strong>전 과정 단독 수행</strong></li>
-              <li>이해관계자(멘토, 수강생, 운영, 연사)의 <strong>피드백 루프 전체 구조 설계</strong></li>
-              <li>n-1주차 선행 확인 체계 및 주차별 진단 기준 구조화</li>
-              <li>우수 수강생 선정 기준(정성/정량 혼합) 신규 설계</li>
-              <li>기획자 인풋 <strong>16h → 3~5h</strong>로 줄이는 운영 효율화 프로세스 구축</li>
-              <li>모든 문서, 타임라인, R&R 산출물 직접 제작</li>
-              <li>전체 일정, 품질 기준을 PM으로서 단독 운영</li>
-            </ul>
-          </div>
-
-          <!-- 주요 세부 업무 -->
-          <div class="card">
-            <h2 class="section-title">주요 세부 업무</h2>
-
-            <h3 class="mt-8">① 운영 구조 문제 분석</h3>
-            <ul>
-              <li>검수/개선을 한 사람이 모두 담당하는 구조 파악</li>
-              <li>멘토/수강생 피드백 기준 부재</li>
-              <li>기술적 문제 vs 콘텐츠 문제 혼재</li>
-              <li>테스터 참여도 관리 어려움</li>
-              <li>협업 흐름 상 데이터 기반 판단 부재</li>
-            </ul>
-
-            <h3 class="mt-12">② 새로운 프로세스 설계</h3>
-            <ul>
-              <li>멘토 사전 콘텐츠 숙지 → 주차별 피드백 초안 작성 구조 설계</li>
-              <li>n-1주차 테스터 선확인 & 정규수강생 반응 기반 <strong>2중 피드백 구조</strong> 구축</li>
-              <li>기술적 편집 문제 vs 커리큘럼 문제 <strong>분리 판단 기준</strong> 도출</li>
-              <li>개선 사항을 다음 기수(A+2)까지 반영하는 지속 개선 루프 설계</li>
-            </ul>
-
-            <h3 class="mt-12">③ 역할, 협업체계 설계 (R&R)</h3>
-            <ul>
-              <li>멘토 / 수강생 / 기획자 / 운영 / 연사의 역할 분리 및 문서화</li>
-              <li>운영팀 체크리스트 및 설문 기반 참여 기준 재설계</li>
-              <li>R&R 기반 주차별 개선 흐름 정렬</li>
-            </ul>
-
-            <h3 class="mt-12">④ 문서화 & 시각화</h3>
-            <ul>
-              <li>Mermaid를 활용한 프로세스 타임라인 시각화</li>
-              <li>전체 개선 기준/역할/절차를 한 문서 구조로 통합</li>
-              <li>신규 PM 또는 기획자 온보딩을 위한 문서체계 제작</li>
-            </ul>
+            <aside class="hero-side">
+              <div class="hero-side-card">
+                <div class="hero-side-title">프로젝트 한 줄 요약</div>
+                <ul class="hero-side-list">
+                  <li>콘텐츠 품질 개선을 “일회성 정리”가 아닌 시스템으로 만든 프로젝트</li>
+                  <li>n-1주차 선행 확인과 멘토·테스터 2중 피드백 구조 도입</li>
+                </ul>
+              </div>
+              <div class="hero-side-card">
+                <div class="hero-side-title">역할</div>
+                <ul class="hero-side-list">
+                  <li>문제 구조 분석 · 프로세스 흐름 설계</li>
+                  <li>타임라인·R&R·체크리스트 등 전체 산출물 제작</li>
+                  <li>PM으로서 일정·품질 기준 직접 운영</li>
+                </ul>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      <!-- 3-1. 타임라인 (Mermaid) -->
-      <section class="section">
-        <div class="card">
-          <h2 class="section-title">타임라인 · 피드백 루프 구조</h2>
-          <p class="section-lead">
-            “누가 언제 무엇을 피드백하고, 그 정보가 어디로 모이는가”를 명확히 하기 위해
-            테스터와 멘토의 타임라인을 별도로 설계했습니다.
-          </p>
+      <!-- OVERVIEW : As-Is / To-Be -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">프로젝트 개요</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                “콘텐츠 검수와 개선을 누군가 ‘좋은 마음으로’ 열심히 해주면 되는 구조”에서 벗어나,
+                누구든 같은 기준과 흐름으로 운영할 수 있는 시스템을 만드는 것이 목표였습니다.
+              </p>
+              <div class="overview-grid">
+                <div class="overview-card">
+                  <div class="overview-label">As-Is</div>
+                  <ul class="overview-list">
+                    <li>검수·개선·체크가 기획자 개인에게 과도하게 집중</li>
+                    <li>멘토·수강생·연사·운영팀이 모두 참여하지만 역할·기준 불명확</li>
+                    <li>주차별 피드백 기준 부재, 기술/커리큘럼 문제 혼재</li>
+                    <li>테스터 참여 구조 비체계적 → 품질 편차·확장성 저해</li>
+                  </ul>
+                </div>
+                <div class="overview-card">
+                  <div class="overview-label">To-Be</div>
+                  <ul class="overview-list">
+                    <li>지속 가능한 개선 구조 구축</li>
+                    <li>역할 정의 기반 협업 체계 정착</li>
+                    <li>누구를 넣어도 굴러가는 운영 시스템 설계</li>
+                    <li>기획자 인풋을 줄이면서도 품질 기준은 유지·상향</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <!-- 테스터 타임라인 -->
-        <div class="card mt-12">
-          <h3>테스터 수강생 타임라인</h3>
-          <p class="section-subtitle">
+      <!-- ROLE & TASKS -->
+      <section>
+        <div class="container meta-grid-wrapper">
+          <div class="meta-grid">
+            <!-- 역할 & 기여도 -->
+            <article class="project-card equal-card">
+              <div class="project-card-header">역할 & 기여도</div>
+              <div class="project-card-body">
+                <ul class="tight">
+                  <li><b>문제 정의 → 프로세스 설계 → 문서화</b>까지 전 과정 단독 수행</li>
+                  <li>멘토·수강생·운영·연사 전체를 아우르는 <b>피드백 루프 구조 설계</b></li>
+                  <li>n-1주차 선행 확인 체계 및 주차별 진단 기준 구조화</li>
+                  <li><b>우수 수강생 선정 기준(정성/정량 혼합)</b> 신규 설계</li>
+                  <li>기획자 인풋 <b>16h → 3~5h</b>로 줄이는 운영 효율화 프로세스 구축</li>
+                  <li>모든 문서·타임라인·R&R 산출물 직접 제작</li>
+                  <li>전체 일정·품질 기준을 PM으로서 단독 운영</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- 주요 세부 업무 -->
+            <article class="project-card equal-card">
+              <div class="project-card-header">주요 세부 업무</div>
+              <div class="project-card-body">
+                <ol class="dotted-list">
+                  <li>
+                    <span class="label">① 운영 구조 문제 분석</span>
+                    <span class="text">
+                      검수/개선을 한 사람이 모두 담당하는 구조, 피드백 기준 부재, 기술적 문제와 커리큘럼
+                      문제가 섞여 있는 상황을 정리하고, 협업 흐름 상 데이터 기반 판단이 어렵다는 점을 명확히 했습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">② 새로운 프로세스 설계</span>
+                    <span class="text">
+                      멘토 사전 콘텐츠 숙지 → 주차별 피드백 초안 작성 → n-1주차 테스터 확인 → 정규 수강생 반응
+                      기반 최종 피드백으로 이어지는 <b>2중 피드백 구조</b>를 설계했습니다. 기술적 편집 vs 커리큘럼
+                      문제를 분리하는 기준을 만들고, 개선 사항을 A+2 기수까지 반영하는 루프를 만들었습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">③ 역할·협업체계 설계 (R&R)</span>
+                    <span class="text">
+                      멘토·수강생·기획자·운영·연사의 역할을 분리하고 문서화했습니다.
+                      운영팀 체크리스트와 설문 구조를 재설계해, R&R 기반 주차별 개선 흐름을 정렬했습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">④ 문서화 & 시각화</span>
+                    <span class="text">
+                      Mermaid 타임라인과 텍스트 기준을 한 문서 구조로 통합하고,
+                      신규 PM 또는 기획자가 바로 온보딩할 수 있도록 가이드를 제작했습니다.
+                    </span>
+                  </li>
+                </ol>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIMELINE : 테스터 -->
+      <section>
+        <div class="container">
+          <div class="project-section-title">테스터 수강생 타임라인</div>
+          <p class="project-section-sub">
             n-1주차 선행 확인 구조와 필수 피드백 제출 지점을 한눈에 보이도록 정의했습니다.
           </p>
 
-          <pre class="code-block"><code>timeline
+          <div class="timeline-grid">
+            <!-- Mermaid 코드 -->
+            <div class="project-card">
+              <div class="project-card-kicker">Mermaid 코드</div>
+              <div class="code-block">
+                <pre>timeline
     title 테스터 수강생 타임라인
 
     section 준비 단계
@@ -417,36 +709,67 @@
         Week 1~8: 정규 강의 수강 및 멘토링 참여 필수
 
     section 피드백 정리
-        Week 8~9: 전체 주차에 대한 총괄 피드백 제출 -> 기획자</code></pre>
+        Week 8~9: 전체 주차에 대한 총괄 피드백 제출 -> 기획자</pre>
+              </div>
+            </div>
 
-          <div class="timeline-box mermaid">
-timeline
-    title 테스터 수강생 타임라인
+            <!-- 비주얼 타임라인 -->
+            <div class="timeline-visual">
+              <div class="timeline-visual-title">테스터 수강생 타임라인 (시각화)</div>
 
-    section 준비 단계
-        Week 0: 콘텐츠 확인 시작 (n-1주차부터 n주차 강의 확인)
-        Week 0~1: 테스터 선정 및 오리엔테이션 - 사전설문 형태, 기본 기준 미달시 선정X (운영팀)
+              <div class="timeline-bar-steps">
+                <div class="timeline-bar-step">준비 단계</div>
+                <div class="timeline-bar-step">정규 강의</div>
+                <div class="timeline-bar-step">피드백 정리</div>
+              </div>
 
-    section 정규 강의
-        Week 1~8: n-1주차에 n주차 강의 확인 → 피드백 및 타임스탬프 제출 필수
-        Week 1~8: 정규 강의 수강 및 멘토링 참여 필수
+              <div class="timeline-weeks">
+                <div class="timeline-week">Week 0</div>
+                <div class="timeline-week">Week 0~1</div>
+                <div class="timeline-week">Week 1~8</div>
+                <div class="timeline-week">Week 1~8</div>
+                <div class="timeline-week">Week 8~9</div>
+              </div>
 
-    section 피드백 정리
-        Week 8~9: 전체 주차에 대한 총괄 피드백 제출 -> 기획자
+              <div class="timeline-axis"></div>
+
+              <div class="timeline-caption-row">
+                <div class="timeline-caption">
+                  콘텐츠 확인 시작<br>(n-1주차부터 n주차 강의 확인)
+                </div>
+                <div class="timeline-caption">
+                  테스터 선정 및 오리엔테이션<br>사전 설문, 기준 미달 시 선정 X (운영팀)
+                </div>
+                <div class="timeline-caption">
+                  n-1주차에 n주차 강의 확인<br>피드백 및 타임스탬프 제출 필수
+                </div>
+                <div class="timeline-caption">
+                  정규 강의 수강 및 멘토링 참여 필수<br>실제 수강 경험 축적
+                </div>
+                <div class="timeline-caption">
+                  전체 주차에 대한 총괄 피드백 제출<br>→ 기획자에게 전달
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="timeline-caption">
-            테스터가 정규 수강과 별도로 선행 확인과 총괄 피드백을 맡는 구조를 시각화했습니다.
-          </p>
         </div>
+      </section>
 
-        <!-- 멘토 타임라인 -->
-        <div class="card mt-12">
-          <h3>멘토 타임라인</h3>
-          <p class="section-subtitle">
-            멘토가 커리큘럼을 사전에 이해하고, 수강생 반응을 기반으로 최종 피드백을 정리하는 흐름입니다.
+      <!-- TIMELINE : 멘토 -->
+      <section>
+        <div class="container">
+          <div class="project-section-title">멘토 타임라인</div>
+          <p class="project-section-sub">
+            멘토가 수강생의 온도를 읽고 커리큘럼 개선 포인트를 도출할 수 있도록,
+            준비 단계에서부터 A+2 기수 개선 적용까지의 흐름을 정리했습니다.
           </p>
 
-          <pre class="code-block"><code>timeline
+          <div class="timeline-grid">
+            <!-- Mermaid 코드 -->
+            <div class="project-card">
+              <div class="project-card-kicker">Mermaid 코드</div>
+              <div class="code-block">
+                <pre>timeline
     title 멘토 타임라인
 
     section 준비 단계
@@ -459,48 +782,75 @@ timeline
 
     section 개선 적용
         Week 8~9: 기획자에게 피드백 전달
-        A-2 기수 개강 전: 수정 적용 여부 확정 (멘토, 기획자, 연사)</code></pre>
+        A-2 기수 개강 전: 수정 적용 여부 확정 (멘토, 기획자, 연사)</pre>
+              </div>
+            </div>
 
-          <div class="timeline-box mermaid">
-timeline
-    title 멘토 타임라인
+            <!-- 비주얼 타임라인 -->
+            <div class="timeline-visual">
+              <div class="timeline-visual-title">멘토 타임라인 (시각화)</div>
 
-    section 준비 단계
-        Week 0: 커리큘럼 및 콘텐츠 사전 숙지
-        Week 0: 피드백 문서 초안 작성
+              <div class="timeline-bar-steps">
+                <div class="timeline-bar-step">준비 단계</div>
+                <div class="timeline-bar-step">정규 강의</div>
+                <div class="timeline-bar-step">개선 적용</div>
+              </div>
 
-    section 정규 강의
-        Week 1~8: 멘토링 진행, 전체 수강생 온도 파악
-        각 주차별: 수강생 반응 기반 최종 피드백 문서 작성 및 제출
+              <div class="timeline-weeks">
+                <div class="timeline-week">Week 0</div>
+                <div class="timeline-week">Week 0</div>
+                <div class="timeline-week">Week 1~8</div>
+                <div class="timeline-week">Week 1~8</div>
+                <div class="timeline-week">A+2 이전</div>
+              </div>
 
-    section 개선 적용
-        Week 8~9: 기획자에게 피드백 전달
-        A-2 기수 개강 전: 수정 적용 여부 확정 (멘토, 기획자, 연사)
+              <div class="timeline-axis"></div>
+
+              <div class="timeline-caption-row">
+                <div class="timeline-caption">
+                  커리큘럼 및 콘텐츠 사전 숙지<br>전체 흐름 이해
+                </div>
+                <div class="timeline-caption">
+                  피드백 문서 초안 작성<br>진단 기준·관찰 포인트 정리
+                </div>
+                <div class="timeline-caption">
+                  Week 1~8 멘토링 진행<br>전체 수강생 온도 파악
+                </div>
+                <div class="timeline-caption">
+                  각 주차별 수강생 반응 기반<br>최종 피드백 문서 작성 및 제출
+                </div>
+                <div class="timeline-caption">
+                  Week 8~9 피드백 전달 → A+2 기수 개강 전<br>멘토·기획자·연사가 수정 적용 여부 확정
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="timeline-caption">
-            멘토의 관찰과 피드백이 A+2 기수까지 이어지는 지속 개선 루프에 어떻게 연결되는지 보여줍니다.
-          </p>
         </div>
       </section>
 
-      <!-- 4. 기대 성과 -->
-      <section class="section">
-        <div class="card">
-          <h2 class="section-title">기대 성과</h2>
+      <!-- RESULT / IMPACT 간단 정리 -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">기대 / 실제 성과</div>
+            <div class="project-card-body">
+              <ul class="overview-list">
+                <li>기획자 인풋 <b>16h → 3~5h</b> (약 65~80% 감소)</li>
+                <li>역할 기반 구조 정착으로 협업 비용·조율 비용 대폭 절감</li>
+                <li>주차별 개선 기준 정립으로 피드백 품질 균일화</li>
+                <li>기술적 문제 vs 커리큘럼 문제 구분 → 재작업 최소화</li>
+                <li>A+2 기수까지 반영되는 지속 가능한 개선 시스템 구축</li>
+                <li>온보딩 문서화로 신규 기획자·PM ramp-up 시간 단축</li>
+              </ul>
+            </div>
+          </div>
 
-          <ul class="mt-8">
-            <li>기획자 인풋 <strong>16h → 3~5h (65~80% 감소)</strong></li>
-            <li>역할 기반 구조 정착으로 협업 비용 대폭 절감</li>
-            <li>주차별 개선 기준 정립으로 피드백 품질 균일화</li>
-            <li>기술적 문제 vs 콘텐츠 문제 명확화 → 재작업 최소화</li>
-            <li>A+2 기수까지 반영되는 <strong>지속 가능한 개선 시스템</strong> 구축</li>
-            <li>이해관계자 문서화로 신규 기획자 온보딩 속도 향상</li>
-            <li>운영 정확도·조율 비용 개선 → 전체 클래스 품질 안정화</li>
-          </ul>
+          <div class="project-footer">
+            이 페이지는 포트폴리오용으로 실제 운영 구조와 민감한 데이터는 제외하고 재구성한 버전입니다.
+          </div>
         </div>
       </section>
-
-    </div>
+    </main>
   </div>
 </body>
 </html>
