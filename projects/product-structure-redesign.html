@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>수강 상품 구조 재설계 프로젝트 · Yeon Je Seok</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="정규수업과 멘토링 수업을 분리 판매하는 구조로 재설계하여 객단가 상승과 사용자 니즈, 멘토 운영 리스크를 동시에 개선한 수강 상품 구조 리디자인 프로젝트 상세 페이지" />
+
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-body: #050816;
+      --bg-page: #f5f7fb;
+      --bg-card: #ffffff;
+      --bg-card-soft: #f7f9ff;
+      --accent: #2f7cff;
+      --accent-soft: #e0ebff;
+      --accent-strong: #0b68ff;
+      --text-main: #111827;
+      --text-sub: #4b5563;
+      --text-muted: #9ca3af;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 16px 40px rgba(148, 163, 184, 0.32);
+      --radius-card: 28px;
+      --nav-height: 64px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { width: 100%; height: 100%; }
+
+    body {
+      background: var(--bg-body);
+      color: var(--text-main);
+      font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      min-height: 100vh;
+      background: var(--bg-page);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAV */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.86), rgba(5, 8, 22, 0.0));
+      color: #e5e7eb;
+    }
+
+    .top-nav-inner {
+      width: 100%;
+      max-width: 1120px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-size: 14px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .back-link span {
+      font-size: 16px;
+      transform: translateY(-1px);
+    }
+
+    main { padding: 40px 0 72px; }
+    section { padding: 32px 0; }
+
+    /* HERO */
+    .hero {
+      padding-top: 8px;
+      padding-bottom: 24px;
+    }
+
+    .hero-card {
+      border-radius: 32px;
+      padding: 32px 30px 28px;
+      background:
+        radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.24), transparent 60%),
+        linear-gradient(135deg, #0b63ff, #001b5f);
+      color: #f9fafb;
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.6);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(191, 219, 254, 0.45);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
+    }
+
+    .hero-title {
+      font-size: 30px;
+      line-height: 1.5;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .hero-role {
+      font-size: 14px;
+      font-weight: 500;
+      color: #dbeafe;
+      margin-bottom: 10px;
+    }
+
+    .hero-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #e5e7eb;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .hero-meta-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 12px;
+    }
+
+    .hero-side {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .hero-side-card {
+      border-radius: 20px;
+      padding: 16px 18px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(191, 219, 254, 0.4);
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #e5e7eb;
+    }
+
+    .hero-side-list {
+      list-style: none;
+      color: #cbd5f5;
+      line-height: 1.6;
+    }
+
+    .hero-side-list li + li { margin-top: 4px; }
+
+    /* 공통 카드 */
+    .project-card {
+      border-radius: var(--radius-card);
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 24px 20px;
+    }
+
+    .project-card-header {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .project-card-body {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.75;
+    }
+
+    .project-card-body ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 6px;
+    }
+
+    .project-card-body li + li { margin-top: 3px; }
+
+    .project-card-body b {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .project-section-sub {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    /* Overview 카드 (Before / After) */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .overview-label {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .overview-list {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
+      padding-left: 18px;
+      list-style: disc;
+    }
+
+    .overview-list li + li { margin-top: 4px; }
+
+    /* 역할 & 세부 업무 */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .equal-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 260px;
+    }
+
+    .equal-card .project-card-body { flex: 1; }
+
+    .dotted-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .dotted-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .dotted-list li + li { margin-top: 4px; }
+
+    .dotted-list span.label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-strong);
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    .dotted-list span.text {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* 상품 구조 카드 */
+    .structure-card {
+      border-radius: 24px;
+      padding: 18px 22px 18px;
+      background: var(--bg-card-soft);
+      border: 1px solid var(--accent-soft);
+      box-shadow: 0 12px 30px rgba(148, 163, 184, 0.25);
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .structure-box {
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 12px 14px;
+      line-height: 1.6;
+    }
+
+    .structure-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .structure-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .structure-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #4b5563;
+    }
+
+    /* 기대 효과 */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .impact-card {
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 12px 14px;
+      line-height: 1.6;
+    }
+
+    .impact-card-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .impact-card ul {
+      list-style: disc;
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+
+    .overview-list.result li { margin-top: 4px; }
+
+    .project-footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .overview-grid,
+      .meta-grid,
+      .structure-grid,
+      .impact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      main { padding-top: 32px; }
+      .hero-card { padding: 24px 20px 22px; }
+      section { padding: 24px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header class="top-nav">
+      <div class="top-nav-inner">
+        <div class="nav-logo">YEON JE SEOK</div>
+        <a href="../index.html#projects" class="back-link">
+          <span>←</span> Back to Projects
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card">
+            <div>
+              <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>PRODUCT · PRICING</span>
+              </div>
+              <h1 class="hero-title">수강 상품 구조 재설계 프로젝트</h1>
+              <p class="hero-role">정규수업·멘토링을 분리한 조합형 상품 구조로 객단가와 사용자 만족도를 동시에 올린 프로젝트</p>
+              <p class="hero-text">
+                기존 패키지 구조(정규수업+멘토링)는 객단가 상승 여지가 부족하고,
+                “정규만/멘토링만 듣고 싶다”는 수강생 니즈를 충분히 반영하지 못하고 있었습니다.
+                멘토 근태 문제로 인한 운영 리스크도 반복되고 있었고요. 정규수업과 멘토링을 분리 판매하고,
+                조합형 패키지 옵션까지 포함하는 새로운 상품 구조를 설계·모델링했습니다.
+              </p>
+              <div class="hero-meta-chips">
+                <span class="hero-meta-chip">정규/멘토링 분리 판매 구조 설계</span>
+                <span class="hero-meta-chip">4과목 기준 객단가 최대 80만 원 상승 모델링</span>
+                <span class="hero-meta-chip">멘토 근태 리스크를 줄이는 선택형 멘토 구조</span>
+              </div>
+            </div>
+
+            <aside class="hero-side">
+              <div class="hero-side-card">
+                <div class="hero-side-title">프로젝트 한 줄 요약</div>
+                <ul class="hero-side-list">
+                  <li>“한 가지 패키지”에서 벗어나 사용자 세그먼트별로 맞출 수 있는 상품 구조로 리디자인</li>
+                  <li>가격·운영·경험을 동시에 고려한 수강 상품 구조 재설계</li>
+                </ul>
+              </div>
+              <div class="hero-side-card">
+                <div class="hero-side-title">역할</div>
+                <ul class="hero-side-list">
+                  <li>문제 정의부터 가격 구조·상품 구조 설계까지 공동 기획 (기여도 60%)</li>
+                  <li>멘토 리스크·수강 패턴 기반 운영 모델링 설계</li>
+                  <li>연사·멘토·수강생 3자 관점에서 기대 효과 정리 및 구조 확정</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- OVERVIEW -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">프로젝트 개요</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                기존에는 정규수업과 멘토링이 항상 묶인 패키지 상품만 존재해,
+                객단가 상승 명분이 부족하고, “정규만 듣고 싶다 / 멘토링만 필요하다”는 수강생 니즈를 담기 어려웠습니다.
+                멘토 근태 문제로 인해 전체 상품 품질이 흔들리는 리스크도 존재했습니다.
+              </p>
+
+              <div class="overview-grid">
+                <div>
+                  <div class="overview-label">Before (문제 상황)</div>
+                  <ul class="overview-list">
+                    <li>정규수업 + 멘토링이 하나의 패키지로 묶여 있는 단일 상품 구조</li>
+                    <li>정규만/멘토링만 원하는 수강생 니즈를 반영하기 어려움</li>
+                    <li>멘토 근태·품질 이슈가 전체 상품 경험에 직접적인 리스크로 작용</li>
+                    <li>객단가를 올릴 명확한 근거와 구조가 부족</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="overview-label">After (지향점)</div>
+                  <ul class="overview-list">
+                    <li>정규수업 / 멘토링 수업 각각 단독 구매 가능</li>
+                    <li>정규·멘토링·프로젝트형 등 수강 목적별로 조합 가능한 구조</li>
+                    <li>멘토 선택 모델 도입으로 근태 불량 멘토를 자연스럽게 정리</li>
+                    <li>4과목 기준 객단가 최대 80만 원까지 상승 가능한 가격 구조 설계</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROLE & TASKS -->
+      <section>
+        <div class="container">
+          <div class="meta-grid">
+            <!-- 역할 & 기여도 -->
+            <article class="project-card equal-card">
+              <div class="project-card-header">역할 & 기여도</div>
+              <div class="project-card-body">
+                <ul>
+                  <li>컨설팅 팀장과 함께 <b>문제 정의 → 구조 설계 → 가격 모델링</b>까지 전 과정 공동 기획 (기여도 60%)</li>
+                  <li>기존 패키지 구조의 병목·리스크 분석 및 사용자 니즈 재정의</li>
+                  <li>수강생 세그먼트(정규/멘토링/프로젝트 지향)별 상품 시나리오 모델링</li>
+                  <li>멘토 근태 이슈를 운영 모델 차원에서 흡수할 수 있는 구조 설계</li>
+                  <li>가격·UX·운영이 충돌하지 않도록 이해관계자 관점에서 조율</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- 주요 세부 업무 -->
+            <article class="project-card equal-card">
+              <div class="project-card-header">주요 세부 업무 (What & How)</div>
+              <div class="project-card-body">
+                <ol class="dotted-list">
+                  <li>
+                    <span class="label">① 문제 정의</span>
+                    <span class="text">
+                      객단가 한계, 니즈 미반영, 멘토 근태 리스크를 핵심 문제로 정의하고
+                      각 문제를 가격·운영·경험 관점으로 분해했습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">② 상품 구조 설계</span>
+                    <span class="text">
+                      정규수업/멘토링을 분리 판매하고, 일부 PAC 등 예외 케이스는 별도 관리하는
+                      <b>조합형 상품 구조</b>를 설계했습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">③ 운영 모델링</span>
+                    <span class="text">
+                      멘토 선택 모델을 도입해 근태 불량 멘토는 자연스럽게 정리되도록 하고,
+                      수강생 세그먼트별 구매 패턴에 맞춘 운영 플로우를 정리했습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">④ 가격 모델링</span>
+                    <span class="text">
+                      정규/멘토링 각각의 가격을 설정하고, 4과목 기준으로 <b>객단가 최대 80만 원 상승</b>까지 가능한
+                      시뮬레이션 모델을 작성했습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">⑤ 이해관계자 정렬</span>
+                    <span class="text">
+                      연사·멘토·수강생 관점의 기대 효과를 정리하고, 매출·운영·경험 측면에서
+                      모두 수용 가능한 최종 구조로 정렬했습니다.
+                    </span>
+                  </li>
+                </ol>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 상품 구조 시각화 -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">상품 구조 리디자인 (As-Is / To-Be)</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                실제 문서에서는 가격표·플로우 차트와 함께 정리했지만,
+                여기서는 구조 변화를 이해하기 쉽도록 핵심만 요약해 시각화했습니다.
+              </p>
+
+              <div class="structure-card">
+                <div class="structure-grid">
+                  <div class="structure-box">
+                    <div class="structure-title">AS-IS · 단일 패키지</div>
+                    <p>정규수업 + 멘토링 = 하나의 패키지</p>
+                    <div class="structure-pill-row">
+                      <span class="structure-pill">정규 + 멘토링 필수 결합</span>
+                      <span class="structure-pill">니즈 세분화 어려움</span>
+                      <span class="structure-pill">멘토 이슈 = 상품 이슈</span>
+                    </div>
+                  </div>
+                  <div class="structure-box">
+                    <div class="structure-title">TO-BE · 조합형 구조</div>
+                    <p>정규수업 / 멘토링 각각 단독 구매 + 조합형 패키지 옵션</p>
+                    <div class="structure-pill-row">
+                      <span class="structure-pill">정규만 / 멘토만 / 둘 다 선택 가능</span>
+                      <span class="structure-pill">멘토 선택 모델 도입</span>
+                      <span class="structure-pill">PAC 등 예외 상품은 별도 관리</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 기대 효과 -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">기대 효과</div>
+            <div class="project-card-body">
+              <div class="impact-grid">
+                <div class="impact-card">
+                  <div class="impact-card-title">블루타이거 (비즈니스)</div>
+                  <ul>
+                    <li>객단가 상승을 통한 매출 구조 개선</li>
+                    <li>구매 장벽이 낮아져 신규 유입 증가</li>
+                    <li>멘토 품질 편차 감소로 운영 리스크 완화</li>
+                  </ul>
+                </div>
+                <div class="impact-card">
+                  <div class="impact-card-title">수강생</div>
+                  <ul>
+                    <li>정규만/멘토만/둘 다 등 목적에 맞는 선택 가능</li>
+                    <li>프로젝트 기반 아웃풋 강화에 집중 가능</li>
+                    <li>멘토 선택을 통한 만족도·지속성 증가</li>
+                  </ul>
+                </div>
+                <div class="impact-card">
+                  <div class="impact-card-title">연사 · 멘토</div>
+                  <ul>
+                    <li>연사: 리스크 없이 추가 정산 가능한 구조</li>
+                    <li>멘토: 참여율·케어 역량에 따라 정산 상승</li>
+                    <li>근태·케어 수준이 구조적으로 반영되는 인센티브 설계</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-footer">
+            본 페이지는 실제 가격표·내부 수치 대신, 상품 구조와 문제 해결 방식에 집중하여 재구성한 내용입니다.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
