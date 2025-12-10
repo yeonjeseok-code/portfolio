@@ -2,743 +2,221 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>VOD 콘텐츠 개선 운영 프로세스 구축 · Yeon Je Seok</title>
+  <title>VOD 콘텐츠 개선 운영 프로세스 구축</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="VOD 콘텐츠 운영 품질을 안정화하고 지표 기반 개선 사이클을 구축한 프로젝트 상세 페이지" />
 
-  <!-- 폰트 -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
-    rel="stylesheet">
+    rel="stylesheet"
+  >
 
   <style>
-    :root {
-      --bg-body: #050816;
-      --bg-page: #f5f7fb;
-      --bg-card: #ffffff;
-      --bg-card-soft: #f7f9ff;
-      --accent: #2f7cff;
-      --accent-soft: #e0ebff;
-      --accent-strong: #0b68ff;
-      --text-main: #111827;
-      --text-sub: #4b5563;
-      --text-muted: #9ca3af;
-      --border-soft: #e5e7eb;
-      --shadow-soft: 0 16px 40px rgba(148, 163, 184, 0.32);
-      --radius-card: 28px;
-      --nav-height: 64px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-    }
-
     body {
-      background: var(--bg-body);
-      color: var(--text-main);
       font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      background: #f5f7fb;
+      color: #0f172a;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      min-height: 100vh;
-      background: var(--bg-page);
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* NAV */
-    .top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.86), rgba(5, 8, 22, 0.0));
-      color: #e5e7eb;
-    }
-
-    .top-nav-inner {
-      width: 100%;
-      max-width: 1120px;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-    }
-
-    .nav-logo {
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      font-size: 14px;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     .back-link {
-      font-size: 13px;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      font-size: 14px;
+      margin: 20px;
       opacity: 0.8;
-      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .back-link:hover {
+      opacity: 1;
     }
 
-    .back-link span {
-      font-size: 16px;
-      transform: translateY(-1px);
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    main {
-      padding: 40px 0 72px;
+    .page-title {
+      font-size: 34px;
+      font-weight: 700;
+      margin: 10px 0 8px;
     }
 
-    section {
-      padding: 32px 0;
-    }
-
-    /* HERO */
-    .hero {
-      padding-top: 8px;
-      padding-bottom: 24px;
-    }
-
-    .hero-card {
-      border-radius: 32px;
-      padding: 32px 30px 28px;
-      background:
-        radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.18), transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.24), transparent 60%),
-        linear-gradient(135deg, #0b63ff, #001b5f);
-      color: #f9fafb;
-      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.6);
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(191, 219, 254, 0.45);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .hero-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #38bdf8;
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
-    }
-
-    .hero-title {
-      font-size: 30px;
-      line-height: 1.5;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .hero-role {
+    .page-subtitle {
       font-size: 14px;
-      font-weight: 500;
-      color: #dbeafe;
-      margin-bottom: 10px;
+      opacity: 0.7;
+      margin-bottom: 32px;
     }
 
-    .hero-text {
-      font-size: 14px;
-      line-height: 1.8;
-      color: #e5e7eb;
-      margin-bottom: 18px;
-    }
-
-    .hero-meta-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 12px;
-      color: #e5e7eb;
-    }
-
-    .hero-meta-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-    }
-
-    .hero-side {
-      align-self: stretch;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      font-size: 13px;
-    }
-
-    .hero-side-card {
-      border-radius: 20px;
-      padding: 16px 18px;
-      background: rgba(15, 23, 42, 0.78);
-      border: 1px solid rgba(191, 219, 254, 0.4);
-    }
-
-    .hero-side-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #e5e7eb;
-    }
-
-    .hero-side-list {
-      list-style: none;
-      color: #cbd5f5;
-      line-height: 1.6;
-    }
-
-    .hero-side-list li + li {
-      margin-top: 4px;
-    }
-
-    /* 공통 카드 */
     .project-card {
-      border-radius: var(--radius-card);
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      padding: 22px 24px 20px;
+      background: white;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
     }
 
     .project-card-header {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .project-card-body {
-      font-size: 14px;
-      color: var(--text-sub);
-      line-height: 1.75;
-    }
-
-    .project-card-body ul {
-      list-style: disc;
-      padding-left: 20px;
-      margin-top: 6px;
-    }
-
-    .project-card-body li + li {
-      margin-top: 3px;
-    }
-
-    .project-card-body b {
-      font-weight: 600;
-      color: #111827;
-    }
-
-    .project-section-sub {
-      font-size: 13px;
-      color: var(--text-sub);
-      margin-bottom: 14px;
+      font-size: 15px;
       line-height: 1.7;
     }
 
-    /* Overview 카드 (Before / After) */
-    .overview-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 18px;
-      margin-top: 14px;
+    ul {
+      padding-left: 20px;
+      margin: 12px 0 28px;
     }
 
-    .overview-label {
-      font-size: 13px;
-      font-weight: 700;
+    li {
       margin-bottom: 6px;
     }
 
-    .overview-list {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.7;
-      padding-left: 18px;
-      list-style: disc;
-    }
+    /* --- 성과 이미지 섹션 스타일 보강 --- */
 
-    .overview-list li + li {
-      margin-top: 4px;
-    }
-
-    /* 역할 & 세부 업무 */
-    .meta-grid {
+    .result-image-grid {
+      margin-top: 20px;
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
-      gap: 18px;
-      margin-top: 14px;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 16px;
     }
 
-    .equal-card {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      min-height: 260px;
+    .result-image-card {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #050816;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.55);
     }
 
-    .equal-card .project-card-body {
-      flex: 1;
+    .result-image-card.light {
+      background: #f5f7fb;
+      box-shadow: 0 14px 32px rgba(148, 163, 184, 0.35);
     }
 
-    .dotted-list {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .dotted-list li {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .dotted-list li + li {
-      margin-top: 4px;
-    }
-
-    .dotted-list span.label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent-strong);
-      margin-right: 4px;
-      white-space: nowrap;
-    }
-
-    .dotted-list span.text {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.7;
-    }
-
-    /* 개선 사이클 비주얼 */
-    .flow-card {
-      border-radius: 24px;
-      padding: 18px 22px 18px;
-      background: var(--bg-card-soft);
-      border: 1px solid var(--accent-soft);
-      box-shadow: 0 12px 30px rgba(148, 163, 184, 0.25);
-      font-size: 13px;
-      color: var(--text-sub);
-    }
-
-    .flow-title {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-main);
-      text-align: center;
-    }
-
-    .flow-steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .flow-step {
-      flex: 1 1 140px;
-      min-width: 0;
-      border-radius: 999px;
-      background: #e5edff;
-      padding: 8px 10px;
-      text-align: center;
-      font-size: 12px;
-      color: #111827;
-      font-weight: 500;
-    }
-
-    .flow-arrow-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 4px;
-      font-size: 12px;
-      color: #9ca3af;
-      margin-bottom: 10px;
-    }
-
-    .flow-arrow-row span {
-      transform: translateY(-1px);
-    }
-
-    .flow-caption-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      font-size: 11px;
-    }
-
-    .flow-caption {
-      border-radius: 12px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      padding: 8px 8px;
-      line-height: 1.5;
-      color: #4b5563;
-    }
-
-    /* RESULT */
-    .overview-list.result li {
-      margin-top: 4px;
-    }
-
-    /* 결과 이미지 */
-    .result-image-wrap {
-      margin-top: 16px;
-    }
-
-    .result-image {
-      width: 100%;
-      max-width: 780px;
+    .result-image-card img {
       display: block;
-      margin: 10px auto 0;
-      border-radius: 16px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.5);
+      width: 100%;
     }
 
-    .result-image-caption {
-      margin-top: 6px;
-      font-size: 12px;
-      color: var(--text-muted);
+    .result-strip {
+      padding: 10px 18px;
+      background: linear-gradient(to right, #020617, #020617);
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e5e7eb;
+    }
+
+    .result-strip-light {
+      background: linear-gradient(to right, #e5edff, #f5f7ff);
+      color: #475569;
+    }
+
+    .result-caption {
+      margin-top: 22px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #6b7280;
       text-align: center;
-    }
-
-    .project-footer {
-      margin-top: 32px;
-      font-size: 12px;
-      color: var(--text-muted);
-      text-align: right;
-    }
-
-    /* Responsive */
-    @media (max-width: 960px) {
-      .hero-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .overview-grid,
-      .meta-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .flow-caption-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 720px) {
-      main {
-        padding-top: 32px;
-      }
-
-      .hero-card {
-        padding: 24px 20px 22px;
-      }
-
-      section {
-        padding: 24px 0;
-      }
-
-      .flow-steps {
-        flex-direction: column;
-      }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <!-- NAV -->
-    <header class="top-nav">
-      <div class="top-nav-inner">
-        <div class="nav-logo">YEON JE SEOK</div>
-        <a href="../index.html#projects" class="back-link">
-          <span>←</span> Back to Projects
-        </a>
+
+  <a href="../index.html#projects" class="back-link">
+    ← Back to Projects
+  </a>
+
+  <div class="container">
+
+    <div class="page-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
+    <div class="page-subtitle">지표 기반 개선 사이클 · 프로모션 · 구성 전략</div>
+
+    <!-- 개요 -->
+    <div class="project-card">
+      <div class="project-card-header">프로젝트 개요</div>
+      <div class="project-card-body">
+        단일 콘텐츠에서 멀티·기수 운영으로 확장되며, 운영 부담과 품질 편차가 생겼습니다.
+        이를 해결하기 위해 콘텐츠·운영 관점에서 개선 프로세스를 구축해 반복 업무를 줄이고,
+        지표 기반으로 개선 사이클을 더 명확하게 만들었습니다.
       </div>
-    </header>
+    </div>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container">
-          <div class="hero-card">
-            <div>
-              <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                <span>VOD · OPS</span>
-              </div>
-              <h1 class="hero-title">VOD 콘텐츠 개선 운영 프로세스 구축</h1>
-              <p class="hero-role">지표 기반으로 운영 품질을 안정화하고, 개선 사이클을 만든 프로젝트</p>
-              <p class="hero-text">
-                단일 기수 운영에서 멀티 기수·패키지 운영으로 확장되면서,
-                운영 방식과 프로모션 전략이 사람마다 달라지는 문제가 있었고
-                성과 편차도 커지고 있었습니다. 운영 기준·체크리스트·프로모션 시나리오를
-                구조화해 <b>기수마다 반복 가능한 개선 프로세스</b>를 설계한 프로젝트입니다.
-              </p>
-              <div class="hero-meta-chips">
-                <span class="hero-meta-chip">기수별 운영 기준·FAQ 표준화</span>
-                <span class="hero-meta-chip">프로모션·구성 전략 시나리오화</span>
-                <span class="hero-meta-chip">지표 기반 개선 사이클 수립</span>
-              </div>
+    <!-- 문제 정의 -->
+    <div class="project-card">
+      <div class="project-card-header">문제 정의</div>
+      <div class="project-card-body">
+        <ul>
+          <li>기수별 운영 방식이 달라 품질 편차 발생</li>
+          <li>반복되는 문의와 대응 방식이 사람마다 다름</li>
+          <li>프로모션·구성이 일관되지 않아 성과가 흔들림</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 접근 방식 -->
+    <div class="project-card">
+      <div class="project-card-header">접근 방식</div>
+      <div class="project-card-body">
+        <ul>
+          <li>운영 기준·체크리스트·FAQ를 표준화</li>
+          <li>프로모션·구성을 시나리오화해 반복 사용</li>
+          <li>모든 피드백을 기록·정리해 다음 기수에 반영</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RESULT / 성과 -->
+    <div class="project-card">
+      <div class="project-card-header">성과 & 인사이트</div>
+      <div class="project-card-body">
+
+        <ul>
+          <li>운영 품질을 안정화해 기수별 편차를 줄였습니다.</li>
+          <li>프로모션 효율이 높아져 전환을 개선했습니다.</li>
+          <li>문의 대응 단축 → 운영 리스크 감소</li>
+        </ul>
+
+        <div class="result-image-grid">
+
+          <figure class="result-image-card">
+            <img src="../assets/vod-top-results.png" alt="일부 클래스에서 TOP 랭킹과 평점이 강조된 성과 화면" />
+            <div class="result-strip">
+              일부 클래스에서 TOP 랭킹·평점 등이 시각적으로 드러나는 카드
             </div>
+          </figure>
 
-            <aside class="hero-side">
-              <div class="hero-side-card">
-                <div class="hero-side-title">프로젝트 한 줄 요약</div>
-                <ul class="hero-side-list">
-                  <li>기수별로 흔들리던 VOD 운영·성과를 한 가지 구조로 정리한 프로젝트</li>
-                  <li>운영 기준·구성·프로모션까지 “반복 가능한 패턴”으로 만든 작업</li>
-                </ul>
-              </div>
-              <div class="hero-side-card">
-                <div class="hero-side-title">역할</div>
-                <ul class="hero-side-list">
-                  <li>운영·기획 담당자로서 문제 지점 직접 발견</li>
-                  <li>개선 프로세스 설계 및 체크리스트·FAQ 문서 작성</li>
-                  <li>지표/피드백 수집 및 다음 기수 반영 사이클 구축</li>
-                </ul>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- OVERVIEW -->
-      <section>
-        <div class="container">
-          <div class="project-card">
-            <div class="project-card-header">프로젝트 개요</div>
-            <div class="project-card-body">
-              <p class="project-section-sub">
-                VOD 콘텐츠가 단일 기수에서 멀티 기수·패키지 형태로 확장되면서
-                운영 방식이 담당자마다 제각각이었습니다. 동일한 상품임에도
-                기수에 따라 프로모션·구성·운영 품질이 달라지는 문제가 있었고,
-                이를 해결하기 위해 <b>운영 기준·구성·프로모션·피드백 반영까지를 하나의 플로우</b>로 정리했습니다.
-              </p>
-
-              <div class="overview-grid">
-                <div>
-                  <div class="overview-label">Before (문제 상황)</div>
-                  <ul class="overview-list">
-                    <li>기수별 운영 방식이 달라 품질·응대 수준 편차 발생</li>
-                    <li>프로모션·구성 전략이 담당자/시점마다 달라 성과 비교가 어려움</li>
-                    <li>반복되는 문의·이슈가 정리되지 않아 같은 실수가 반복</li>
-                    <li>지표·피드백이 흩어져 있어 다음 기수에 체계적으로 반영되지 않음</li>
-                  </ul>
-                </div>
-                <div>
-                  <div class="overview-label">After (지향점)</div>
-                  <ul class="overview-list">
-                    <li>누가 맡아도 같은 기준·체크리스트로 운영할 수 있는 구조</li>
-                    <li>구성·프로모션 전략을 시나리오로 정의해 반복 사용 가능</li>
-                    <li>FAQ·이슈 로그를 한 곳에 모아 문의·리스크를 단계적으로 감소</li>
-                    <li>지표·피드백을 정리해 “기수 N → N+1”로 이어지는 개선 사이클 구축</li>
-                  </ul>
-                </div>
-              </div>
+          <figure class="result-image-card light">
+            <img src="../assets/vod-top-results2.png" alt="카테고리별 VOD 상품 카드 화면" />
+            <div class="result-strip result-strip-light">
+              실제 화면에는 플랫폼별 상세 성과 화면이 포함되어 있으나,
+              포트폴리오에서는 구조와 대표 화면만 구성했습니다.
             </div>
-          </div>
+          </figure>
+
         </div>
-      </section>
 
-      <!-- ROLE & TASKS -->
-      <section>
-        <div class="container">
-          <div class="meta-grid">
-            <!-- 역할 & 기여도 -->
-            <article class="project-card equal-card">
-              <div class="project-card-header">역할 & 기여도</div>
-              <div class="project-card-body">
-                <ul>
-                  <li>운영 담당자로서 <b>실제 발생한 이슈·문의·지표를 직접 수집</b></li>
-                  <li>운영 기준·SOP·체크리스트·FAQ를 하나의 문서 세트로 재구성</li>
-                  <li>프로모션·구성 전략을 “기본 패턴 + 옵션” 형태로 정리</li>
-                  <li>기수 운영 결과를 회고해 다음 기수 플랜에 반영하는 구조 설계</li>
-                </ul>
-              </div>
-            </article>
+        <p class="result-caption">
+          실제 서비스에서는 더 많은 클래스와 상세 화면이 이어지지만,
+          포트폴리오에서는 설계 방식과 대표 화면만 보이도록 정리했습니다.
+        </p>
 
-            <!-- 주요 세부 업무 -->
-            <article class="project-card equal-card">
-              <div class="project-card-header">주요 세부 업무 (What & How)</div>
-              <div class="project-card-body">
-                <ol class="dotted-list">
-                  <li>
-                    <span class="label">① 이슈·문의 로그 정리</span>
-                    <span class="text">
-                      기수별로 반복되는 문의·이슈를 수집하고, 유형별로 분류해
-                      어떤 지점에서 운영 리스크가 발생하는지 구조화했습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">② 운영 기준·체크리스트 설계</span>
-                    <span class="text">
-                      등록·오픈·운영·종료까지 각 단계별로 해야 할 일을 정의하고,
-                      담당자들이 그대로 사용할 수 있는 체크리스트를 만들었습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">③ 프로모션·구성 시나리오화</span>
-                    <span class="text">
-                      할인/번들·업셀 등 자주 사용하는 프로모션 패턴을 정리하고,
-                      어떤 지표·상황에서 어떤 시나리오를 선택할지 기준을 세웠습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">④ 지표·피드백 회고 템플릿</span>
-                    <span class="text">
-                      전환율·완강률·문의량 등 핵심 지표와 정성 피드백을
-                      한 번에 정리할 수 있는 회고 템플릿을 만들었습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">⑤ 개선 액션 리스트화</span>
-                    <span class="text">
-                      회고 결과에서 나온 개선안을 “다음 기수에서 할 일 리스트”로 만들고,
-                      실제 실행 여부를 추적할 수 있게 했습니다.
-                    </span>
-                  </li>
-                </ol>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+      </div>
+    </div>
 
-      <!-- FLOW VISUAL -->
-      <section>
-        <div class="container">
-          <div class="project-card">
-            <div class="project-card-header">VOD 운영 개선 사이클 (요약)</div>
-            <div class="project-card-body">
-              <p class="project-section-sub">
-                실제 문서에서는 각 단계별로 상세 체크리스트와 템플릿 링크를 연결해 두었고,
-                여기서는 어떤 흐름으로 개선 사이클을 돌렸는지 한눈에 보이도록 정리했습니다.
-              </p>
-
-              <div class="flow-card">
-                <div class="flow-title">기수별 VOD 운영·개선 사이클</div>
-
-                <div class="flow-steps">
-                  <div class="flow-step">1. 기수 기획 & 기본 구성 설계</div>
-                  <div class="flow-step">2. 운영 기준·체크리스트 세팅</div>
-                  <div class="flow-step">3. 프로모션·구성 시나리오 실행</div>
-                  <div class="flow-step">4. 지표·문의·피드백 회고 & 개선안 정의</div>
-                </div>
-
-                <div class="flow-arrow-row">
-                  <span>기획</span> → <span>운영</span> → <span>성과·피드백 수집</span> →
-                  <span>회고</span> → <span>다음 기수 계획</span>
-                </div>
-
-                <div class="flow-caption-grid">
-                  <div class="flow-caption">
-                    타깃·목표·가격·구성을 정리하고<br>
-                    기존 기수 성과를 참고해 기본 전략 수립
-                  </div>
-                  <div class="flow-caption">
-                    오픈 전 필수 점검 항목을 체크리스트로 정리해<br>
-                    누락·실수를 줄이는 구조 설계
-                  </div>
-                  <div class="flow-caption">
-                    사전에 정의한 시나리오에 따라<br>
-                    할인·번들·업셀 프로모션 실행
-                  </div>
-                  <div class="flow-caption">
-                    전환율·문의량·리뷰를 회고 템플릿에 정리하고<br>
-                    다음 기수에 적용할 개선안을 Action Item으로 저장
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- RESULT -->
-      <section>
-        <div class="container">
-          <div class="project-card">
-            <div class="project-card-header">성과 & 인사이트</div>
-            <div class="project-card-body">
-              <ul class="overview-list result">
-                <li>운영 기준·체크리스트 정착으로 <b>기수별 운영 품질 편차 감소</b></li>
-                <li>프로모션·구성 시나리오 정리로 <b>테스트/비교가 가능한 상태</b>를 만들고 전환율 개선</li>
-                <li>반복 문의·이슈가 줄어들며 운영 리소스 소모 감소</li>
-                <li>“이 기수에서 잘 된 점/아쉬운 점”이 다음 기수 계획에 자연스럽게 녹아드는 구조 형성</li>
-              </ul>
-
-              <!-- 성과 이미지 1: 검은 배경 -->
-              <div class="result-image-wrap">
-                <img
-                  src="../assets/vod-top-results.png"
-                  alt="VOD 클래스 TOP 성과 카드 요약 이미지"
-                  class="result-image"
-                />
-                <div class="result-image-caption">
-                  일부 클래스에서 TOP 랭킹·평점 등 성과가 시각적으로 드러난 카드
-                </div>
-              </div>
-
-              <!-- 성과 이미지 2: 흰 배경 -->
-              <div class="result-image-wrap">
-                <img
-                  src="../assets/vod-top-results2.png"
-                  alt="카테고리별 VOD 구성 및 성과 카드 이미지"
-                  class="result-image"
-                />
-                <div class="result-image-caption">
-                  여러 카테고리에서 구성·성과를 한 화면에 정리한 카드 모음
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-footer">
-            실제 화면에는 플랫폼 별 상세 성과·내부 수치가 포함되어 있어,
-            포트폴리오 페이지에서는 구조와 방법론, 대표 화면 위주로만 재구성했습니다.
-          </div>
-        </div>
-      </section>
-    </main>
   </div>
+
 </body>
 </html>
