@@ -2,85 +2,122 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>VOD 콘텐츠 개선 운영 프로세스 구축</title>
+  <title>VOD 콘텐츠 개선 운영 프로세스 구축 · Yeon Je Seok</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="VOD 콘텐츠 운영 품질을 안정화하고 지표 기반 개선 사이클을 구축한 프로젝트 상세 페이지" />
 
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  >
+    rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Inter', 'Noto Sans KR', system-ui, sans-serif;
-      background: #f5f7fb;
-      color: #101827;
+    :root {
+      --bg-page: #f5f7fb;
+      --text-main: #111827;
+      --text-sub: #4b5563;
+      --text-muted: #9ca3af;
+      --accent: #2f7cff;
+    }
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .page {
-      max-width: 880px;
+      min-height: 100vh;
+      padding: 24px 16px 64px;
+    }
+
+    .content {
+      max-width: 920px;
       margin: 0 auto;
-      padding: 48px 24px 72px;
     }
 
     .back-link {
-      font-size: 13px;
-      color: #3b82f6;
-      margin-bottom: 32px;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
     }
 
-    h1.page-title {
+    .back-link span {
+      font-size: 16px;
+      transform: translateY(-1px);
+    }
+
+    header {
+      margin-bottom: 32px;
+    }
+
+    header h1 {
       font-size: 32px;
+      line-height: 1.4;
       font-weight: 700;
       margin-bottom: 6px;
     }
 
-    .project-meta {
+    header .subtitle {
       font-size: 14px;
-      color: #6b7280;
-      margin-bottom: 32px;
+      color: var(--text-sub);
     }
 
     section {
-      margin-bottom: 48px;
+      margin-bottom: 36px;
     }
 
-    h2.section-title {
+    section h2 {
       font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    p {
-      font-size: 15px;
-      line-height: 1.7;
+      font-weight: 600;
       margin-bottom: 14px;
     }
 
-    ul {
-      font-size: 15px;
-      line-height: 1.7;
-      padding-left: 18px;
-      margin-bottom: 14px;
+    section p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-sub);
     }
 
-    li + li {
-      margin-top: 6px;
+    section ul {
+      list-style: disc;
+      padding-left: 20px;
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.8;
     }
 
-    /* 결과 이미지 */
+    section ul li + li {
+      margin-top: 4px;
+    }
+
+    /* 성과 이미지 영역 - 기존 레이아웃은 그대로 두고 이미지용 스타일만 추가 */
     .result-image-wrap {
-      margin-top: 28px;
-      margin-bottom: 32px;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
+
     .result-image {
       width: 100%;
       max-width: 760px;
@@ -89,97 +126,89 @@
       border-radius: 14px;
       box-shadow: 0 12px 32px rgba(15, 23, 42, 0.28);
     }
+
     .result-image-caption {
       margin-top: 6px;
       font-size: 12px;
       text-align: center;
-      color: #9ca3af;
+      color: var(--text-muted);
     }
   </style>
 </head>
 
 <body>
   <div class="page">
+    <div class="content">
+      <a href="../index.html#projects" class="back-link">
+        <span>←</span>
+        <span>Back to Projects</span>
+      </a>
 
-    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+      <header>
+        <h1>VOD 콘텐츠 개선 운영 프로세스 구축</h1>
+        <div class="subtitle">지표 기반 개선 사이클 · 프로모션 · 구성 전략</div>
+      </header>
 
-    <h1 class="page-title">VOD 콘텐츠 개선 운영 프로세스 구축</h1>
-    <div class="project-meta">지표 기반 개선 사이클 · 프로모션 · 구성 전략</div>
+      <section>
+        <h2>프로젝트 개요</h2>
+        <p>
+          단일 콘텐츠에서 멀티·기수 운영으로 확장되며, 운영 부담과 품질 편차가 생겼습니다.
+          이를 해결하기 위해 콘텐츠·운영 관점에서 개선 프로세스를 구축해 반복 업무를 줄이고,
+          지표 기반으로 개선 사이클을 더 명확하게 만들었습니다.
+        </p>
+      </section>
 
-    <!-- SECTION 1 -->
-    <section>
-      <h2 class="section-title">프로젝트 개요</h2>
-      <p>
-        단일 콘텐츠에서 멀티-기수 운영으로 확장되며, 운영 부담과 품질 편차가 생겼습니다.
-        이를 해결하기 위해 콘텐츠·운영 관점에서 개선 프로세스를 구축해 반복 업무를 줄이고,
-        지표 기반으로 개선 사이클을 더 명확하게 만들었습니다.
-      </p>
-    </section>
+      <section>
+        <h2>문제 정의</h2>
+        <ul>
+          <li>기수별 운영 방식이 달라 품질 편차 발생</li>
+          <li>반복되는 문의와 대응 방식이 사람마다 다름</li>
+          <li>프로모션·구성이 일관되지 않아 성과가 흔들림</li>
+        </ul>
+      </section>
 
-    <!-- SECTION 2 -->
-    <section>
-      <h2 class="section-title">문제 정의</h2>
-      <ul>
-        <li>기수별 운영 방식이 달라 품질 편차 발생</li>
-        <li>반복되는 문의와 대응 방식이 사람마다 다름</li>
-        <li>프로모션·구성이 일관되지 않아 성과가 흔들림</li>
-      </ul>
-    </section>
+      <section>
+        <h2>접근 방식</h2>
+        <ul>
+          <li>운영 기준·체크리스트·FAQ를 표준화</li>
+          <li>프로모션·구성을 시나리오화해 반복 사용</li>
+          <li>모든 피드백을 기록·정리해 다음 기수에 반영</li>
+        </ul>
+      </section>
 
-    <!-- SECTION 3 -->
-    <section>
-      <h2 class="section-title">접근 방식</h2>
-      <ul>
-        <li>운영 기준·체크리스트·FAQ를 표준화</li>
-        <li>프로모션·구성을 시나리오화해 반복 사용</li>
-        <li>모든 피드백을 기록·정리해 다음 기수에 반영</li>
-      </ul>
-    </section>
+      <section>
+        <h2>성과</h2>
+        <ul>
+          <li>운영 품질 안정화 → 기수별 편차 감소</li>
+          <li>프로모션 효율 증가 → 전환률 개선</li>
+          <li>문의 대응 단축 → 운영 리소스 절감</li>
+        </ul>
 
-    <!-- SECTION 4 -->
-    <section>
-      <h2 class="section-title">성과</h2>
-      <ul>
-        <li>운영 품질 안정화 → 기수별 편차 감소</li>
-        <li>프로모션 효율 증가 → 전환률 개선</li>
-        <li>문의 대응 단축 → 운영 리소스 절감</li>
-      </ul>
-
-      <!-- 결과 이미지 1 -->
-      <div class="result-image-wrap">
-        <img
-          src="../assets/vod-top-results.png"
-          alt="VOD Performance Summary"
-          class="result-image"
-        />
-        <div class="result-image-caption">
-          주요 결과 요약
+        <!-- 성과 이미지 1: 검은 배경 -->
+        <div class="result-image-wrap">
+          <img
+            src="../assets/vod-top-results.png"
+            alt="VOD 클래스 주요 TOP 성과 카드 요약"
+            class="result-image"
+          />
+          <div class="result-image-caption">
+            TOP 랭킹·평점 등 VOD 성과 카드 요약
+          </div>
         </div>
-      </div>
 
-      <!-- 결과 이미지 2 -->
-      <div class="result-image-wrap">
-        <img
-          src="../assets/vod-top-results2.png"
-          alt="Performance by Category"
-          class="result-image"
-        />
-        <div class="result-image-caption">
-          카테고리별 결과 요약
+        <!-- 성과 이미지 2: 흰 배경 -->
+        <div class="result-image-wrap">
+          <img
+            src="../assets/vod-top-results2.png"
+            alt="카테고리별 VOD 구성 및 성과 카드"
+            class="result-image"
+          />
+          <div class="result-image-caption">
+            카테고리별 구성·성과를 한 화면에 정리한 카드
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5 -->
-    <section>
-      <h2 class="section-title">정리</h2>
-      <p>
-        기수 운영은 콘텐츠 자체보다 운영 관리의 비중이 커질 수 있습니다.
-        운영 기준과 피드백 구조를 설계해 반복 업무를 줄이면서도,
-        사용자가 느끼는 경험 품질을 안정적으로 유지할 수 있었습니다.
-      </p>
-    </section>
-
+      </section>
+    </div>
   </div>
 </body>
 </html>
