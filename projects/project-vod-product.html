@@ -271,7 +271,6 @@
       line-height: 1.7;
     }
 
-    /* Overview 카드 (Before / After) */
     .overview-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -297,7 +296,7 @@
       margin-top: 4px;
     }
 
-    /* 역할 & 세부 업무 */
+    /* 역할 & 세부 업무 카드 레이아웃 */
     .meta-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
@@ -436,7 +435,7 @@
     .result-image-caption {
       margin-top: 6px;
       font-size: 12px;
-      color: var(--text-sub); /* ← 글자색만 더 진하게 변경 */
+      color: var(--text-sub); /* 더 진한 색 */
       text-align: center;
     }
 
@@ -506,134 +505,126 @@
                 <span>VOD · OPS</span>
               </div>
               <h1 class="hero-title">VOD 콘텐츠 개선 운영 프로세스 구축</h1>
-              <p class="hero-role">지표 기반으로 운영 품질을 안정화하고, 개선 사이클을 만든 프로젝트</p>
+              <p class="hero-role">
+                디지털 드로잉·드로잉·디자인 분야 VOD를 기획·론칭·운영까지 전 주기에서 리딩한 프로젝트입니다.
+              </p>
               <p class="hero-text">
-                단일 기수 운영에서 멀티 기수·패키지 운영으로 확장되면서,
-                운영 방식과 프로모션 전략이 사람마다 달라지는 문제가 있었고
-                성과 편차도 커지고 있었습니다. 운영 기준·체크리스트·프로모션 시나리오를
-                구조화해 <b>기수마다 반복 가능한 개선 프로세스</b>를 설계한 프로젝트입니다.
+                클래스101과 블루타이거에서 총 <b>46개 온라인 VOD 콘텐츠</b>를 신규 기획·론칭했습니다.
+                단순 강의가 아니라, 크리에이터의 전문성을 <b>디지털 제품(Product)</b>으로 재해석하여
+                상세페이지·커리큘럼·운영 프로세스까지 구조화하고,
+                이후에는 <b>기수 기반 운영 PM과 개선 프로세스</b>까지 맡았습니다.
               </p>
               <div class="hero-meta-chips">
-                <span class="hero-meta-chip">기수별 운영 기준·FAQ 표준화</span>
-                <span class="hero-meta-chip">프로모션·구성 전략 시나리오화</span>
-                <span class="hero-meta-chip">지표 기반 개선 사이클 수립</span>
+                <span class="hero-meta-chip">온라인 VOD 46개 신규 기획·론칭</span>
+                <span class="hero-meta-chip">기획·상세페이지·운영 전 주기 리딩</span>
+                <span class="hero-meta-chip">크리에이터 전문성 → 디지털 Product화</span>
               </div>
             </div>
 
             <aside class="hero-side">
               <div class="hero-side-card">
-                <div class="hero-side-title">프로젝트 한 줄 요약</div>
+                <div class="hero-side-title">프로젝트 요약</div>
                 <ul class="hero-side-list">
-                  <li>기수별로 흔들리던 VOD 운영·성과를 한 가지 구조로 정리한 프로젝트</li>
-                  <li>운영 기준·구성·프로모션까지 “반복 가능한 패턴”으로 만든 작업</li>
+                  <li>디지털 드로잉·드로잉·디자인 VOD 46개 신규 기획 및 론칭</li>
+                  <li>클래스101, 블루타이거에서 VOD 기획·상품화 전 과정 담당</li>
+                  <li>시장·사용자 분석 기반 신규 클래스 기획·구조화·런칭</li>
                 </ul>
               </div>
               <div class="hero-side-card">
                 <div class="hero-side-title">역할</div>
                 <ul class="hero-side-list">
-                  <li>운영·기획 담당자로서 문제 지점 직접 발견</li>
-                  <li>개선 프로세스 설계 및 체크리스트·FAQ 문서 작성</li>
-                  <li>지표/피드백 수집 및 다음 기수 반영 사이클 구축</li>
+                  <li>기획/PM: 1명(본인)</li>
+                  <li>크리에이터/연사: 1~2명(필수 협업)</li>
+                  <li>디자인·마케팅·운영·편집: 회사별 2~4명과 협업</li>
                 </ul>
+                <p style="margin-top:8px;font-size:12px;color:#cbd5f5;">
+                  기획 중심 역할은 단독, 콘텐츠 전문성은 크리에이터와 공동 기여.
+                </p>
               </div>
             </aside>
           </div>
         </div>
       </section>
 
-      <!-- OVERVIEW -->
+      <!-- 프로젝트 요약 (상세) -->
       <section>
         <div class="container">
           <div class="project-card">
-            <div class="project-card-header">프로젝트 개요</div>
+            <div class="project-card-header">프로젝트 요약</div>
             <div class="project-card-body">
-              <p class="project-section-sub">
-                VOD 콘텐츠가 단일 기수에서 멀티 기수·패키지 형태로 확장되면서
-                운영 방식이 담당자마다 제각각이었습니다. 동일한 상품임에도
-                기수에 따라 프로모션·구성·운영 품질이 달라지는 문제가 있었고,
-                이를 해결하기 위해 <b>운영 기준·구성·프로모션·피드백 반영까지를 하나의 플로우</b>로 정리했습니다.
-              </p>
-
-              <div class="overview-grid">
-                <div>
-                  <div class="overview-label">Before (문제 상황)</div>
-                  <ul class="overview-list">
-                    <li>기수별 운영 방식이 달라 품질·응대 수준 편차 발생</li>
-                    <li>프로모션·구성 전략이 담당자/시점마다 달라 성과 비교가 어려움</li>
-                    <li>반복되는 문의·이슈가 정리되지 않아 같은 실수가 반복</li>
-                    <li>지표·피드백이 흩어져 있어 다음 기수에 체계적으로 반영되지 않음</li>
-                  </ul>
-                </div>
-                <div>
-                  <div class="overview-label">After (지향점)</div>
-                  <ul class="overview-list">
-                    <li>누가 맡아도 같은 기준·체크리스트로 운영할 수 있는 구조</li>
-                    <li>구성·프로모션 전략을 시나리오로 정의해 반복 사용 가능</li>
-                    <li>FAQ·이슈 로그를 한 곳에 모아 문의·리스크를 단계적으로 감소</li>
-                    <li>지표·피드백을 정리해 “기수 N → N+1”로 이어지는 개선 사이클 구축</li>
-                  </ul>
-                </div>
-              </div>
+              <ul class="overview-list">
+                <li><b>디지털 드로잉, 드로잉, 디자인 분야에서 온라인 VOD 콘텐츠 총 46개 신규 기획 및 론칭</b></li>
+                <li>클래스101(2021~2022), 블루타이거(2023~2025)에서 <b>온라인 VOD 콘텐츠 기획 및 상품화 전 과정 담당</b></li>
+                <li>시장 및 사용자 분석 기반으로 <b>니즈에 맞춘 신규 클래스 기획, 구조화, 런칭</b></li>
+                <li>크리에이터의 전문성을 기반으로 콘텐츠를 <b>디지털 제품(Product)</b>으로 재해석하여 상품성 강화</li>
+                <li>상세페이지, 커리큘럼 설계, 협업 PM, 운영/개선까지 <b>전 주기 프로세스 리딩</b></li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ROLE & TASKS -->
+      <!-- 역할 & 핵심 기여 -->
       <section>
         <div class="container">
           <div class="meta-grid">
-            <!-- 역할 & 기여도 -->
+            <!-- 역할 -->
             <article class="project-card equal-card">
-              <div class="project-card-header">역할 & 기여도</div>
+              <div class="project-card-header">역할</div>
               <div class="project-card-body">
                 <ul>
-                  <li>운영 담당자로서 <b>실제 발생한 이슈·문의·지표를 직접 수집</b></li>
-                  <li>운영 기준·SOP·체크리스트·FAQ를 하나의 문서 세트로 재구성</li>
-                  <li>프로모션·구성 전략을 “기본 패턴 + 옵션” 형태로 정리</li>
-                  <li>기수 운영 결과를 회고해 다음 기수 플랜에 반영하는 구조 설계</li>
+                  <li>기획/PM: <b>1명(본인)</b>이 전 주기 리딩</li>
+                  <li>크리에이터/연사: 1~2명과 긴밀한 공동 작업</li>
+                  <li>디자인·마케팅·운영·편집: 회사별 2~4명과 협업</li>
                 </ul>
+                <p style="margin-top:8px;font-size:13px;color:var(--text-sub);">
+                  👉 <b>기획 중심 역할은 단독</b>으로 수행하고, <b>콘텐츠 전문성은 크리에이터와 공동 기여</b>하는 구조였습니다.
+                </p>
               </div>
             </article>
 
-            <!-- 주요 세부 업무 -->
+            <!-- 핵심 기여 -->
             <article class="project-card equal-card">
-              <div class="project-card-header">주요 세부 업무 (What & How)</div>
+              <div class="project-card-header">핵심 기여</div>
               <div class="project-card-body">
                 <ol class="dotted-list">
                   <li>
-                    <span class="label">① 이슈·문의 로그 정리</span>
+                    <span class="label">① 시장 기반 주제 선정</span>
                     <span class="text">
-                      기수별로 반복되는 문의·이슈를 수집하고, 유형별로 분류해
-                      어떤 지점에서 운영 리스크가 발생하는지 구조화했습니다.
+                      카테고리 경쟁 분석·사용자 리뷰 패턴 분석을 통해
+                      <b>Problem-Solution Fit</b> 관점에서 주제를 선정했습니다.
+                      예: 기존 “결과물 중심 동화책 클래스”를 “이야기 탄생 과정 중심” 북토크 클래스로 재해석.
                     </span>
                   </li>
                   <li>
-                    <span class="label">② 운영 기준·체크리스트 설계</span>
+                    <span class="label">② Product 관점 재구조화</span>
                     <span class="text">
-                      등록·오픈·운영·종료까지 각 단계별로 해야 할 일을 정의하고,
-                      담당자들이 그대로 사용할 수 있는 체크리스트를 만들었습니다.
+                      크리에이터의 스토리·전문성·작업 방식을 인터뷰하고,
+                      수강생이 “이 클래스를 꼭 구매해야 하는 이유”로 전환되도록
+                      커리큘럼·메시지·구성을 구조화했습니다.
                     </span>
                   </li>
                   <li>
-                    <span class="label">③ 프로모션·구성 시나리오화</span>
+                    <span class="label">③ 상세페이지·스토리라인 100% 기획</span>
                     <span class="text">
-                      할인/번들·업셀 등 자주 사용하는 프로모션 패턴을 정리하고,
-                      어떤 지표·상황에서 어떤 시나리오를 선택할지 기준을 세웠습니다.
+                      Hook → 변화 → 결과물 → 단계별 학습 → 보너스까지 스토리라인을 설계하고
+                      상세페이지 전체 문안을 직접 작성했습니다.
                     </span>
                   </li>
                   <li>
-                    <span class="label">④ 지표·피드백 회고 템플릿</span>
+                    <span class="label">④ 운영 PM</span>
                     <span class="text">
-                      전환율·완강률·문의량 등 핵심 지표와 정성 피드백을
-                      한 번에 정리할 수 있는 회고 템플릿을 만들었습니다.
+                      클래스101에서는 <b>론칭 중심 PM</b>, 블루타이거에서는
+                      <b>기수 기반 운영 PM + 개선 프로세스 설계</b>까지 맡아
+                      운영·마케팅·편집 등 타 부서와 협업을 조율했습니다.
                     </span>
                   </li>
                   <li>
-                    <span class="label">⑤ 개선 액션 리스트화</span>
+                    <span class="label">⑤ 사용자 피드백 기반 개선</span>
                     <span class="text">
-                      회고 결과에서 나온 개선안을 “다음 기수에서 할 일 리스트”로 만들고,
-                      실제 실행 여부를 추적할 수 있게 했습니다.
+                      리뷰·테스터·멘토 피드백을 문서화해
+                      기술·커리큘럼·운영 이슈로 분류하고,
+                      이후 기수(A+2까지)에 체계적으로 반영했습니다.
                     </span>
                   </li>
                 </ol>
@@ -643,19 +634,72 @@
         </div>
       </section>
 
-      <!-- FLOW VISUAL -->
+      <!-- 세부 업무 -->
       <section>
         <div class="container">
           <div class="project-card">
-            <div class="project-card-header">VOD 운영 개선 사이클 (요약)</div>
+            <div class="project-card-header">세부 업무</div>
+            <div class="project-card-body">
+              <div class="overview-grid">
+                <div>
+                  <div class="overview-label">1) 시장 분석</div>
+                  <ul class="overview-list">
+                    <li>카테고리별 수요 및 트렌드 데이터 분석</li>
+                    <li>사용자 리뷰·커뮤니티 인사이트 기반 정성 분석</li>
+                    <li>구매 동기와 이탈 요인 분리 및 정리</li>
+                  </ul>
+
+                  <div class="overview-label" style="margin-top:16px;">2) 크리에이터 협업</div>
+                  <ul class="overview-list">
+                    <li>크리에이터의 전문성과 메시지 정리</li>
+                    <li>커리큘럼 스토리라인 공동 조율</li>
+                    <li>클래스 목적 및 핵심 가치 정의</li>
+                  </ul>
+
+                  <div class="overview-label" style="margin-top:16px;">3) 커리큘럼 기획</div>
+                  <ul class="overview-list">
+                    <li>단계별 학습 구조 설계</li>
+                    <li>초보자~중급자 난이도 조절</li>
+                    <li>실습·프로젝트 기반 학습 흐름 설계</li>
+                    <li>콘텐츠 분량 및 리듬 설계</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <div class="overview-label">4) 상세페이지 기획</div>
+                  <ul class="overview-list">
+                    <li>전체 문안 100% 직접 작성</li>
+                    <li>이미지·영상 배치 및 구성 기획</li>
+                    <li>후킹 포인트 및 핵심 메시지 설계</li>
+                    <li>구매 전환 요소 반영 및 마케터와 노출 전략 협의</li>
+                  </ul>
+
+                  <div class="overview-label" style="margin-top:16px;">5) 개선 프로세스 (블루타이거 중심)</div>
+                  <ul class="overview-list">
+                    <li>테스터·멘토 기반 피드백 문서화</li>
+                    <li>개선 항목 정리 및 우선순위화</li>
+                    <li>8주 → A+2 기수까지 개선안 연속 반영 구조 확립</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLOW VISUAL (기수별 개선 사이클) -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">기수별 VOD 운영·개선 사이클</div>
             <div class="project-card-body">
               <p class="project-section-sub">
-                실제 문서에서는 각 단계별로 상세 체크리스트와 템플릿 링크를 연결해 두었고,
-                여기서는 어떤 흐름으로 개선 사이클을 돌렸는지 한눈에 보이도록 정리했습니다.
+                블루타이거에서는 VOD를 기수 단위로 운영하면서,
+                기획 → 운영 → 성과·피드백 → 회고 → 다음 기수로 이어지는 개선 사이클을 설계했습니다.
               </p>
 
               <div class="flow-card">
-                <div class="flow-title">기수별 VOD 운영·개선 사이클</div>
+                <div class="flow-title">기수별 운영 플로우</div>
 
                 <div class="flow-steps">
                   <div class="flow-step">1. 기수 기획 & 기본 구성 설계</div>
@@ -697,14 +741,36 @@
       <section>
         <div class="container">
           <div class="project-card">
-            <div class="project-card-header">성과 & 인사이트</div>
+            <div class="project-card-header">성과</div>
             <div class="project-card-body">
-              <ul class="overview-list result">
-                <li>운영 기준·체크리스트 정착으로 <b>기수별 운영 품질 편차 감소</b></li>
-                <li>프로모션·구성 시나리오 정리로 <b>테스트/비교가 가능한 상태</b>를 만들고 전환율 개선</li>
-                <li>반복 문의·이슈가 줄어들며 운영 리소스 소모 감소</li>
-                <li>“이 기수에서 잘 된 점/아쉬운 점”이 다음 기수 계획에 자연스럽게 녹아드는 구조 형성</li>
-              </ul>
+              <div class="overview-grid">
+                <div>
+                  <div class="overview-label">클래스 콘텐츠</div>
+                  <ul class="overview-list">
+                    <li>다수의 콘텐츠가 카테고리 상위 랭크 유지</li>
+                    <li>북토크 클래스가 더 새로운 드로잉 분야 <b>Top 6</b> 달성, TOP30 클래스 다수 론칭</li>
+                    <li>출시 직후 강력한 신규 유입 확보: <b>3일 매출 1억+</b> 클래스 기획·론칭 경험</li>
+                    <li>리뷰 상위권 유지로 브랜드 신뢰도 강화</li>
+                  </ul>
+
+                  <div class="overview-label" style="margin-top:16px;">PM 성과</div>
+                  <ul class="overview-list">
+                    <li>기획 인풋 시간 <b>60% 이상 절감</b></li>
+                    <li>개선 프로세스 도입으로 클래스 간 편차 감소</li>
+                    <li>운영·편집·기획의 부담을 분산시키는 역할 분화 구조 정착</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <div class="overview-label">조직 기여</div>
+                  <ul class="overview-list">
+                    <li><b>기획자 중심 PM 구조</b>를 명확히 정의하고 실제 운영에 안착</li>
+                    <li>멘토·테스터 기반의 <b>개선 프로세스 표준화</b></li>
+                    <li>콘텐츠 상품화 문서 템플릿 구축으로 신규 기획 온보딩 시간 단축</li>
+                    <li>크리에이터 경험·커뮤니케이션 방식 정비로 장기 협업 기반 마련</li>
+                  </ul>
+                </div>
+              </div>
 
               <!-- 성과 이미지 1: 검은 배경 -->
               <div class="result-image-wrap">
@@ -714,7 +780,7 @@
                   class="result-image"
                 />
                 <div class="result-image-caption">
-                  일부 클래스에서 TOP 랭킹·평점 등이 시각적으로 드러나는 운영 화면 일부입니다.
+                  일부 클래스의 TOP 랭킹·평점 등이 시각적으로 드러나는 운영 화면 일부입니다.
                 </div>
               </div>
 
@@ -722,7 +788,7 @@
               <div class="result-image-wrap">
                 <img
                   src="../assets/vod-top-results2.png"
-                  alt="카테고리별 VOD 구성 및 성과 카드 이미지"
+                  alt="카테고리별 VOD 구성 및 카드 리스트 화면"
                   class="result-image"
                 />
                 <div class="result-image-caption">
@@ -733,7 +799,8 @@
           </div>
 
           <div class="project-footer">
-            실제 운영 화면 전체를 그대로 공개하기보다는, 카드 구성과 화면 배치를 보여 줄 수 있는 대표 시각 자료만 발췌해 정리했습니다.
+            실제 운영 화면 전체를 그대로 공개하기보다는,
+            카드 구성과 화면 배치를 보여 줄 수 있는 대표 시각 자료만 발췌해 정리했습니다.
           </div>
         </div>
       </section>
