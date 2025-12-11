@@ -55,10 +55,11 @@
 
     a { color: inherit; text-decoration: none; }
 
-  .project-card,
-  .project-card * {
-    font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
-  }
+    .project-card,
+    .project-card * {
+      font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
     .page {
       min-height: 100vh;
       background: var(--bg-page);
@@ -731,6 +732,31 @@
       text-align: center;
     }
 
+    /* 새로 추가된 이미지 버블 스타일 */
+    .profile-visual {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .visual-box {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+      border-radius: 26px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 0, #dbeafe, #eff6ff);
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .profile-image-placeholder {
       flex: 1;
       border-radius: 26px;
@@ -1167,78 +1193,76 @@
 
           <div class="project-grid" id="projectGrid">
             <!-- 콘텐츠 / 운영 프로젝트 6개 -->
-<a href="projects/product-structure-redesign.html" class="project-card-link">
-  <article class="project-card" data-type="product">
-    <div class="project-tag">PRODUCT · PRICING</div>
-    <div class="project-title">수강 상품 구조 재설계 프로젝트</div>
-    <p class="project-desc">
-      정규수업·멘토링을 분리한 조합형 상품 구조로
-      객단가와 사용자 만족도를 동시에 올린 프로젝트입니다.
-    </p>
-    <div class="project-meta">객단가 상승 · 리스크 완화 · 선택형 구조</div>
-  </article>
-</a>
-            
-<!-- project 6 -->
-<a href="projects/project-global-localization.html" class="project-card-link">
-  <article class="project-card" data-type="content">
-    <div class="project-tag">GLOBAL · LOCAL</div>
-    <div class="project-title">글로벌 일러스트 클래스를 국내에 현지화 론칭</div>
-    <p class="project-desc">
-      글로벌·국내 양방향 카탈로그 확장 가능성을 검증하기 위해,<br>
-      해외 인기 일러스트 클래스를 국내 사용자 관점에서 번역·현지화한 프로젝트입니다.
-    </p>
-    <div class="project-meta">현지화 실험 · MVP · SKU 확장 테스트</div>
-  </article>
-</a>
+            <a href="projects/product-structure-redesign.html" class="project-card-link">
+              <article class="project-card" data-type="product">
+                <div class="project-tag">PRODUCT · PRICING</div>
+                <div class="project-title">수강 상품 구조 재설계 프로젝트</div>
+                <p class="project-desc">
+                  정규수업·멘토링을 분리한 조합형 상품 구조로
+                  객단가와 사용자 만족도를 동시에 올린 프로젝트입니다.
+                </p>
+                <div class="project-meta">객단가 상승 · 리스크 완화 · 선택형 구조</div>
+              </article>
+            </a>
 
+            <!-- project 6 -->
+            <a href="projects/project-global-localization.html" class="project-card-link">
+              <article class="project-card" data-type="content">
+                <div class="project-tag">GLOBAL · LOCAL</div>
+                <div class="project-title">글로벌 일러스트 클래스를 국내에 현지화 론칭</div>
+                <p class="project-desc">
+                  글로벌·국내 양방향 카탈로그 확장 가능성을 검증하기 위해,<br>
+                  해외 인기 일러스트 클래스를 국내 사용자 관점에서 번역·현지화한 프로젝트입니다.
+                </p>
+                <div class="project-meta">현지화 실험 · MVP · SKU 확장 테스트</div>
+              </article>
+            </a>
 
-<a href="projects/project-ops-mini.html" class="project-card" data-type="ops">
-  <div class="project-tag">OPS · PROCESS</div>
-  <div class="project-title">Ops & Process Optimization - 미니 프로젝트</div>
-  <p class="project-desc">
-    반복적인 운영 업무를 묶어 프로세스로 정의하고<br>
-    기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
-  </p>
-  <div class="project-meta">반복 업무 단계 축소 · 기준 문서화</div>
-</a>
+            <a href="projects/project-ops-mini.html" class="project-card" data-type="ops">
+              <div class="project-tag">OPS · PROCESS</div>
+              <div class="project-title">Ops & Process Optimization - 미니 프로젝트</div>
+              <p class="project-desc">
+                반복적인 운영 업무를 묶어 프로세스로 정의하고<br>
+                기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
+              </p>
+              <div class="project-meta">반복 업무 단계 축소 · 기준 문서화</div>
+            </a>
 
+            <a href="projects/project-kollus-guide.html" class="project-card-link">
+              <article class="project-card" data-type="content">
+                <div class="project-tag">VOD · OPS</div>
+                <div class="project-title">Kollus VOD 업로드 프로세스 전사 가이드 제작</div>
+                <p class="project-desc">
+                  내부 시스템·업로드 플로우를 표준화하고, 전사 공통으로 사용할 수 있는<br>
+                  가이드와 체크리스트를 제작했습니다.
+                </p>
+                <div class="project-meta">교육 비용 절감 · 온보딩 시간 단축</div>
+              </article>
+            </a>
 
-<a href="projects/project-kollus-guide.html" class="project-card-link">
-    <article class="project-card" data-type="content">
-        <div class="project-tag">VOD · OPS</div>
-        <div class="project-title">Kollus VOD 업로드 프로세스 전사 가이드 제작</div>
-        <p class="project-desc">
-            내부 시스템·업로드 플로우를 표준화하고, 전사 공통으로 사용할 수 있는<br>
-            가이드와 체크리스트를 제작했습니다.
-        </p>
-        <div class="project-meta">교육 비용 절감 · 온보딩 시간 단축</div>
-    </article>
-</a>
-            
-<a href="projects/vod-ops.html" class="project-card" data-type="content">
-  <div class="project-tag">VOD · OPS</div>
-  <div class="project-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
-  <p class="project-desc">
-    학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
-    기획하고, 프로모션·구성 전략을 함께 설계했습니다.
-  </p>
-  <div class="project-meta">지표 기반 개선 사이클 수립</div>
-</a>
+            <a href="projects/vod-ops.html" class="project-card" data-type="content">
+              <div class="project-tag">VOD · OPS</div>
+              <div class="project-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
+              <p class="project-desc">
+                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
+                기획하고, 프로모션·구성 전략을 함께 설계했습니다.
+              </p>
+              <div class="project-meta">지표 기반 개선 사이클 수립</div>
+            </a>
 
-<a href="projects/project-vod-product.html" class="project-card-link">
-  <article class="project-card" data-type="content">
-    <div class="project-tag">VOD · CONTENT</div>
-    <div class="project-title">온라인 VOD 콘텐츠 상품 기획</div>
-    <p class="project-desc">
-      시장·사용자 데이터를 기반으로 46개 온라인 VOD 콘텐츠를 기획·상품화한 프로젝트입니다.<br>
-      클래스101·블루타이거에서 기획·상세페이지·운영까지 End-to-End로 리딩했습니다.
-    </p>
-    <div class="project-meta">
-      콘텐츠 기획 · 상품 구조화 · 상세페이지 · 운영
-    </div>
-  </article>
-</a>
+            <a href="projects/project-vod-product.html" class="project-card-link">
+              <article class="project-card" data-type="content">
+                <div class="project-tag">VOD · CONTENT</div>
+                <div class="project-title">온라인 VOD 콘텐츠 상품 기획</div>
+                <p class="project-desc">
+                  시장·사용자 데이터를 기반으로 46개 온라인 VOD 콘텐츠를 기획·상품화한 프로젝트입니다.<br>
+                  클래스101·블루타이거에서 기획·상세페이지·운영까지 End-to-End로 리딩했습니다.
+                </p>
+                <div class="project-meta">
+                  콘텐츠 기획 · 상품 구조화 · 상세페이지 · 운영
+                </div>
+              </article>
+            </a>
 
             <!-- AI 템플릿 4개 -->
             <article class="project-card" data-type="ai">
@@ -1403,11 +1427,11 @@
         <div class="section-inner">
           <div class="profile-grid">
             <aside class="profile-card">
-<div class="profile-visual">
-  <div class="visual-box">
-    <img src="assets/profile.png" alt="프로필 이미지" class="profile-image" />
-  </div>
-</div>
+              <div class="profile-visual">
+                <div class="visual-box">
+                  <img src="assets/profile.png" alt="프로필 이미지" class="profile-image" />
+                </div>
+              </div>
             </aside>
 
             <div>
