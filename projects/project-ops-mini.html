@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>VOD 온보딩 & 운영 템플릿 구축 · Yeon Je Seok</title>
+  <title>Ops & Process Optimization - 미니 프로젝트 · Yeon Je Seok</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="온라인 VOD 온보딩 및 운영 프로세스를 템플릿화하여 반복 가능한 구조를 만든 프로젝트 상세 페이지" />
+  <meta name="description" content="반복적인 운영 업무를 묶어 프로세스로 정의하고 기준·체크리스트·문서화를 통해 병목을 줄인 Ops 미니 프로젝트 모음 상세 페이지" />
 
   <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -271,6 +271,7 @@
       line-height: 1.7;
     }
 
+    /* Overview 카드 */
     .overview-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -296,7 +297,7 @@
       margin-top: 4px;
     }
 
-    /* 역할 & 세부 업무 카드 레이아웃 */
+    /* 역할 & 세부 업무 */
     .meta-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
@@ -344,7 +345,7 @@
       line-height: 1.7;
     }
 
-    /* 개선 사이클 비주얼 */
+    /* FLOW 카드 */
     .flow-card {
       border-radius: 24px;
       padding: 18px 22px 18px;
@@ -418,27 +419,6 @@
       margin-top: 4px;
     }
 
-    /* 결과 이미지 placeholder (필요하면 나중에 실제 이미지로 교체) */
-    .result-image-wrap {
-      margin-top: 16px;
-    }
-
-    .result-image {
-      width: 100%;
-      max-width: 780px;
-      display: block;
-      margin: 10px auto 0;
-      border-radius: 16px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.5);
-    }
-
-    .result-image-caption {
-      margin-top: 6px;
-      font-size: 12px;
-      color: var(--text-sub);
-      text-align: center;
-    }
-
     .project-footer {
       margin-top: 32px;
       font-size: 12px;
@@ -502,79 +482,71 @@
             <div>
               <div class="hero-badge">
                 <span class="hero-badge-dot"></span>
-                <span>VOD · OPS</span>
+                <span>OPS · PROCESS</span>
               </div>
-              <h1 class="hero-title">VOD 온보딩 & 운영 템플릿 구축</h1>
-              <p class="hero-role">
-                신규/기존 VOD 클래스를 빠르게 온보딩하고, 운영 품질을 일정 수준 이상으로 유지하기 위한 템플릿을 설계한 프로젝트입니다.
-              </p>
+              <h1 class="hero-title">Ops & Process Optimization - 미니 프로젝트</h1>
+              <p class="hero-role">반복적인 운영 업무를 모아 기준·체크리스트·문서로 정리한 운영 실험 모음</p>
               <p class="hero-text">
-                여러 플랫폼에서 VOD를 운영하면서, 누가 맡느냐에 따라 온보딩 속도와 품질이 크게 달라지는 문제가 있었습니다.
-                이 프로젝트에서는 <b>온보딩 체크리스트·FAQ·운영 가이드·지표 회고 템플릿</b>을 하나의 세트로 만들어,
-                신규 클래스가 들어올 때마다 같은 구조로 셋업할 수 있도록 했습니다.
-                (본문의 문구는 추후 실제 프로젝트 설명에 맞게 자유롭게 수정하셔도 됩니다.)
+                개별 담당자에게 의존하던 운영 방식을, 작은 단위의 실험과 템플릿으로 바꾸어 본 미니 프로젝트들입니다.
+                <b>자주 반복되지만 흩어져 있던 업무</b>를 프로세스로 묶고, 기준·체크리스트·가이드 문서를 만들어
+                누가 맡아도 같은 수준으로 운영할 수 있는 상태를 목표로 했습니다.
               </p>
               <div class="hero-meta-chips">
-                <span class="hero-meta-chip">온보딩 체크리스트 템플릿화</span>
-                <span class="hero-meta-chip">운영·문의 대응 방식 표준화</span>
-                <span class="hero-meta-chip">기수별 회고 템플릿 도입</span>
+                <span class="hero-meta-chip">운영 프로세스 표준화</span>
+                <span class="hero-meta-chip">체크리스트·FAQ 템플릿</span>
+                <span class="hero-meta-chip">미니 실험 기반 개선</span>
               </div>
             </div>
 
             <aside class="hero-side">
               <div class="hero-side-card">
-                <div class="hero-side-title">프로젝트 요약</div>
+                <div class="hero-side-title">프로젝트 유형</div>
                 <ul class="hero-side-list">
-                  <li>VOD 온보딩·운영 과정을 템플릿 형태로 재구성</li>
-                  <li>반복되는 작업·실수를 줄이고, 품질 기준을 고정하는 것이 목적</li>
-                  <li>문서·체크리스트·로그 양식을 한 번에 정리</li>
+                  <li>단일 큰 프로젝트가 아닌, 여러 개의 작은 Ops 실험 묶음</li>
+                  <li>각 실험은 1~2주 이내에 설계·적용·회고까지 진행</li>
                 </ul>
               </div>
               <div class="hero-side-card">
                 <div class="hero-side-title">역할</div>
                 <ul class="hero-side-list">
-                  <li>온보딩/운영 전체 플로우 설계</li>
-                  <li>기존 프로젝트 분석 및 유형화</li>
-                  <li>실제 운영팀·편집/마케팅과 협의 후 템플릿 확정</li>
+                  <li>문제 정의 · 실험 설계 · 템플릿 작성 · 회고까지 전 과정 리딩</li>
+                  <li>운영/마케팅/콘텐츠 담당자와 협업, 기준·문서 정렬</li>
                 </ul>
-                <p style="margin-top:8px;font-size:12px;color:#cbd5f5;">
-                  필요하면 이 블록의 텍스트를 실제 프로젝트 내용으로 그대로 교체하시면 됩니다.
-                </p>
               </div>
             </aside>
           </div>
         </div>
       </section>
 
-      <!-- 프로젝트 개요 -->
+      <!-- OVERVIEW -->
       <section>
         <div class="container">
           <div class="project-card">
             <div class="project-card-header">프로젝트 개요</div>
             <div class="project-card-body">
               <p class="project-section-sub">
-                온보딩 과정에서 담당자마다 사용하는 엑셀, 체크리스트, 기억에 의존한 점검 방식이 달라
-                누락·실수가 반복되고 있었습니다.
-                이 섹션에는 실제로 겪었던 문제 상황과 왜 이 템플릿 프로젝트를 시작하게 되었는지 정리해 넣으시면 됩니다.
+                기획·운영·마케팅 사이에서 반복적으로 나오던 “이거 매번 다시 설명해야 한다”는 지점을 모아
+                작은 단위의 Ops 실험으로 풀어 본 프로젝트입니다. 문의 대응, 내부 커뮤니케이션, 운영 셋업 등
+                <b>사람마다 방식이 달랐던 업무</b>를 기준·체크리스트·FAQ 템플릿으로 정리해 운영 편차를 줄였습니다.
               </p>
 
               <div class="overview-grid">
                 <div>
                   <div class="overview-label">Before (문제 상황)</div>
                   <ul class="overview-list">
-                    <li>신규 VOD 입점 시마다 온보딩 방식이 제각각</li>
-                    <li>담당자별로 쓰는 개인 문서가 제일 최신이라, 인수인계 난이도가 높음</li>
-                    <li>반복되는 이슈·문의가 정리되지 않아 같은 문제 재발</li>
-                    <li>지표·리뷰·피드백이 흩어져 있어 다음 운영에 체계적으로 반영되지 않음</li>
+                    <li>운영 담당자마다 사용하는 문서·툴·체크 포인트가 제각각</li>
+                    <li>같은 질문·요청에 대한 답변이 사람에 따라 다르게 전달됨</li>
+                    <li>새로운 담당자가 합류할 때마다 온보딩 시간이 길어지는 문제</li>
+                    <li>개선 아이디어는 많지만, 작게 실험해 볼 구조가 없음</li>
                   </ul>
                 </div>
                 <div>
                   <div class="overview-label">After (지향점)</div>
                   <ul class="overview-list">
-                    <li>어떤 클래스든 <b>같은 온보딩 플로우</b>로 셋업할 수 있는 구조</li>
-                    <li>체크리스트·FAQ·가이드를 템플릿화하여 담당자 교체에도 품질 유지</li>
-                    <li>문의·이슈 로그를 한 번에 모아, 다음 온보딩에 자연스럽게 반영</li>
-                    <li>“운영 잘 되는 구조”를 문서/템플릿으로 남겨 조직 내에서 재사용</li>
+                    <li>자주 반복되는 업무는 공통 템플릿과 체크리스트로 정리</li>
+                    <li>FAQ·가이드 문서를 통해 응대·커뮤니케이션 톤을 맞춤</li>
+                    <li>온보딩용 문서와 기본 교육 흐름을 만들어, 역할 인수인계 시간 단축</li>
+                    <li>작은 단위의 실험 단위를 정의해, 실패 부담을 줄이고 빠르게 개선</li>
                   </ul>
                 </div>
               </div>
@@ -583,62 +555,54 @@
         </div>
       </section>
 
-      <!-- 역할 & 핵심 기여 -->
+      <!-- ROLE & TASKS -->
       <section>
         <div class="container">
           <div class="meta-grid">
-            <!-- 역할 -->
+            <!-- 역할 & 기여도 -->
             <article class="project-card equal-card">
-              <div class="project-card-header">역할</div>
+              <div class="project-card-header">역할 & 기여도</div>
               <div class="project-card-body">
                 <ul>
-                  <li>온보딩·운영 프로세스 전체 플로우 설계</li>
-                  <li>기존 운영 사례 분석 및 유형화</li>
-                  <li>템플릿 초안 작성 및 실제 프로젝트 파일에 적용 테스트</li>
-                  <li>운영·편집·마케팅 팀과의 합의 후 최종안 확정</li>
+                  <li>운영 담당자로서 반복 업무·병목 구간을 직접 발굴</li>
+                  <li>각 업무를 작은 실험 단위로 쪼개고, 목표·가설·측정 기준 정의</li>
+                  <li>실험 결과가 좋았던 흐름은 SOP·체크리스트·가이드로 문서화</li>
+                  <li>팀원 피드백을 반영해 템플릿 구조를 2~3회 이상 개선</li>
                 </ul>
-                <!-- TODO: 필요하면 이 부분을 실제 역할 요약으로 교체 -->
               </div>
             </article>
 
-            <!-- 핵심 기여 -->
+            <!-- 주요 세부 업무 -->
             <article class="project-card equal-card">
-              <div class="project-card-header">핵심 기여</div>
+              <div class="project-card-header">주요 미니 프로젝트 예시</div>
               <div class="project-card-body">
                 <ol class="dotted-list">
                   <li>
-                    <span class="label">① 온보딩 단계 구조화</span>
+                    <span class="label">① 문의 대응 템플릿화</span>
                     <span class="text">
-                      기획 검토 → 콘텐츠 자산 수급 → 세팅 → QA → 오픈까지
-                      단계별로 해야 할 일을 리스트업하고, 담당자별 역할을 명확히 나눴습니다.
+                      자주 들어오는 질문을 유형별로 정리하고, 기본 답변·추가 설명·에스컬레이션 기준을
+                      템플릿으로 만들어 응대 시간과 편차를 줄였습니다.
                     </span>
                   </li>
                   <li>
-                    <span class="label">② 체크리스트·FAQ 템플릿</span>
+                    <span class="label">② 온보딩 체크리스트</span>
                     <span class="text">
-                      반복적으로 발생했던 실수·문의 유형을 정리해,
-                      온보딩 체크리스트와 FAQ 템플릿으로 만들었습니다.
+                      신규 담당자가 반드시 알아야 할 설정·문서·연락 포인트를 체크리스트로 만들고,
+                      온보딩 미팅에서 이 리스트를 기반으로 설명하도록 구조화했습니다.
                     </span>
                   </li>
                   <li>
-                    <span class="label">③ 운영 가이드 정리</span>
+                    <span class="label">③ 캠페인 운영 To-do 정리</span>
                     <span class="text">
-                      공지, 공휴일 대응, 환불·기술 이슈 등 자주 헷갈리던 운영 규칙을
-                      하나의 “운영 가이드 문서”로 정리했습니다.
+                      각 캠페인 단계(기획·진행·종료)에 필요한 작업을 정리해,
+                      일정표와 함께 사용할 수 있는 To-do 템플릿으로 제작했습니다.
                     </span>
                   </li>
                   <li>
-                    <span class="label">④ 회고 템플릿 도입</span>
+                    <span class="label">④ 회고 노트 템플릿</span>
                     <span class="text">
-                      온보딩·운영이 끝난 뒤, 전환율·문의량·리뷰 요약·개선안 등을 정리할 수 있는
-                      회고 템플릿을 만들고 정례화했습니다.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="label">⑤ 재사용 가능한 문서 세트</span>
-                    <span class="text">
-                      위 요소들을 한 번에 묶은 “온보딩/운영 스타터 키트”로 정리해,
-                      이후 들어오는 클래스에 재사용할 수 있게 만들었습니다.
+                      “잘된 점·아쉬운 점·다음에 바꿔볼 것”을 짧게 기록할 수 있는 회고 양식을 만들고,
+                      작은 실험마다 이 템플릿을 사용해 개선 히스토리를 남겼습니다.
                     </span>
                   </li>
                 </ol>
@@ -652,44 +616,44 @@
       <section>
         <div class="container">
           <div class="project-card">
-            <div class="project-card-header">온보딩 & 운영 플로우 (요약)</div>
+            <div class="project-card-header">Ops 미니 프로젝트 진행 흐름</div>
             <div class="project-card-body">
               <p class="project-section-sub">
-                실제 문서에서는 각 단계별로 세부 체크리스트와 담당자·마감일이 연결되어 있습니다.
-                여기서는 전체 흐름만 간단히 보여주는 용도로 정리했습니다.
+                모든 미니 프로젝트를 완전히 같은 형식으로 맞추지는 않았지만,
+                “문제 정의 → 실험 설계 → 적용 → 회고 → 문서화/폐기”라는 공통 흐름을 유지하려고 했습니다.
               </p>
 
               <div class="flow-card">
-                <div class="flow-title">VOD 온보딩·운영 기본 흐름</div>
+                <div class="flow-title">작은 Ops 실험 하나가 완성되는 과정</div>
 
                 <div class="flow-steps">
-                  <div class="flow-step">1. 입력 정보 수집 & 기본 검토</div>
-                  <div class="flow-step">2. 콘텐츠 세팅 & QA</div>
-                  <div class="flow-step">3. 런칭 & 초기 운영</div>
-                  <div class="flow-step">4. 성과·피드백 회고 & 템플릿 업데이트</div>
+                  <div class="flow-step">1. 문제 정의 & 대상 업무 선정</div>
+                  <div class="flow-step">2. 간단한 실험 설계 (가설·측정 기준)</div>
+                  <div class="flow-step">3. 실제 업무에 1~2주 적용</div>
+                  <div class="flow-step">4. 회고 후 유지/수정/폐기 결정</div>
                 </div>
 
                 <div class="flow-arrow-row">
-                  <span>정보 수집</span> → <span>세팅</span> → <span>운영</span> →
-                  <span>회고</span> → <span>다음 온보딩</span>
+                  <span>문제 인지</span> → <span>실험 설계</span> → <span>적용</span> →
+                  <span>회고</span> → <span>템플릿·문서화</span>
                 </div>
 
                 <div class="flow-caption-grid">
                   <div class="flow-caption">
-                    크리에이터/내부 팀에서 받은<br>
-                    정보·자료를 온보딩 양식에 정리
+                    “이 일을 할 때마다 불편하다”는 구간을<br>
+                    구체적인 행동 단위로 쪼개서 정의
                   </div>
                   <div class="flow-caption">
-                    커리큘럼·자료 업로드, 페이지 세팅,<br>
-                    QA 체크리스트에 따라 점검
+                    성공/실패 기준을 간단히 정해<br>
+                    과도한 분석 없이도 판단할 수 있도록 설계
                   </div>
                   <div class="flow-caption">
-                    런칭 후 문의·리뷰·지표를 모니터링하고,<br>
-                    FAQ 템플릿을 실제로 보완
+                    실제 팀 업무에 바로 적용해 보되,<br>
+                    리스크가 큰 영역은 작은 범위부터 테스트
                   </div>
                   <div class="flow-caption">
-                    회고 템플릿에 성과·이슈·개선안을 남기고,<br>
-                    온보딩/운영 템플릿을 주기적으로 업데이트
+                    유지할 실험은 SOP·체크리스트로 편입하고,<br>
+                    효과가 없던 실험은 이유만 기록 후 폐기
                   </div>
                 </div>
               </div>
@@ -702,46 +666,19 @@
       <section>
         <div class="container">
           <div class="project-card">
-            <div class="project-card-header">성과 (예시 문구, 실제 내용으로 교체 가능)</div>
+            <div class="project-card-header">성과 & 인사이트</div>
             <div class="project-card-body">
-              <div class="overview-grid">
-                <div>
-                  <div class="overview-label">운영/프로세스 관점</div>
-                  <ul class="overview-list result">
-                    <li>신규 VOD 온보딩에 걸리는 평균 시간이 눈에 띄게 감소</li>
-                    <li>누락·실수 등의 운영 이슈가 줄어들어 QA 리워크 감소</li>
-                    <li>담당자 교체 시에도 동일한 품질로 온보딩 가능한 구조 확보</li>
-                  </ul>
-                </div>
-                <div>
-                  <div class="overview-label">조직 관점</div>
-                  <ul class="overview-list result">
-                    <li>온보딩/운영 방식이 문서로 남아, 신규 인력 온보딩 속도 향상</li>
-                    <li>운영팀·기획팀·마케팅팀이 참고하는 공통 레퍼런스 문서 확보</li>
-                    <li>다른 카테고리/플랫폼으로 확장할 수 있는 기본 틀 마련</li>
-                  </ul>
-                </div>
-              </div>
-
-              <!-- 필요하면 이미지 추가 -->
-              <!--
-              <div class="result-image-wrap">
-                <img
-                  src="../assets/ops-template-example.png"
-                  alt="온보딩·운영 템플릿 예시 화면"
-                  class="result-image"
-                />
-                <div class="result-image-caption">
-                  온보딩/운영 스타터 키트 예시 화면 (필요 시 실제 이미지로 교체).
-                </div>
-              </div>
-              -->
+              <ul class="overview-list result">
+                <li>반복 업무에 대한 기준이 생기면서 <b>“사람마다 다르게 처리되는 일”이 눈에 띄게 줄어듦</b></li>
+                <li>온보딩 체크리스트·가이드 도입 후, 신규 담당자의 적응 속도가 빨라졌다는 피드백 확보</li>
+                <li>문의 대응 템플릿·FAQ 정리로, 단순 반복 문의에 쓰이는 시간이 체감상 크게 감소</li>
+                <li>실험 단위를 작게 가져가면서 팀원들이 Ops 개선에 참여하는 장벽이 낮아짐</li>
+              </ul>
             </div>
           </div>
 
           <div class="project-footer">
-            위 문구들은 레이아웃을 맞추기 위한 예시 텍스트이며,
-            실제 프로젝트 설명에 맞게 언제든지 교체하셔도 됩니다.
+            이 페이지에서는 여러 Ops 미니 프로젝트를 하나의 흐름으로 묶어 정리했습니다.
           </div>
         </div>
       </section>
