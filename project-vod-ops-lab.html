@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>VOD 온보딩 & 운영 템플릿 구축 · Yeon Je Seok</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="온라인 VOD 온보딩 및 운영 프로세스를 템플릿화하여 반복 가능한 구조를 만든 프로젝트 상세 페이지" />
+
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-body: #050816;
+      --bg-page: #f5f7fb;
+      --bg-card: #ffffff;
+      --bg-card-soft: #f7f9ff;
+      --accent: #2f7cff;
+      --accent-soft: #e0ebff;
+      --accent-strong: #0b68ff;
+      --text-main: #111827;
+      --text-sub: #4b5563;
+      --text-muted: #9ca3af;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 16px 40px rgba(148, 163, 184, 0.32);
+      --radius-card: 28px;
+      --nav-height: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg-body);
+      color: var(--text-main);
+      font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      min-height: 100vh;
+      background: var(--bg-page);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAV */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.86), rgba(5, 8, 22, 0.0));
+      color: #e5e7eb;
+    }
+
+    .top-nav-inner {
+      width: 100%;
+      max-width: 1120px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-size: 14px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .back-link span {
+      font-size: 16px;
+      transform: translateY(-1px);
+    }
+
+    main {
+      padding: 40px 0 72px;
+    }
+
+    section {
+      padding: 32px 0;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 8px;
+      padding-bottom: 24px;
+    }
+
+    .hero-card {
+      border-radius: 32px;
+      padding: 32px 30px 28px;
+      background:
+        radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.24), transparent 60%),
+        linear-gradient(135deg, #0b63ff, #001b5f);
+      color: #f9fafb;
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.6);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(191, 219, 254, 0.45);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
+    }
+
+    .hero-title {
+      font-size: 30px;
+      line-height: 1.5;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .hero-role {
+      font-size: 14px;
+      font-weight: 500;
+      color: #dbeafe;
+      margin-bottom: 10px;
+    }
+
+    .hero-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #e5e7eb;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .hero-meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .hero-side {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .hero-side-card {
+      border-radius: 20px;
+      padding: 16px 18px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(191, 219, 254, 0.4);
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #e5e7eb;
+    }
+
+    .hero-side-list {
+      list-style: none;
+      color: #cbd5f5;
+      line-height: 1.6;
+    }
+
+    .hero-side-list li + li {
+      margin-top: 4px;
+    }
+
+    /* 공통 카드 */
+    .project-card {
+      border-radius: var(--radius-card);
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 24px 20px;
+    }
+
+    .project-card-header {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .project-card-body {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.75;
+    }
+
+    .project-card-body ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 6px;
+    }
+
+    .project-card-body li + li {
+      margin-top: 3px;
+    }
+
+    .project-card-body b {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .project-section-sub {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .overview-label {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .overview-list {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
+      padding-left: 18px;
+      list-style: disc;
+    }
+
+    .overview-list li + li {
+      margin-top: 4px;
+    }
+
+    /* 역할 & 세부 업무 카드 레이아웃 */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .equal-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 260px;
+    }
+
+    .equal-card .project-card-body {
+      flex: 1;
+    }
+
+    .dotted-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .dotted-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .dotted-list li + li {
+      margin-top: 4px;
+    }
+
+    .dotted-list span.label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-strong);
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    .dotted-list span.text {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* 개선 사이클 비주얼 */
+    .flow-card {
+      border-radius: 24px;
+      padding: 18px 22px 18px;
+      background: var(--bg-card-soft);
+      border: 1px solid var(--accent-soft);
+      box-shadow: 0 12px 30px rgba(148, 163, 184, 0.25);
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .flow-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-main);
+      text-align: center;
+    }
+
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .flow-step {
+      flex: 1 1 140px;
+      min-width: 0;
+      border-radius: 999px;
+      background: #e5edff;
+      padding: 8px 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #111827;
+      font-weight: 500;
+    }
+
+    .flow-arrow-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .flow-arrow-row span {
+      transform: translateY(-1px);
+    }
+
+    .flow-caption-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .flow-caption {
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 8px 8px;
+      line-height: 1.5;
+      color: #4b5563;
+    }
+
+    /* RESULT */
+    .overview-list.result li {
+      margin-top: 4px;
+    }
+
+    /* 결과 이미지 placeholder (필요하면 나중에 실제 이미지로 교체) */
+    .result-image-wrap {
+      margin-top: 16px;
+    }
+
+    .result-image {
+      width: 100%;
+      max-width: 780px;
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.5);
+    }
+
+    .result-image-caption {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-sub);
+      text-align: center;
+    }
+
+    .project-footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .overview-grid,
+      .meta-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .flow-caption-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding-top: 32px;
+      }
+
+      .hero-card {
+        padding: 24px 20px 22px;
+      }
+
+      section {
+        padding: 24px 0;
+      }
+
+      .flow-steps {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header class="top-nav">
+      <div class="top-nav-inner">
+        <div class="nav-logo">YEON JE SEOK</div>
+        <a href="../index.html#projects" class="back-link">
+          <span>←</span> Back to Projects
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card">
+            <div>
+              <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>VOD · OPS</span>
+              </div>
+              <h1 class="hero-title">VOD 온보딩 & 운영 템플릿 구축</h1>
+              <p class="hero-role">
+                신규/기존 VOD 클래스를 빠르게 온보딩하고, 운영 품질을 일정 수준 이상으로 유지하기 위한 템플릿을 설계한 프로젝트입니다.
+              </p>
+              <p class="hero-text">
+                여러 플랫폼에서 VOD를 운영하면서, 누가 맡느냐에 따라 온보딩 속도와 품질이 크게 달라지는 문제가 있었습니다.
+                이 프로젝트에서는 <b>온보딩 체크리스트·FAQ·운영 가이드·지표 회고 템플릿</b>을 하나의 세트로 만들어,
+                신규 클래스가 들어올 때마다 같은 구조로 셋업할 수 있도록 했습니다.
+                (본문의 문구는 추후 실제 프로젝트 설명에 맞게 자유롭게 수정하셔도 됩니다.)
+              </p>
+              <div class="hero-meta-chips">
+                <span class="hero-meta-chip">온보딩 체크리스트 템플릿화</span>
+                <span class="hero-meta-chip">운영·문의 대응 방식 표준화</span>
+                <span class="hero-meta-chip">기수별 회고 템플릿 도입</span>
+              </div>
+            </div>
+
+            <aside class="hero-side">
+              <div class="hero-side-card">
+                <div class="hero-side-title">프로젝트 요약</div>
+                <ul class="hero-side-list">
+                  <li>VOD 온보딩·운영 과정을 템플릿 형태로 재구성</li>
+                  <li>반복되는 작업·실수를 줄이고, 품질 기준을 고정하는 것이 목적</li>
+                  <li>문서·체크리스트·로그 양식을 한 번에 정리</li>
+                </ul>
+              </div>
+              <div class="hero-side-card">
+                <div class="hero-side-title">역할</div>
+                <ul class="hero-side-list">
+                  <li>온보딩/운영 전체 플로우 설계</li>
+                  <li>기존 프로젝트 분석 및 유형화</li>
+                  <li>실제 운영팀·편집/마케팅과 협의 후 템플릿 확정</li>
+                </ul>
+                <p style="margin-top:8px;font-size:12px;color:#cbd5f5;">
+                  필요하면 이 블록의 텍스트를 실제 프로젝트 내용으로 그대로 교체하시면 됩니다.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 프로젝트 개요 -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">프로젝트 개요</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                온보딩 과정에서 담당자마다 사용하는 엑셀, 체크리스트, 기억에 의존한 점검 방식이 달라
+                누락·실수가 반복되고 있었습니다.
+                이 섹션에는 실제로 겪었던 문제 상황과 왜 이 템플릿 프로젝트를 시작하게 되었는지 정리해 넣으시면 됩니다.
+              </p>
+
+              <div class="overview-grid">
+                <div>
+                  <div class="overview-label">Before (문제 상황)</div>
+                  <ul class="overview-list">
+                    <li>신규 VOD 입점 시마다 온보딩 방식이 제각각</li>
+                    <li>담당자별로 쓰는 개인 문서가 제일 최신이라, 인수인계 난이도가 높음</li>
+                    <li>반복되는 이슈·문의가 정리되지 않아 같은 문제 재발</li>
+                    <li>지표·리뷰·피드백이 흩어져 있어 다음 운영에 체계적으로 반영되지 않음</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="overview-label">After (지향점)</div>
+                  <ul class="overview-list">
+                    <li>어떤 클래스든 <b>같은 온보딩 플로우</b>로 셋업할 수 있는 구조</li>
+                    <li>체크리스트·FAQ·가이드를 템플릿화하여 담당자 교체에도 품질 유지</li>
+                    <li>문의·이슈 로그를 한 번에 모아, 다음 온보딩에 자연스럽게 반영</li>
+                    <li>“운영 잘 되는 구조”를 문서/템플릿으로 남겨 조직 내에서 재사용</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 역할 & 핵심 기여 -->
+      <section>
+        <div class="container">
+          <div class="meta-grid">
+            <!-- 역할 -->
+            <article class="project-card equal-card">
+              <div class="project-card-header">역할</div>
+              <div class="project-card-body">
+                <ul>
+                  <li>온보딩·운영 프로세스 전체 플로우 설계</li>
+                  <li>기존 운영 사례 분석 및 유형화</li>
+                  <li>템플릿 초안 작성 및 실제 프로젝트 파일에 적용 테스트</li>
+                  <li>운영·편집·마케팅 팀과의 합의 후 최종안 확정</li>
+                </ul>
+                <!-- TODO: 필요하면 이 부분을 실제 역할 요약으로 교체 -->
+              </div>
+            </article>
+
+            <!-- 핵심 기여 -->
+            <article class="project-card equal-card">
+              <div class="project-card-header">핵심 기여</div>
+              <div class="project-card-body">
+                <ol class="dotted-list">
+                  <li>
+                    <span class="label">① 온보딩 단계 구조화</span>
+                    <span class="text">
+                      기획 검토 → 콘텐츠 자산 수급 → 세팅 → QA → 오픈까지
+                      단계별로 해야 할 일을 리스트업하고, 담당자별 역할을 명확히 나눴습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">② 체크리스트·FAQ 템플릿</span>
+                    <span class="text">
+                      반복적으로 발생했던 실수·문의 유형을 정리해,
+                      온보딩 체크리스트와 FAQ 템플릿으로 만들었습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">③ 운영 가이드 정리</span>
+                    <span class="text">
+                      공지, 공휴일 대응, 환불·기술 이슈 등 자주 헷갈리던 운영 규칙을
+                      하나의 “운영 가이드 문서”로 정리했습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">④ 회고 템플릿 도입</span>
+                    <span class="text">
+                      온보딩·운영이 끝난 뒤, 전환율·문의량·리뷰 요약·개선안 등을 정리할 수 있는
+                      회고 템플릿을 만들고 정례화했습니다.
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">⑤ 재사용 가능한 문서 세트</span>
+                    <span class="text">
+                      위 요소들을 한 번에 묶은 “온보딩/운영 스타터 키트”로 정리해,
+                      이후 들어오는 클래스에 재사용할 수 있게 만들었습니다.
+                    </span>
+                  </li>
+                </ol>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLOW VISUAL -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">온보딩 & 운영 플로우 (요약)</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                실제 문서에서는 각 단계별로 세부 체크리스트와 담당자·마감일이 연결되어 있습니다.
+                여기서는 전체 흐름만 간단히 보여주는 용도로 정리했습니다.
+              </p>
+
+              <div class="flow-card">
+                <div class="flow-title">VOD 온보딩·운영 기본 흐름</div>
+
+                <div class="flow-steps">
+                  <div class="flow-step">1. 입력 정보 수집 & 기본 검토</div>
+                  <div class="flow-step">2. 콘텐츠 세팅 & QA</div>
+                  <div class="flow-step">3. 런칭 & 초기 운영</div>
+                  <div class="flow-step">4. 성과·피드백 회고 & 템플릿 업데이트</div>
+                </div>
+
+                <div class="flow-arrow-row">
+                  <span>정보 수집</span> → <span>세팅</span> → <span>운영</span> →
+                  <span>회고</span> → <span>다음 온보딩</span>
+                </div>
+
+                <div class="flow-caption-grid">
+                  <div class="flow-caption">
+                    크리에이터/내부 팀에서 받은<br>
+                    정보·자료를 온보딩 양식에 정리
+                  </div>
+                  <div class="flow-caption">
+                    커리큘럼·자료 업로드, 페이지 세팅,<br>
+                    QA 체크리스트에 따라 점검
+                  </div>
+                  <div class="flow-caption">
+                    런칭 후 문의·리뷰·지표를 모니터링하고,<br>
+                    FAQ 템플릿을 실제로 보완
+                  </div>
+                  <div class="flow-caption">
+                    회고 템플릿에 성과·이슈·개선안을 남기고,<br>
+                    온보딩/운영 템플릿을 주기적으로 업데이트
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULT -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">성과 (예시 문구, 실제 내용으로 교체 가능)</div>
+            <div class="project-card-body">
+              <div class="overview-grid">
+                <div>
+                  <div class="overview-label">운영/프로세스 관점</div>
+                  <ul class="overview-list result">
+                    <li>신규 VOD 온보딩에 걸리는 평균 시간이 눈에 띄게 감소</li>
+                    <li>누락·실수 등의 운영 이슈가 줄어들어 QA 리워크 감소</li>
+                    <li>담당자 교체 시에도 동일한 품질로 온보딩 가능한 구조 확보</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="overview-label">조직 관점</div>
+                  <ul class="overview-list result">
+                    <li>온보딩/운영 방식이 문서로 남아, 신규 인력 온보딩 속도 향상</li>
+                    <li>운영팀·기획팀·마케팅팀이 참고하는 공통 레퍼런스 문서 확보</li>
+                    <li>다른 카테고리/플랫폼으로 확장할 수 있는 기본 틀 마련</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- 필요하면 이미지 추가 -->
+              <!--
+              <div class="result-image-wrap">
+                <img
+                  src="../assets/ops-template-example.png"
+                  alt="온보딩·운영 템플릿 예시 화면"
+                  class="result-image"
+                />
+                <div class="result-image-caption">
+                  온보딩/운영 스타터 키트 예시 화면 (필요 시 실제 이미지로 교체).
+                </div>
+              </div>
+              -->
+            </div>
+          </div>
+
+          <div class="project-footer">
+            위 문구들은 레이아웃을 맞추기 위한 예시 텍스트이며,
+            실제 프로젝트 설명에 맞게 언제든지 교체하셔도 됩니다.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
