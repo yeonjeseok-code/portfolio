@@ -273,7 +273,6 @@
     }
 
     .hero-focus-card {
-      /* [수정] stretch로 인해 불필요한 하단 여백이 생겨서 콘텐츠 높이만큼만 보이게 조정 */
       align-self: flex-start;
       justify-self: flex-end;
       max-width: 360px;
@@ -282,7 +281,7 @@
       background: radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.2), transparent 60%),
                   rgba(15, 23, 42, 0.92);
       box-shadow: 0 22px 55px rgba(15, 23, 42, 0.65);
-      padding: 22px 22px 18px; /* [수정] 하단 패딩 살짝 감소 */
+      padding: 22px 22px 18px;
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -357,7 +356,6 @@
       color: #e5edff;
     }
 
-    /* [추가] 히어로 우측 카드 하단 안내 문구 */
     .hero-focus-note {
       margin-top: 6px;
       font-size: 11px;
@@ -1024,7 +1022,7 @@
             <p class="hero-desc">
               먼저 업무와 팀의 맥락을 이해하고 그 안에서 문서, 프로세스, 메시지를 재설계합니다.<br>
               AI와 구조적 사고를 활용해 채용·운영·콘텐츠의 반복 업무를 정리하고<br>
-              짧은 시간 안에 '이 사람과 일하면 구조가 잡히겠다'는 인상을 남기는 것을 목표로 합니다.
+              짧은 시간 안에 '함께하면 구조가 잡히겠다'는 인상을 남기는 것을 목표로 합니다.
             </p>
             <div class="hero-tags">
               <div class="tag-pill">
@@ -1080,7 +1078,7 @@
               </div>
             </div>
 
-            <div class="hero-focus-note">포트폴리오 페이지는 전부 ChatGPT를 활용해 제작했습니다.</div>
+            <div class="hero-focus-note">현재 보는 포트폴리오 페이지는 전부 gpt를 활용해 제작했습니다.</div>
           </aside>
         </div>
       </section>
@@ -1090,12 +1088,13 @@
         <div class="section-inner">
           <div class="focus-grid">
             <div>
-              <div class="section-title">저는 이런 일들을 설계합니다</div>
+              <div class="section-title">이런 일들을 설계합니다</div>
               <h2 class="section-headline">콘텐츠와 프로세스를<br>같이 보는 기획자</h2>
               <div class="focus-body">
                 <p>
-                  단순히 ‘콘텐츠를 만드는 사람’이라기보다, 특정 역할과 팀이 달성해야 할 목표를 먼저 정리하고<br>
-                  그 목표를 위해 어떤 경험과 프로세스가 필요한지 정의한 뒤, 그 안에 들어갈 콘텐츠·메시지를 설계해 왔습니다.
+                  단순히 ‘콘텐츠를 만드는 사람’이라기보다, 특정 역할과 팀이 달성해야 할 목표를<br>
+                  먼저 정리하고 그 목표를 위해 어떤 경험과 프로세스가 필요한지 정의,<br>
+                  그 안에 들어갈 콘텐츠·메시지를 설계해 왔습니다.
                 </p>
                 <p>
                   교육·콘텐츠 서비스 경험을 바탕으로 People/HR·Ops 영역까지 확장해 왔으며,<br>
@@ -1554,7 +1553,25 @@
       setInterval(() => {
         heroFocusIndex = (heroFocusIndex + 1) % heroFocusItems.length;
         setHeroFocusActive(heroFocusIndex);
-      }, 2400); // [수정] 3000ms -> 2400ms (살짝 빠르게)
+      }, 2400);
+    }
+
+    // FOCUS 섹션 오른쪽 버블 자동 하이라이트 (히어로와 동일 속도)
+    const focusPills = document.querySelectorAll('.focus-pill');
+    let focusIndex = 0;
+
+    function setFocusActive(idx) {
+      focusPills.forEach((pill, i) => {
+        pill.classList.toggle('active', i === idx);
+      });
+    }
+
+    if (focusPills.length > 0) {
+      setFocusActive(focusIndex);
+      setInterval(() => {
+        focusIndex = (focusIndex + 1) % focusPills.length;
+        setFocusActive(focusIndex);
+      }, 2400);
     }
 
     // IMPACT 카드 자동 전환
