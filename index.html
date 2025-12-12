@@ -1218,14 +1218,17 @@
               </article>
             </a>
 
-            <a href="projects/project-ops-mini.html" class="project-card" data-type="ops">
-              <div class="project-tag">OPS · PROCESS</div>
-              <div class="project-title">Ops & Process Optimization - 미니 프로젝트</div>
-              <p class="project-desc">
-                반복적인 운영 업무를 묶어 프로세스로 정의하고<br>
-                기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
-              </p>
-              <div class="project-meta">반복 업무 단계 축소 · 기준 문서화</div>
+            <!-- [수정] project ops mini: 마크업 통일 -->
+            <a href="projects/project-ops-mini.html" class="project-card-link">
+              <article class="project-card" data-type="ops">
+                <div class="project-tag">OPS · PROCESS</div>
+                <div class="project-title">Ops & Process Optimization - 미니 프로젝트</div>
+                <p class="project-desc">
+                  반복적인 운영 업무를 묶어 프로세스로 정의하고<br>
+                  기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
+                </p>
+                <div class="project-meta">반복 업무 단계 축소 · 기준 문서화</div>
+              </article>
             </a>
 
             <a href="projects/project-kollus-guide.html" class="project-card-link">
@@ -1474,7 +1477,7 @@
             </div>
             <div class="contact-pill">
               <span class="contact-pill-label">Phone</span>
-              <span>+82 01-3267-4228</span>
+              <span>+82 10-3267-4228</span>
             </div>
           </div>
 
@@ -1602,7 +1605,10 @@
 
       projectCards.forEach((card) => {
         const type = card.dataset.type;
-        const match = filter === 'all' || filter === type;
+        const match =
+          filter === 'all' ||
+          filter === type ||
+          (filter === 'content' && type === 'product');
 
         if (!match) {
           card.style.display = 'none';
@@ -1621,7 +1627,11 @@
       if (projectViewMoreBtn) {
         const totalMatch = Array.from(projectCards).filter((card) => {
           const type = card.dataset.type;
-          return filter === 'all' || filter === type;
+          return (
+            filter === 'all' ||
+            filter === type ||
+            (filter === 'content' && type === 'product')
+          );
         }).length;
 
         if (totalMatch <= PROJECT_VISIBLE_COUNT) {
