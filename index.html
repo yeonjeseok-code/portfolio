@@ -490,6 +490,10 @@
       font-weight: 700;
       color: var(--accent-strong);
       text-align: center;
+      min-height: 56px; /* [추가] 상태별 글자 길이로 흔들리지 않게 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .impact-metric-label {
@@ -497,6 +501,10 @@
       font-size: 14px;
       text-align: center;
       color: var(--text-sub);
+      min-height: 40px; /* [추가] 2줄도 동일 높이로 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .impact-metric-sub {
@@ -504,6 +512,10 @@
       font-size: 11px;
       text-align: center;
       color: var(--text-muted);
+      min-height: 32px; /* [추가] 상태별 줄수 차이를 흡수 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .impact-badge-list {
@@ -1141,7 +1153,7 @@
               <h2 class="section-headline">숫자와 정성 피드백으로<br>확인한 변화들</h2>
               <p class="section-subtitle">
                 전환·객단가 같은 지표뿐 아니라, 함께 일한 동료·사용자들의 피드백을 바탕으로<br>
-                ‘이 역할이 왜 필요한지’를 설명할 수 있는 결과를 만드는 것을 중요하게 생각합니다.
+                ‘왜 필요한지’를 설명할 수 있는 결과를 만드는 것을 중요하게 생각합니다.
               </p>
 
               <div class="impact-list">
@@ -1151,7 +1163,7 @@
                 </div>
                 <div class="impact-item">
                   <span class="impact-dot"></span>
-                  <span>카테고리·SKU 구조 개편 후 전환율 약 25% 개선</span>
+                  <span>카테고리·SKU 구조 개편 후 전환율 약 25% 유지</span>
                 </div>
                 <div class="impact-item">
                   <span class="impact-dot"></span>
@@ -1159,7 +1171,7 @@
                 </div>
                 <div class="impact-item">
                   <span class="impact-dot"></span>
-                  <span>“구조가 더 분명해졌다”는 동료 피드백 다수</span>
+                  <span>동료 긍정 피드백 다수</span>
                 </div>
               </div>
             </div>
@@ -1583,17 +1595,17 @@
       },
       {
         value: '25%',
-        label: '전환율 개선',
+        label: '전환율 상위 유지',
         sub: '카테고리·SKU 구조 재설계 랜딩 기준',
       },
       {
         value: '3단계',
-        label: '반복 문서 작성 단계 축소',
-        sub: 'AI 템플릿·체크리스트 도입 전/후 비교',
+        label: '반복 문서 작성 단계 축소 기대',
+        sub: 'AI 템플릿·체크리스트 도입 전/후 예상',
       },
       {
         value: 'Clear',
-        label: '구조가 더 분명해졌다는 피드백',
+        label: '구조 변경/확장에 대한 긍정 피드백',
         sub: '프로세스·메시지 정렬 후 동료 정성 피드백',
       }
     ];
@@ -1614,7 +1626,7 @@
       setInterval(() => {
         impactIndex = (impactIndex + 1) % impactStates.length;
         setImpactState(impactIndex);
-      }, 2600);
+      }, 2200); // [수정] 2600ms -> 2200ms (조금 빠르게)
     }
 
     // PROJECT 필터 + 전체 보기
