@@ -212,12 +212,12 @@
 
     .hero-side-list li + li { margin-top: 4px; }
 
-    /* ✅ 링크 버튼(“실제 문서 보기” 스타일) - 최소 추가 */
+    /* ✅ 히어로 CTA(실제 문서 보기 스타일) */
     .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .hero-cta {
@@ -232,13 +232,20 @@
       font-size: 13px;
       font-weight: 600;
       box-shadow: 0 14px 28px rgba(15, 23, 42, 0.25);
-      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, opacity 0.16s ease;
+      cursor: pointer;
+      user-select: none;
     }
 
     .hero-cta:hover {
       transform: translateY(-1px);
       box-shadow: 0 18px 36px rgba(15, 23, 42, 0.28);
       background: rgba(255, 255, 255, 0.96);
+    }
+
+    .hero-cta:active {
+      transform: translateY(0);
+      opacity: 0.95;
     }
 
     .hero-cta-dot {
@@ -256,6 +263,32 @@
       font-weight: 700;
       font-size: 14px;
       transform: translateY(-0.5px);
+    }
+
+    /* ✅ 링크 복사 버튼(두번째 pill) */
+    .hero-cta.secondary {
+      background: rgba(15, 23, 42, 0.40);
+      border: 1px solid rgba(191, 219, 254, 0.28);
+      color: rgba(255, 255, 255, 0.92);
+      box-shadow: none;
+    }
+
+    .hero-cta.secondary:hover {
+      background: rgba(15, 23, 42, 0.52);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.22);
+    }
+
+    .hero-cta-dot.copy {
+      background: #60a5fa;
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.22);
+    }
+
+    /* ✅ 한 줄 안내 */
+    .hero-cta-note {
+      font-size: 12px;
+      color: rgba(226, 232, 240, 0.86);
+      line-height: 1.6;
+      margin-bottom: 16px;
     }
 
     /* 공통 카드 */
@@ -505,7 +538,7 @@
                 역할·문제·성과 중심으로 내용을 정리해 <b>즉시 Alignment 자료</b>로 활용할 수 있도록 설계한 템플릿입니다.
               </p>
 
-              <!-- ✅ 실제 템플릿 보기 버튼 (요청한 “실제 문서 보기” 느낌) -->
+              <!-- ✅ 실제 동작 버튼 + 링크 복사 버튼 -->
               <div class="hero-cta-row">
                 <a
                   class="hero-cta"
@@ -518,6 +551,22 @@
                   <span>실제 Role Design 템플릿 보기</span>
                   <span class="hero-cta-icon" aria-hidden="true">↗</span>
                 </a>
+
+                <button
+                  type="button"
+                  class="hero-cta secondary"
+                  id="copyTemplateLinkBtn"
+                  data-copy-text="https://chatgpt.com/g/g-6929424797308191a69f923d1c7e1e86-role-design-for-recruiting-team"
+                  aria-label="템플릿 링크 복사"
+                >
+                  <span class="hero-cta-dot copy" aria-hidden="true"></span>
+                  <span id="copyTemplateLinkText">링크 복사</span>
+                </button>
+              </div>
+
+              <!-- ✅ 한 줄 안내 -->
+              <div class="hero-cta-note">
+                실<strong>제</strong>로 동작하는 템플릿입니다. 클릭해서 바로 확인할 수 있습니다.
               </div>
 
               <div class="hero-meta-chips">
@@ -532,8 +581,8 @@
               <div class="hero-side-card">
                 <div class="hero-side-title">프로젝트 한 줄 요약</div>
                 <ul class="hero-side-list">
-                  <li>HM에게서 Role Design 정보를 빠르게 수집하고</li>
-                  <li>역할·문제·성과 중심으로 구조화해 Alignment를 가속하는 템플릿</li>
+                  <li>HM에게 필요한 질문을 구조화해 Role Design 요소를 빠르게 수집</li>
+                  <li>역할·문제·성과 중심으로 구조화해 HM-리쿠르터 Alignment를 가속</li>
                 </ul>
               </div>
 
@@ -603,47 +652,50 @@
         <div class="container">
           <div class="meta-grid">
             <article class="project-card equal-card">
-              <div class="project-card-header">기획 포인트 (What)</div>
+              <div class="project-card-header">기획 (세부 기획 포함)</div>
               <div class="project-card-body">
                 <ul>
-                  <li>Hiring Manager에게 필요한 <b>핵심 질문</b>을 구조화해 Role Design 요소를 빠르게 수집</li>
-                  <li>JD 혼선을 줄이기 위해 <b>역할·문제·성과</b> 중심의 템플릿 구성</li>
+                  <li>Hiring manager에게 필요한 <b>핵심 질문</b>을 구조화해 Role Design 요소를 빠르게 수집</li>
+                  <li>JD 혼선을 줄이기 위해 <b>역할·문제·성과</b> 중심으로 템플릿 구성</li>
                   <li>비전·미션·팀 문제와 연결된 <b>“핵심 미션”</b> 자동 생성</li>
-                  <li>스킬/성공지표/우선순위 기반으로 작업을 분류해 “지금 필요한 일”을 명확화</li>
-                  <li>최종 결과물을 <b>HM-리쿠르터 Alignment 자료</b>로 즉시 활용 가능하게 설계</li>
+                  <li>스킬/성공지표/우선순위 기반 작업 분류</li>
+                  <li>최종적으로 HM과 리쿠르터 간의 Alignment 자료로 즉시 활용 가능</li>
                 </ul>
               </div>
             </article>
 
             <article class="project-card equal-card">
-              <div class="project-card-header">자동화 설계 원리 (How)</div>
+              <div class="project-card-header">자동화 설계 원리 (Design Principles)</div>
               <div class="project-card-body">
                 <ol class="dotted-list">
                   <li>
-                    <span class="label">① 목적 정의</span>
+                    <span class="label">① 지향점</span>
                     <span class="text">
-                      사람을 대체하는 자동화가 아니라, 내부 고객(HM/Recruiter)이
-                      <b>지원자 경험과 본질적 의사결정</b>에 집중할 시간을 확보하는 것을 목표로 했습니다.
+                      사람을 대체하는 자동화를 기획하는 것이 아닌, 잠재적 내부고객에게 집중할 시간을 확보하는 것 → 채용경험
                     </span>
                   </li>
                   <li>
-                    <span class="label">② 반복 제거</span>
+                    <span class="label">② 효율화</span>
                     <span class="text">
-                      단순·반복 작업(정리, 요약, 분류)을 줄이고, 핵심 논의(미션/성과/우선순위)에 집중하도록 구성했습니다.
+                      단순작업, 반복작업 제거 및 프로세스 효율화
                     </span>
                   </li>
                   <li>
-                    <span class="label">③ 정렬 가속</span>
+                    <span class="label">③ 정렬</span>
                     <span class="text">
-                      HM·리쿠르터·인터뷰어 간 Alignment 속도를 올리도록,
-                      결과물이 바로 공유 가능한 <b>텍스트 기반 구조</b>로 출력되게 설계했습니다.
+                      HM, 리크루터, 인터뷰어 간 Alignment 속도를 올리는 설계 중심
                     </span>
                   </li>
                   <li>
-                    <span class="label">④ 리스크 최소화</span>
+                    <span class="label">④ 보안</span>
                     <span class="text">
-                      텍스트 중심 구조로 보안 리스크를 낮추고,
-                      조직 내 문서/도구 환경에 쉽게 이식할 수 있는 프로토타입으로 만들었습니다.
+                      텍스트 기반 구조로 보안 리스크 최소화
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label">⑤ 집중</span>
+                    <span class="text">
+                      지원자 경험에 집중 할 수 있도록 구성한 프로토타입
                     </span>
                   </li>
                 </ol>
@@ -707,24 +759,24 @@
                 <div class="impact-card">
                   <div class="impact-card-title">Recruiting Process</div>
                   <ul>
-                    <li>JD 작성 속도 단축(초기 기획–정렬까지 걸리는 시간 체감 단축)</li>
-                    <li>논의의 기준이 문서로 남아 후속 커뮤니케이션 비용 감소</li>
-                    <li>신규 포지션/신설 직무에서도 구조화 자료를 빠르게 확보</li>
+                    <li>JD 작성 속도 단축 (초기 기획–정렬까지 걸리는 시간 체감 단축)</li>
+                    <li>신규 포지션에 대한 구조화 자료를 빠르게 확보</li>
+                    <li>리쿠르터가 본질적인 역할 정의에 집중할 수 있는 환경 제공</li>
                   </ul>
                 </div>
                 <div class="impact-card">
                   <div class="impact-card-title">Quality & Consistency</div>
                   <ul>
-                    <li>직무 이해 부족으로 발생하는 JD 오해·누락·중복 방지</li>
-                    <li>역할·문제·성과 중심으로 문서 품질과 일관성 강화</li>
-                    <li>인터뷰 기준/평가 관점 정렬에 활용 가능</li>
+                    <li>직무 이해 부족으로 발생하는 JD 오해, 누락, 중복 방지</li>
+                    <li>역할·문제·성과 중심으로 논의 기준을 문서화</li>
+                    <li>HM-리쿠르터-인터뷰어 정렬 품질 개선</li>
                   </ul>
                 </div>
                 <div class="impact-card">
-                  <div class="impact-card-title">Recruiter Focus</div>
+                  <div class="impact-card-title">Candidate Experience</div>
                   <ul>
-                    <li>리쿠르터가 단순 정리보다 본질적 역할 정의에 집중</li>
-                    <li>지원자 경험(메시지/커뮤니케이션) 개선에 리소스 재배치</li>
+                    <li>단순 정리 업무를 줄여 지원자 경험 개선에 리소스 재배치</li>
+                    <li>채용 메시지/기대 역할 전달이 명확해져 커뮤니케이션 비용 감소</li>
                     <li>텍스트 기반 구조로 보안 리스크 최소화</li>
                   </ul>
                 </div>
@@ -739,5 +791,55 @@
       </section>
     </main>
   </div>
+
+  <script>
+    // ✅ 링크 복사 버튼
+    (function () {
+      const btn = document.getElementById('copyTemplateLinkBtn');
+      const label = document.getElementById('copyTemplateLinkText');
+      if (!btn || !label) return;
+
+      const originalText = label.textContent;
+
+      async function copyText(text) {
+        // 최신 Clipboard API 우선
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+        } catch (e) {}
+
+        // Fallback
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.top = '-9999px';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          return ok;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      btn.addEventListener('click', async () => {
+        const url = btn.getAttribute('data-copy-text') || '';
+        const ok = await copyText(url);
+
+        label.textContent = ok ? '복사 완료' : '복사 실패';
+        btn.style.opacity = ok ? '1' : '0.95';
+
+        setTimeout(() => {
+          label.textContent = originalText;
+        }, 1400);
+      });
+    })();
+  </script>
 </body>
 </html>
