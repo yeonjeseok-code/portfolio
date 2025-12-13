@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>JD Benchmark Engine · Yeon Je Seok</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="시장·경쟁사 JD를 자동 분석해 핵심 스킬, 성공지표, 차별 포인트를 구조화하는 JD 벤치마킹 AI 템플릿" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-body:#050816; --bg-page:#f5f7fb; --bg-card:#ffffff; --bg-card-soft:#f7f9ff;
+      --accent:#2f7cff; --accent-soft:#e0ebff; --accent-strong:#0b68ff;
+      --text-main:#111827; --text-sub:#4b5563; --text-muted:#9ca3af;
+      --border-soft:#e5e7eb; --shadow-soft:0 16px 40px rgba(148,163,184,.32);
+      --radius-card:28px; --nav-height:64px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter','Noto Sans KR',sans-serif;background:var(--bg-body)}
+    a{text-decoration:none;color:inherit}
+    .page{background:var(--bg-page);min-height:100vh}
+
+    /* NAV */
+    .top-nav{position:sticky;top:0;height:var(--nav-height);z-index:40;
+      backdrop-filter:blur(18px);
+      background:linear-gradient(to bottom,rgba(5,8,22,.96),rgba(5,8,22,.86),transparent);
+      color:#e5e7eb;display:flex;align-items:center;justify-content:center}
+    .top-nav-inner{max-width:1120px;width:100%;padding:0 24px;
+      display:flex;justify-content:space-between;font-size:14px}
+    .nav-logo{font-weight:700;letter-spacing:.12em}
+    .back-link{display:inline-flex;gap:6px;font-size:13px;opacity:.85}
+
+    main{padding:40px 0 72px}
+    section{padding:32px 0}
+    .container{max-width:1120px;margin:0 auto;padding:0 24px}
+
+    /* HERO */
+    .hero-card{
+      border-radius:32px;padding:32px 30px;
+      background:
+        radial-gradient(circle at 0 0,rgba(96,165,250,.18),transparent 55%),
+        radial-gradient(circle at 100% 0,rgba(129,140,248,.24),transparent 60%),
+        linear-gradient(135deg,#0b63ff,#001b5f);
+      color:#f9fafb;box-shadow:0 22px 55px rgba(15,23,42,.6);
+      display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+
+    .hero-badge{display:inline-flex;gap:8px;padding:6px 12px;
+      border-radius:999px;background:rgba(15,23,42,.6);
+      border:1px solid rgba(191,219,254,.45);
+      font-size:11px;letter-spacing:.14em;margin-bottom:16px}
+    .hero-badge-dot{width:7px;height:7px;border-radius:50%;
+      background:#38bdf8;box-shadow:0 0 0 4px rgba(56,189,248,.4)}
+
+    .hero-title{font-size:30px;font-weight:800;margin-bottom:10px}
+    .hero-role{font-size:14px;color:#dbeafe;margin-bottom:10px}
+    .hero-text{font-size:14px;line-height:1.8;color:#e5e7eb;margin-bottom:16px}
+
+    /* CTA */
+    .hero-cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+    .hero-cta{
+      padding:8px 14px;border-radius:999px;
+      background:rgba(15,23,42,.85);
+      border:1px solid rgba(191,219,254,.5);
+      font-size:12px;color:#e5e7eb;cursor:pointer
+    }
+    .hero-cta.primary{background:#ffffff;color:#0b63ff;font-weight:600}
+    .hero-cta-note{font-size:12px;color:#dbeafe;opacity:.9}
+
+    .hero-side{display:flex;flex-direction:column;gap:12px}
+    .hero-side-card{
+      border-radius:20px;padding:16px 18px;
+      background:rgba(15,23,42,.78);
+      border:1px solid rgba(191,219,254,.4);
+      font-size:13px;color:#e5e7eb}
+
+    /* Cards */
+    .project-card{
+      background:#fff;border-radius:var(--radius-card);
+      border:1px solid var(--border-soft);
+      box-shadow:var(--shadow-soft);
+      padding:22px 24px}
+    .project-card-header{font-size:16px;font-weight:700;margin-bottom:10px}
+    .project-card-body{font-size:14px;color:var(--text-sub);line-height:1.75}
+    .project-card-body ul{padding-left:18px;list-style:disc}
+
+    @media(max-width:960px){
+      .hero-card{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<header class="top-nav">
+  <div class="top-nav-inner">
+    <div class="nav-logo">YEON JE SEOK</div>
+    <a href="../index.html#projects" class="back-link"><span>←</span> Back to Projects</a>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section>
+  <div class="container">
+    <div class="hero-card">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>JD BENCHMARK</span>
+        </div>
+
+        <h1 class="hero-title">JD Benchmark Engine</h1>
+        <p class="hero-role">시장·경쟁사 JD를 자동 분석해 핵심 요구 역량과 차별 포인트를 구조화하는 템플릿</p>
+
+        <p class="hero-text">
+          여러 회사의 JD를 비교·정리하는 과정에서 발생하는 반복 리서치와 해석 부담을 줄이기 위해,
+          입력된 JD들을 자동 분석해 공통 역량, 성공 지표, 차별 요소를 구조화하는 AI 템플릿을 설계했습니다.
+        </p>
+
+        <!-- CTA -->
+        <div class="hero-cta-row">
+          <a class="hero-cta primary" target="_blank"
+             href="https://chatgpt.com/g/g-69201fc0ee4c8191b51370b09d8e8a68-role-seonggong-jipyo-pilyohan-seukil-inteobyu-jilmun-gujohwa-coan">
+            실제 JD Benchmark 템플릿 보기 →
+          </a>
+          <button class="hero-cta" onclick="copyLink()">링크 복사</button>
+        </div>
+        <div class="hero-cta-note">
+          ※ 실제로 동작하는 템플릿입니다. 클릭해서 바로 확인할 수 있습니다.
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="hero-side-card">
+          <b>활용 포인트</b>
+          <ul>
+            <li>경쟁사·시장 JD 벤치마킹</li>
+            <li>신규 포지션 기획 자료</li>
+            <li>JD 품질 점검 & 정렬</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section>
+  <div class="container">
+    <div class="project-card">
+      <div class="project-card-header">프로젝트 개요</div>
+      <div class="project-card-body">
+        <ul>
+          <li>여러 JD를 자동 분석해 공통 역량과 차별 요소 도출</li>
+          <li>Success Metrics 예측 및 핵심 스킬 구조화</li>
+          <li>Nice-to-have와 필수 역량을 명확히 구분</li>
+          <li>JD 리서치 시간을 대폭 단축하는 자동화 템플릿</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN PRINCIPLES -->
+<section>
+  <div class="container">
+    <div class="project-card">
+      <div class="project-card-header">자동화 설계 원리</div>
+      <div class="project-card-body">
+        <ul>
+          <li>사람을 대체하는 자동화가 아닌, 판단에 집중할 시간을 확보</li>
+          <li>반복적 JD 분석·비교 작업 제거</li>
+          <li>HM–리크루터–인터뷰어 간 Alignment 속도 향상</li>
+          <li>텍스트 기반 구조로 보안 리스크 최소화</li>
+          <li>지원자 경험 개선을 전제로 한 설계</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+function copyLink(){
+  navigator.clipboard.writeText(
+    "https://chatgpt.com/g/g-69201fc0ee4c8191b51370b09d8e8a68-role-seonggong-jipyo-pilyohan-seukil-inteobyu-jilmun-gujohwa-coan"
+  );
+  alert("템플릿 링크가 복사되었습니다.");
+}
+</script>
+
+</body>
+</html>
