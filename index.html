@@ -183,7 +183,7 @@
       color: #f9fafb;
     }
 
-    .hero.visible { /* 처음 로드 시 바로 보이게 */
+    .hero.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -490,7 +490,7 @@
       font-weight: 700;
       color: var(--accent-strong);
       text-align: center;
-      min-height: 56px; /* [추가] 상태별 글자 길이로 흔들리지 않게 */
+      min-height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -501,7 +501,7 @@
       font-size: 14px;
       text-align: center;
       color: var(--text-sub);
-      min-height: 40px; /* [추가] 2줄도 동일 높이로 */
+      min-height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -512,7 +512,7 @@
       font-size: 11px;
       text-align: center;
       color: var(--text-muted);
-      min-height: 32px; /* [추가] 상태별 줄수 차이를 흡수 */
+      min-height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -540,6 +540,11 @@
     .section-projects {
       background: radial-gradient(circle at 100% 0, #e0edff 0, transparent 55%),
                   #f5f7fb;
+    }
+
+    /* [추가] 필터로 카드 수가 적을 때 상단이 비는 현상(중앙 정렬) 방지 */
+    #projects.section {
+      align-items: flex-start;
     }
 
     .projects-header {
@@ -584,6 +589,13 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
       margin-bottom: 24px;
+      align-items: stretch; /* [추가] 그리드 아이템 높이 늘려서 카드 높이 통일 */
+    }
+
+    /* [추가] 링크 래퍼도 동일 높이로 늘어나게 */
+    .project-card-link {
+      display: block;
+      height: 100%;
     }
 
     .project-card {
@@ -596,6 +608,8 @@
       flex-direction: column;
       gap: 14px;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      height: 100%;        /* [추가] 카드 높이 통일 */
+      min-height: 240px;   /* [추가] 가장 긴 카드 기준으로 전체 통일(과도한 변화 없이) */
     }
 
     .project-card:hover {
@@ -751,7 +765,6 @@
       text-align: center;
     }
 
-    /* 새로 추가된 이미지 버블 스타일 */
     .profile-visual {
       flex: 1;
       display: flex;
@@ -931,7 +944,7 @@
         scroll-snap-type: y mandatory;
       }
       body {
-        scroll-snap-type: y mandatory; /* 일부 브라우저 호환용 */
+        scroll-snap-type: y mandatory;
       }
       .section {
         scroll-snap-align: start;
@@ -1032,9 +1045,9 @@
             <h1 class="hero-title">역할에 맞는 구조를<br>다시 설계하는 기획자</h1>
             <div class="hero-role">People · HR · 콘텐츠를 잇는 AI 기반 프로세스 기획자</div>
             <p class="hero-desc">
-              먼저 업무와 팀의 맥락을 이해하고 그 안에서 문서, 프로세스, 메시지를 재설계합니다.<br>
+              먼저 담당 업무와 팀의 맥락을 이해하고 그 안에서 문서와 프로세스, 메시지를 재설계합니다.<br>
               AI와 구조적 사고를 활용해 채용·운영·콘텐츠의 반복 업무를 정리하고<br>
-              짧은 시간 안에 '함께하면 구조가 잡히겠다'는 인상을 남기는 것을 목표로 합니다.
+              짧은 시간 안에 '이 사람과 일하면 구조가 잡히겠다'는 인상을 남기는 것을 목표로 합니다.
             </p>
             <div class="hero-tags">
               <div class="tag-pill">
@@ -1227,14 +1240,14 @@
               </article>
             </a>
 
-            <!-- project 6 -->
             <a href="projects/project-global-localization.html" class="project-card-link">
               <article class="project-card" data-type="content">
                 <div class="project-tag">GLOBAL · LOCAL</div>
                 <div class="project-title">글로벌 일러스트 클래스를 국내에 현지화 론칭</div>
                 <p class="project-desc">
-                  글로벌·국내 양방향 카탈로그 확장 가능성을 검증하기 위해,<br>
-                  해외 인기 일러스트 클래스를 국내 사용자 관점에서 번역·현지화한 프로젝트입니다.
+                  글로벌·국내 양방향 카탈로그 확장 가능성을<br>
+                  검증하기 위해 해외 인기 일러스트 클래스를<br>
+                  국내 사용자 관점에서 번역·현지화한 프로젝트입니다.
                 </p>
                 <div class="project-meta">현지화 실험 · MVP · SKU 확장 테스트</div>
               </article>
@@ -1245,8 +1258,9 @@
                 <div class="project-tag">OPS · PROCESS</div>
                 <div class="project-title">Ops & Process Optimization - 미니 프로젝트</div>
                 <p class="project-desc">
-                  반복적인 운영 업무를 묶어 프로세스로 정의하고<br>
-                  기준·체크리스트·문서화를 통해 병목을 줄인 미니 프로젝트 모음입니다.
+                  반복적인 운영 업무를 묶어 프로세스로 정의하고
+                  기준·체크리스트·문서화를 통해 병목을 줄인<br>
+                  미니 프로젝트 모음입니다.
                 </p>
                 <div class="project-meta">반복 업무 단계 축소 · 기준 문서화</div>
               </article>
@@ -1257,8 +1271,9 @@
                 <div class="project-tag">VOD · OPS</div>
                 <div class="project-title">Kollus VOD 업로드 프로세스 전사 가이드 제작</div>
                 <p class="project-desc">
-                  내부 시스템·업로드 플로우를 표준화하고, 전사 공통으로 사용할 수 있는<br>
-                  가이드와 체크리스트를 제작했습니다.
+                  내부 시스템·업로드 플로우를 표준화하고,<br>
+                  전사 공통으로 사용할 수 있는 가이드와<br>
+                  체크리스트를 제작했습니다.
                 </p>
                 <div class="project-meta">교육 비용 절감 · 온보딩 시간 단축</div>
               </article>
@@ -1268,7 +1283,7 @@
               <div class="project-tag">VOD · OPS</div>
               <div class="project-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
               <p class="project-desc">
-                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를<br>
+                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를
                 기획하고, 프로모션·구성 전략을 함께 설계했습니다.
               </p>
               <div class="project-meta">지표 기반 개선 사이클 수립</div>
@@ -1279,7 +1294,8 @@
                 <div class="project-tag">VOD · CONTENT</div>
                 <div class="project-title">온라인 VOD 콘텐츠 상품 기획</div>
                 <p class="project-desc">
-                  시장·사용자 데이터를 기반으로 46개 온라인 VOD 콘텐츠를 기획·상품화한 프로젝트입니다.<br>
+                  시장·사용자 데이터를 기반으로 46개 온라인 VOD<br>
+                  콘텐츠를 기획·상품화한 프로젝트입니다.<br>
                   클래스101·블루타이거에서 기획·상세페이지·운영까지 End-to-End로 리딩했습니다.
                 </p>
                 <div class="project-meta">
@@ -1293,7 +1309,7 @@
               <div class="project-tag">ROLE DESIGN</div>
               <div class="project-title">Role Design Generator</div>
               <p class="project-desc">
-                역할 정의 요소를 분해·구조화해 포지션 설명과<br>
+                역할 정의 요소를 분해·구조화해 포지션 설명과
                 기대 역할을 일관되게 정리하는 AI 템플릿입니다.
               </p>
               <div class="project-meta">개인 프로젝트 · Role Design 정렬</div>
@@ -1303,7 +1319,7 @@
               <div class="project-tag">JD BENCHMARK</div>
               <div class="project-title">JD Benchmark Engine</div>
               <p class="project-desc">
-                시장 JD를 비교·정리하고, 핵심 요구역량·책임 범위를<br>
+                시장 JD를 비교·정리하고, 핵심 요구역량·책임 범위를
                 추출해 하이어링 매니저와 정렬하는 템플릿입니다.
               </p>
               <div class="project-meta">개인 프로젝트 · JD 구조화</div>
@@ -1313,7 +1329,7 @@
               <div class="project-tag">INTERVIEW</div>
               <div class="project-title">Interview Feedback Summarizer</div>
               <p class="project-desc">
-                여러 인터뷰어의 피드백을 요약·정리해, 의사결정에<br>
+                여러 인터뷰어의 피드백을 요약·정리해, 의사결정에
                 필요한 관찰 포인트만 남기는 템플릿입니다.
               </p>
               <div class="project-meta">개인 프로젝트 · 피드백 구조화</div>
@@ -1323,7 +1339,7 @@
               <div class="project-tag">BRANDING</div>
               <div class="project-title">Branding Content Engine</div>
               <p class="project-desc">
-                포지션·조직 컨텍스트를 기반으로 채용 브랜딩 카피<br>
+                포지션·조직 컨텍스트를 기반으로 채용 브랜딩 카피
                 콘텐츠 초안을 빠르게 생성하는 템플릿입니다.
               </p>
               <div class="project-meta">개인 프로젝트 · 브랜딩 메시지 정렬</div>
@@ -1432,7 +1448,7 @@
                 <li>ChatGPT – 기획 구조 잡기·초안 작성·문서 자동화 템플릿 설계</li>
                 <li>Claude – 긴 문서 요약·정리·분석적 리서치</li>
                 <li>NotebookLM – 자료 묶음 요약·핵심 정리 자동화</li>
-                <li>Wisk – 이미지 컨셉 스케치·콘셉트 리서치 보조</li>
+                <li>Whisk – 이미지 컨셉 스케치·콘셉트 리서치 보조</li>
                 <li>Vrew – 텍스트 기반 영상 콘텐츠 제작</li>
               </ul>
 
@@ -1626,7 +1642,7 @@
       setInterval(() => {
         impactIndex = (impactIndex + 1) % impactStates.length;
         setImpactState(impactIndex);
-      }, 2200); // [수정] 2600ms -> 2200ms (조금 빠르게)
+      }, 2200);
     }
 
     // PROJECT 필터 + 전체 보기
