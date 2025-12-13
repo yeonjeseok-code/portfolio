@@ -31,16 +31,9 @@
       --nav-height: 64px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-    }
+    html, body { width: 100%; height: 100%; }
 
     body {
       background: var(--bg-body);
@@ -106,19 +99,11 @@
       transform: translateY(-1px);
     }
 
-    main {
-      padding: 40px 0 72px;
-    }
-
-    section {
-      padding: 32px 0;
-    }
+    main { padding: 40px 0 72px; }
+    section { padding: 32px 0; }
 
     /* HERO */
-    .hero {
-      padding-top: 8px;
-      padding-bottom: 24px;
-    }
+    .hero { padding-top: 8px; padding-bottom: 24px; }
 
     .hero-card {
       border-radius: 32px;
@@ -224,9 +209,7 @@
       line-height: 1.6;
     }
 
-    .hero-side-list li + li {
-      margin-top: 4px;
-    }
+    .hero-side-list li + li { margin-top: 4px; }
 
     /* 공통 카드 */
     .project-card {
@@ -255,9 +238,7 @@
       margin-top: 6px;
     }
 
-    .project-card-body li + li {
-      margin-top: 3px;
-    }
+    .project-card-body li + li { margin-top: 3px; }
 
     .project-card-body b {
       font-weight: 600;
@@ -293,8 +274,54 @@
       list-style: disc;
     }
 
-    .overview-list li + li {
-      margin-top: 4px;
+    .overview-list li + li { margin-top: 4px; }
+
+    /* ✅ 4개 미니 프로젝트 버블 */
+    .mini-bubble-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .mini-bubble {
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 12px 14px;
+      box-shadow: 0 10px 24px rgba(148, 163, 184, 0.18);
+    }
+
+    .mini-bubble-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .mini-bubble-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.3;
+    }
+
+    .mini-bubble-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-strong);
+      background: var(--accent-soft);
+      border: 1px solid #cfe0ff;
+      padding: 4px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .mini-bubble-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.6;
     }
 
     /* 역할 & 세부 업무 */
@@ -312,9 +339,7 @@
       min-height: 260px;
     }
 
-    .equal-card .project-card-body {
-      flex: 1;
-    }
+    .equal-card .project-card-body { flex: 1; }
 
     .dotted-list {
       list-style: none;
@@ -327,9 +352,7 @@
       align-items: flex-start;
     }
 
-    .dotted-list li + li {
-      margin-top: 4px;
-    }
+    .dotted-list li + li { margin-top: 4px; }
 
     .dotted-list span.label {
       font-size: 13px;
@@ -394,9 +417,7 @@
       margin-bottom: 10px;
     }
 
-    .flow-arrow-row span {
-      transform: translateY(-1px);
-    }
+    .flow-arrow-row span { transform: translateY(-1px); }
 
     .flow-caption-grid {
       display: grid;
@@ -414,10 +435,7 @@
       color: #4b5563;
     }
 
-    /* RESULT */
-    .overview-list.result li {
-      margin-top: 4px;
-    }
+    .overview-list.result li { margin-top: 4px; }
 
     .project-footer {
       margin-top: 32px;
@@ -428,36 +446,17 @@
 
     /* Responsive */
     @media (max-width: 960px) {
-      .hero-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .overview-grid,
-      .meta-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .flow-caption-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .hero-card { grid-template-columns: minmax(0, 1fr); }
+      .overview-grid, .meta-grid { grid-template-columns: minmax(0, 1fr); }
+      .flow-caption-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .mini-bubble-grid { grid-template-columns: minmax(0, 1fr); }
     }
 
     @media (max-width: 720px) {
-      main {
-        padding-top: 32px;
-      }
-
-      .hero-card {
-        padding: 24px 20px 22px;
-      }
-
-      section {
-        padding: 24px 0;
-      }
-
-      .flow-steps {
-        flex-direction: column;
-      }
+      main { padding-top: 32px; }
+      .hero-card { padding: 24px 20px 22px; }
+      section { padding: 24px 0; }
+      .flow-steps { flex-direction: column; }
     }
   </style>
 </head>
@@ -485,18 +484,22 @@
                 <span>OPS · PROCESS</span>
               </div>
               <h1 class="hero-title">Ops & Process Optimization - 미니 프로젝트</h1>
-              <p class="hero-role">라이브 포맷, 시스템 도입, 제작 프로세스, 인수인계까지 ‘운영 방식’을 다룬 작은 전환 작업들</p>
+              <p class="hero-role">라이브 포맷, 시스템 도입, 제작 프로세스, 인수인계까지 ‘운영 방식’을 다룬 작은 실험들</p>
+
+              <!-- ✅ 히어로 문장 수정 -->
               <p class="hero-text">
-                라이브 클래스 확장, 세일즈포스 도입, 제작 방식 전환 테스트, 아트 카테고리 인수인계처럼
-                서로 성격이 다른 변화들이 동시에 진행되던 시기에,
-                <b>각 변화가 현업에서 “같은 기준”으로 돌아가도록 화면·동선·문서 기준을 정리</b>한 네 가지 미니 프로젝트를 모아 정리했습니다.
-                하나의 큰 프로젝트라기보다, 전환기마다 필요한 기준을 만들고 남긴 작업들입니다.
+                이 페이지는 <b>서로 성격이 다른 4개의 별개 이슈</b>(라이브 포맷·시스템 도입·제작 방식 전환·인수인계 문서)를
+                한 곳에 모아 정리한 기록입니다.<br>
+                각 이슈마다 맡은 역할은 달랐지만, 공통적으로 <b>현업 기준으로 흐름·기준·문서를 정리</b>해
+                다음 담당자도 같은 품질로 운영할 수 있게 만드는 데 초점을 두었습니다.
               </p>
+
+              <!-- ✅ 칩 문구도 ‘참여’ 톤 줄임 -->
               <div class="hero-meta-chips">
-                <span class="hero-meta-chip">라이브 클래스 전용 랜딩/표현 정리</span>
-                <span class="hero-meta-chip">세일즈포스 초기 테스터(선발)</span>
-                <span class="hero-meta-chip">제작 프로세스 전환 파일럿 테스트</span>
-                <span class="hero-meta-chip">아트 카테고리 인수인계 가이드</span>
+                <span class="hero-meta-chip">라이브 전용 랜딩/표현 방식 정리</span>
+                <span class="hero-meta-chip">세일즈포스 초기 테스터</span>
+                <span class="hero-meta-chip">제작 전환 플로우 테스트·정리</span>
+                <span class="hero-meta-chip">아트 인수인계 문서화</span>
               </div>
             </div>
 
@@ -504,15 +507,15 @@
               <div class="hero-side-card">
                 <div class="hero-side-title">프로젝트 유형</div>
                 <ul class="hero-side-list">
-                  <li>기간 1~2개월 이내의 단발성·테스트성 프로젝트 중심</li>
-                  <li>공통점은 “새로운 방식으로 일하게 되는 전환기”의 운영·프로세스 기준 정리</li>
+                  <li>기간 1~2개월 이내의 단발성·테스트성 이슈 중심</li>
+                  <li>공통점은 “전환기”에 필요한 운영 기준·정리물 제작</li>
                 </ul>
               </div>
               <div class="hero-side-card">
                 <div class="hero-side-title">역할</div>
                 <ul class="hero-side-list">
-                  <li>현업에서 실제로 부딪히는 혼선 지점을 기준·문서·화면 구조로 정리</li>
-                  <li>기획/운영/개발/디자인 사이에서 필요한 정보·결정 포인트를 정돈해 전달</li>
+                  <li>현업 사용 관점에서 흐름·기준을 정리하고 문서/화면 형태로 구체화</li>
+                  <li>기획/운영/개발/디자인 사이에서 커뮤니케이션·정리 역할 수행</li>
                 </ul>
               </div>
             </aside>
@@ -526,30 +529,76 @@
           <div class="project-card">
             <div class="project-card-header">프로젝트 개요</div>
             <div class="project-card-body">
+
+              <!-- ✅ 개요 문장 수정 + “별개 이슈” 강조 -->
               <p class="project-section-sub">
-                이 페이지는 하나의 큰 프로젝트가 아니라, <b>운영 방식과 프로세스가 바뀌는 순간마다 진행된 네 가지 미니 프로젝트</b>를 모아 정리한 것입니다.
-                라이브 클래스 신규 포맷, 세일즈포스 도입(초기 테스터), 제작 프로세스 전환 테스트, 아트 카테고리 인수인계 문서 제작은 각각 별개의 이슈였고,
-                저는 각 이슈에서 <b>현업 기준으로 필요한 화면/동선/문서 기준을 정리해 “다음 사람도 같은 품질로 일할 수 있게” 만드는 데 초점</b>을 두었습니다.
+                이 페이지는 하나의 큰 프로젝트가 아니라, <b>운영 방식과 프로세스가 바뀌는 순간마다 발생한 4개의 별개 이슈</b>를 모아 정리한 것입니다.
+                라이브 클래스 신규 포맷, 세일즈포스 도입(초기 테스터), 제작 프로세스 전환 테스트, 아트 카테고리 인수인계 문서 제작은
+                서로 다른 성격의 작업이었지만, 공통적으로 <b>“변화하는 구조를 현업 기준으로 정리해 다음 사람도 같은 품질로 일할 수 있게 만드는 것”</b>에 초점을 두었습니다.
               </p>
+
+              <!-- ✅ 4개 미니 프로젝트 버블(블럭) -->
+              <div class="mini-bubble-grid">
+                <div class="mini-bubble">
+                  <div class="mini-bubble-top">
+                    <div class="mini-bubble-title">라이브 클래스 신규 포맷</div>
+                    <div class="mini-bubble-tag">포맷 확장</div>
+                  </div>
+                  <div class="mini-bubble-desc">
+                    VOD와 구분이 어렵다는 혼선을 줄이기 위해, 라이브 전용 랜딩/표현 방식이 현업에서 통용될 수 있도록 정리·적용했습니다.
+                  </div>
+                </div>
+
+                <div class="mini-bubble">
+                  <div class="mini-bubble-top">
+                    <div class="mini-bubble-title">세일즈포스 도입(초기 테스터)</div>
+                    <div class="mini-bubble-tag">시스템 도입</div>
+                  </div>
+                  <div class="mini-bubble-desc">
+                    기획 PD 워크플로우 기준으로 필드/동선/데이터 흐름을 검증하고, 초기 설계가 실무에 맞게 개선되도록 피드백을 정리했습니다.
+                  </div>
+                </div>
+
+                <div class="mini-bubble">
+                  <div class="mini-bubble-top">
+                    <div class="mini-bubble-title">제작 프로세스 전환 테스트</div>
+                    <div class="mini-bubble-tag">프로세스 전환</div>
+                  </div>
+                  <div class="mini-bubble-desc">
+                    수요조사 → 선제작 전환 과정에서 권한/페이지 생성 플로우가 막히지 않도록 테스트하며 기준을 정리했습니다.
+                  </div>
+                </div>
+
+                <div class="mini-bubble">
+                  <div class="mini-bubble-top">
+                    <div class="mini-bubble-title">아트 카테고리 인수인계 문서</div>
+                    <div class="mini-bubble-tag">문서화</div>
+                  </div>
+                  <div class="mini-bubble-desc">
+                    암묵지로 남아 있던 운영 기준/주의사항을 전사 공유 가능한 형태로 문서화해, 온보딩과 품질 편차를 줄이는 데 도움을 주었습니다.
+                  </div>
+                </div>
+              </div>
 
               <div class="overview-grid">
                 <div>
                   <div class="overview-label">공통된 문제의식</div>
                   <ul class="overview-list">
-                    <li>새로운 포맷·시스템·프로세스가 도입되지만, 현업 기준의 가이드·기준이 부족함</li>
-                    <li>담당자·팀에 따라 각각 다르게 이해·운영되면서 혼선·오해·반복 이슈 발생</li>
-                    <li>암묵지 형태로 쌓여 있던 노하우가 문서화되지 않아 온보딩·확장에 제약</li>
+                    <li>새로운 포맷·시스템·프로세스가 도입되지만, 현업 기준의 가이드·기준이 부족</li>
+                    <li>담당자/팀마다 이해가 달라 혼선·오해·반복 이슈가 발생</li>
+                    <li>암묵지가 문서화되지 않아 온보딩·확장에 제약</li>
                   </ul>
                 </div>
                 <div>
                   <div class="overview-label">지향점</div>
                   <ul class="overview-list">
-                    <li>새로운 포맷/시스템/프로세스를 “한눈에 이해되는 구조”로 재정리</li>
-                    <li>라이브 전용 랜딩, 화면 설계 피드백, 권한/플로우 표준화 등 구체적인 형태로 제안</li>
-                    <li>전사 공유 가능한 인수인계 문서·가이드로 운영 품질 편차를 줄이고 온보딩 시간 단축</li>
+                    <li>각 이슈를 “한눈에 이해되는 구조”로 정리</li>
+                    <li>랜딩 구조/화면 설계 피드백/권한 플로우/인수인계 문서 등 형태 있는 산출물로 남김</li>
+                    <li>운영 품질 편차를 줄이고 온보딩 시간을 단축</li>
                   </ul>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -564,10 +613,10 @@
               <div class="project-card-header">역할 & 기여도</div>
               <div class="project-card-body">
                 <ul>
-                  <li>전환기마다 현업에서 생기는 혼선 포인트를 “기준/동선/문서” 관점에서 정리</li>
-                  <li>변경되는 흐름(포맷, 시스템, 프로세스, 카테고리 구조)을 팀이 사용할 수 있는 형태로 구조화</li>
-                  <li>개발·디자인·타 부서가 참고할 수 있도록 화면/요구사항/가이드를 정돈해 전달</li>
-                  <li>담당자가 바뀌어도 동일 품질로 운영되도록 가이드·레퍼런스를 남기는 데 집중</li>
+                  <li>기획/운영 실무자로서 전환기에서 생기는 혼선·불편을 현업 관점으로 정리</li>
+                  <li>변경되는 흐름(포맷, 시스템, 프로세스, 카테고리 구조)을 기준·문서·플로우로 구조화</li>
+                  <li>개발·디자인·타 부서가 참고할 수 있는 형태로 맥락/결정사항/주의점을 문서화</li>
+                  <li>다음 담당자도 동일한 품질로 운영할 수 있도록 가이드 기반을 마련</li>
                 </ul>
               </div>
             </article>
@@ -578,67 +627,67 @@
               <div class="project-card-body">
                 <!-- ① 라이브 클래스 -->
                 <div style="margin-bottom: 14px;">
-                  <div class="overview-label">① 라이브 클래스 신규 포맷 기획 참여 (22년 2월~)</div>
+                  <div class="overview-label">① 라이브 클래스 신규 포맷 (22년 2월~)</div>
                   <p><b>역할</b></p>
                   <ul class="overview-list">
-                    <li>팀에서 추진한 실시간 Q&A 기반 <b>라이브 클래스 신 포맷 확장</b> 과정에서, 사용자에게 “라이브”가 명확히 구분되도록 정리 작업을 맡음</li>
+                    <li>라이브 포맷 운영 시, 기존 VOD와의 혼선이 생기는 지점을 현업 관점에서 정리</li>
                   </ul>
                   <p style="margin-top: 6px;"><b>핵심 기여</b></p>
                   <ul class="overview-list">
-                    <li>수강생이 기존 VOD와 구분하기 어려운 구간을 기준으로 <b>라이브 전용 랜딩/표현 구조</b> 정리</li>
-                    <li>에디터 권한으로 <b>페이지를 직접 구성</b>, 디자이너와 협업해 LIVE 배지·커버 이미지 제작</li>
-                    <li>결과적으로 <b>“한눈에 구분되는 신규 상품 표현 방식”</b>을 팀 내 기준으로 정착</li>
+                    <li>라이브 전용 랜딩/표현 방식이 필요하다는 근거를 정리해 공유</li>
+                    <li>에디터 권한으로 새 페이지 생성, 디자이너와 협업해 LIVE 배지·커버 제작</li>
+                    <li>사용자가 “한눈에 구분”할 수 있는 상품 표현 방식으로 정리</li>
                   </ul>
                   <p style="margin-top: 6px;"><b>효과</b></p>
                   <ul class="overview-list">
                     <li>신규 포맷 인지 상승</li>
                     <li>수업 형태 오해로 발생하던 문의 감소</li>
-                    <li>라이브 상품 기획/운영의 내부 기준 형성</li>
+                    <li>라이브 운영 기준이 내부에 축적됨</li>
                   </ul>
                 </div>
 
                 <!-- ② 세일즈포스 -->
                 <div style="margin-bottom: 14px;">
-                  <div class="overview-label">② 세일즈포스 도입 테스터 참여 (22년 4월)</div>
+                  <div class="overview-label">② 세일즈포스 도입 초기 테스터 (22년 4월)</div>
                   <p><b>역할</b></p>
                   <ul class="overview-list">
-                    <li>기획 PD 중 <b>초기 테스터로 선발</b>되어, 실제 업무 흐름을 기준으로 세일즈포스 도입 과정을 검증</li>
+                    <li>기획 PD 업무 흐름을 통합하기 위한 세일즈포스 도입 과정에서 <b>초기 테스터</b>로 검증</li>
                   </ul>
                   <p style="margin-top: 6px;"><b>핵심 기여</b></p>
                   <ul class="overview-list">
-                    <li>기획 PD 실무 흐름 기준으로 <b>유용한 기능 vs 불필요한 기능</b>을 구분해 제안</li>
+                    <li>실무 흐름 기준으로 유용/불필요 기능을 구분해 피드백 정리</li>
                     <li>필드 구조·데이터 흐름·작업 동선 개선 의견을 개발/제작팀에 전달</li>
-                    <li>타 부서도 참고할 수 있도록 <b>이슈/개선안 정리 문서</b>로 남김</li>
+                    <li>타 부서도 참고할 수 있도록 문제/개선안을 문서로 정리</li>
                   </ul>
                   <p style="margin-top: 6px;"><b>효과</b></p>
                   <ul class="overview-list">
-                    <li>현업 관점에서 화면 설계가 개선</li>
+                    <li>현업 관점 화면 설계 개선</li>
                     <li>중복 입력/누락 등 초기 오류 예방</li>
-                    <li>Release 이후 PD 기본 워크플로우 안정화에 기여</li>
+                    <li>Release 이후 기본 워크플로우 안정화에 도움</li>
                   </ul>
                 </div>
 
                 <!-- ③ 제작 프로세스 변경 Test -->
                 <div style="margin-bottom: 14px;">
-                  <div class="overview-label">③ 클래스 제작 프로세스 변경 Test 참여 (21년 12월)</div>
+                  <div class="overview-label">③ 제작 프로세스 전환 테스트 (21년 12월)</div>
                   <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">
                     (수요조사 → 선제작 전환)
                   </p>
                   <p><b>역할</b></p>
                   <ul class="overview-list">
-                    <li>회사에서 우리 팀에 부여한 <b>제작 방식 전환 파일럿(테스트)</b>에서, 현업 기준 검증/정리 역할을 수행</li>
+                    <li>전환 과정에서 실제 제작/운영 동선이 막히는 지점을 테스트하며 확인</li>
                   </ul>
                   <p style="margin-top: 6px;"><b>핵심 기여</b></p>
                   <ul class="overview-list">
-                    <li>전환 과정에서 막히는 지점(권한/페이지 생성 흐름 등)을 <b>현업 관점으로 점검</b>하고 정리</li>
-                    <li>크리에이터 권한 접근 이슈 등 운영상 리스크를 정리해 개발 요청으로 연결</li>
-                    <li><b>관리자 권한 페이지 생성 플로우 표준화</b>로 이후 작업이 막히지 않게 정리</li>
+                    <li>권한/페이지 생성 플로우에서 병목이 생기는 지점을 현업 기준으로 정리</li>
+                    <li>크리에이터 권한 접근 불가 문제를 확인하고 요청 흐름을 표준화</li>
+                    <li>관리자 권한 페이지 생성 플로우가 일관되게 운영되도록 기준을 정리</li>
                   </ul>
                   <p style="margin-top: 6px;"><b>효과</b></p>
                   <ul class="overview-list">
-                    <li>선제작 프로세스가 막힘 없이 돌아가도록 병목 제거</li>
+                    <li>전환 직후 혼선/병목 최소화</li>
                     <li>상세페이지 검수·확정·제작 속도 개선</li>
-                    <li>릴리즈 직후 혼선 최소화</li>
+                    <li>프로세스가 “막히지 않게” 굴러가는 기본 구조 마련</li>
                   </ul>
                 </div>
 
@@ -647,13 +696,13 @@
                   <div class="overview-label">④ 아트 카테고리 인수인계 문서 제작 (전사 공유용)</div>
                   <p><b>역할</b></p>
                   <ul class="overview-list">
-                    <li>인수인계를 계기로, 아트 카테고리가 전체 PD 공용으로 확장될 때 혼선을 줄이기 위해 <b>전사 가이드 문서 형태로 재정리</b></li>
+                    <li>전문 카테고리가 공용으로 확장되는 과정에서 혼선을 줄이기 위한 <b>전사 가이드 문서</b> 정리</li>
                   </ul>
                   <p style="margin-top: 6px;"><b>핵심 기여</b></p>
                   <ul class="overview-list">
-                    <li>작가 컨택, 커리큘럼 검토, 이미지 구성, 키트/MD 협업, 카테고리별 매출 히스토리 등 <b>운영 판단 기준을 체계화</b></li>
-                    <li>기존 아트 전문가들의 암묵지(tacit knowledge)를 문서로 전환</li>
-                    <li>신규 PD도 같은 품질로 운영할 수 있게 <b>범용 가이드라인</b>으로 구성</li>
+                    <li>운영 판단 기준(커리큘럼/이미지/키트/협업/히스토리 등)을 체계적으로 문서화</li>
+                    <li>암묵지를 “다음 사람이 바로 쓰는 문서” 형태로 바꿈</li>
+                    <li>신규 PD도 같은 품질로 운영할 수 있는 범용 가이드라인 구축</li>
                   </ul>
                   <p style="margin-top: 6px;"><b>효과</b></p>
                   <ul class="overview-list">
@@ -680,39 +729,39 @@
             <div class="project-card-header">Ops 미니 프로젝트 진행 방식 요약</div>
             <div class="project-card-body">
               <p class="project-section-sub">
-                네 개의 미니 프로젝트는 주제는 서로 달랐지만, 공통적으로 <b>“전환기에 필요한 기준을 만들고, 현업이 바로 쓸 수 있는 형태로 남긴다”</b>는 흐름을 가졌습니다.
+                네 개의 미니 프로젝트는 주제는 서로 달랐지만, 공통적으로 <b>“현업에서 보이는 혼선을 구조·화면·문서 관점에서 정리해 나가는 흐름”</b>을 가졌습니다.
               </p>
 
               <div class="flow-card">
-                <div class="flow-title">문제 발견 → 구조 제안 → 테스트 → 정착</div>
+                <div class="flow-title">문제 인지 → 정리/제안 → 테스트 → 기준 정착</div>
 
                 <div class="flow-steps">
-                  <div class="flow-step">1. 현업 기준 혼선 확인</div>
-                  <div class="flow-step">2. 구조/화면/문서 관점 정리</div>
-                  <div class="flow-step">3. 실제 운영·테스트 적용</div>
-                  <div class="flow-step">4. 효과 확인 & 기준·가이드 정착</div>
+                  <div class="flow-step">1. 현업 기준 혼선/병목 인지</div>
+                  <div class="flow-step">2. 구조/화면/문서로 정리</div>
+                  <div class="flow-step">3. 실제 적용·테스트</div>
+                  <div class="flow-step">4. 기준·가이드로 정착</div>
                 </div>
 
                 <div class="flow-arrow-row">
-                  <span>혼선 확인</span> → <span>정리</span> → <span>테스트</span> → <span>정착</span>
+                  <span>인지</span> → <span>정리</span> → <span>테스트</span> → <span>정착</span>
                 </div>
 
                 <div class="flow-caption-grid">
                   <div class="flow-caption">
-                    라이브 포맷, 새 시스템, 제작 방식 전환, 카테고리 확장 등<br>
-                    전환기에 실제로 생기는 혼선 포인트를 정리
+                    포맷/시스템/제작 전환/카테고리 확장 등 변곡점에서<br>
+                    현업에서 실제로 생기는 혼선을 먼저 포착
                   </div>
                   <div class="flow-caption">
-                    랜딩 구조, 화면 설계 피드백, 권한 플로우, 인수인계 문서 등<br>
-                    <b>형태가 있는 산출물</b>로 기준을 남김
+                    랜딩 구조, 화면 피드백, 권한 플로우, 인수인계 문서 등<br>
+                    <b>형태가 있는 정리물</b>로 남김
                   </div>
                   <div class="flow-caption">
                     테스트/도입 단계에서 직접 사용해 보며<br>
                     동선·문의·오류 여부를 확인
                   </div>
                   <div class="flow-caption">
-                    효과가 확인된 구조는 기준·가이드·문서로 정착시켜<br>
-                    이후 동료들이 같은 방식으로 사용할 수 있게 정리
+                    효과가 확인된 내용은 기준·가이드로 정리해<br>
+                    이후 운영 품질이 흔들리지 않게 만듦
                   </div>
                 </div>
               </div>
@@ -728,17 +777,17 @@
             <div class="project-card-header">종합 성과 & 인사이트</div>
             <div class="project-card-body">
               <ul class="overview-list result">
-                <li>라이브 클래스 전용 랜딩·표현 방식 정리로 <b>신규 포맷 인지·문의 감소</b>에 기여</li>
-                <li>세일즈포스 <b>초기 테스터(선발)</b>로서, PD 워크플로우 관점의 화면·필드·동선 개선안을 정리해 반영에 기여</li>
-                <li>제작 방식 전환 파일럿에서 권한·페이지 생성 흐름을 정리해, 전환 과정의 병목을 줄이는 데 기여</li>
-                <li>아트 카테고리 인수인계 문서를 전사 가이드 형태로 확장해, 카테고리 운영 편차를 줄이고 온보딩 시간을 단축</li>
-                <li>공통적으로, 전환기에 필요한 <b>운영 기준·문서·가이드</b>를 남겨 조직이 안정적으로 바뀌는 데 도움</li>
+                <li>라이브 전용 랜딩/표현 방식 정리로 <b>신규 포맷 인지·문의 감소</b>에 도움</li>
+                <li>세일즈포스 초기 테스터로서, PD 워크플로우 관점의 필드/동선 개선에 피드백 정리</li>
+                <li>제작 전환 과정에서 권한·페이지 생성 플로우를 정리해 <b>전환 직후 병목을 최소화</b></li>
+                <li>아트 카테고리 인수인계 문서화로 운영 편차를 줄이고 온보딩 시간을 단축</li>
+                <li>공통적으로 “전환기”에 필요한 <b>운영 기준·문서·가이드</b>를 남겨, 다음 사람이 동일 품질로 운영할 수 있게 함</li>
               </ul>
             </div>
           </div>
 
           <div class="project-footer">
-            이 페이지는 서로 성격이 다른 네 개의 미니 프로젝트를, “전환기에 기준을 정리해 남긴 작업”이라는 관점으로 묶어 정리한 것입니다.
+            이 페이지는 네 개의 개별 이슈를, 운영·프로세스 관점에서 한 곳에 모아 재구성한 기록입니다.
           </div>
         </div>
       </section>
