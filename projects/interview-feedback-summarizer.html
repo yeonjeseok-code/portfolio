@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interview Feedback Summarizer · Yeon Je Seok</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="인터뷰어 피드백 텍스트를 자동 분석해 강점, 우려, 평가 차이를 구조화하는 인터뷰 피드백 자동 요약 AI 템플릿" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-body: #050816;
+      --bg-page: #f5f7fb;
+      --bg-card: #ffffff;
+      --bg-card-soft: #f7f9ff;
+      --accent: #2f7cff;
+      --accent-soft: #e0ebff;
+      --accent-strong: #0b68ff;
+      --text-main: #111827;
+      --text-sub: #4b5563;
+      --text-muted: #9ca3af;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 16px 40px rgba(148, 163, 184, 0.32);
+      --radius-card: 28px;
+      --nav-height: 64px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; }
+    body {
+      background: var(--bg-body);
+      see color: var(--text-main);
+      font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .page { min-height: 100vh; background: var(--bg-page); }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAV */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.86), rgba(5, 8, 22, 0.0));
+      color: #e5e7eb;
+    }
+
+    .top-nav-inner {
+      width: 100%;
+      max-width: 1120px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-size: 14px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+    .back-link span { font-size: 16px; transform: translateY(-1px); }
+
+    main { padding: 40px 0 72px; }
+    section { padding: 32px 0; }
+
+    /* HERO */
+    .hero { padding-top: 8px; padding-bottom: 24px; }
+
+    .hero-card {
+      border-radius: 32px;
+      padding: 32px 30px 28px;
+      background:
+        radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.24), transparent 60%),
+        linear-gradient(135deg, #0b63ff, #001b5f);
+      color: #f9fafb;
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.6);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(191, 219, 254, 0.45);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
+    }
+
+    .hero-title {
+      font-size: 30px;
+      line-height: 1.5;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .hero-role {
+      font-size: 14px;
+      font-weight: 500;
+      color: #dbeafe;
+      margin-bottom: 10px;
+    }
+
+    .hero-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #e5e7eb;
+      margin-bottom: 14px;
+    }
+
+    /* CTA (AI 프로젝트 공통) */
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(191, 219, 254, 0.55);
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.25);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, opacity 0.16s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.28);
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .hero-cta:active { transform: translateY(0); opacity: 0.95; }
+
+    .hero-cta-icon {
+      margin-left: 6px;
+      opacity: 0.78;
+      font-weight: 700;
+      font-size: 14px;
+      transform: translateY(-0.5px);
+    }
+
+    .hero-cta.secondary {
+      background: rgba(15, 23, 42, 0.40);
+      border: 1px solid rgba(191, 219, 254, 0.28);
+      color: rgba(255, 255, 255, 0.92);
+      box-shadow: none;
+      font-weight: 500;
+    }
+
+    .hero-cta.secondary:hover {
+      background: rgba(15, 23, 42, 0.52);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.22);
+    }
+
+    /* ✅ 초록색 펄스 동그라미 */
+    .hero-cta-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.22);
+      flex: 0 0 auto;
+      animation: pulse-dot 1.4s ease-in-out infinite;
+    }
+
+    .hero-cta-dot.copy {
+      background: #60a5fa;
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.22);
+      animation: none;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.55; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    .hero-cta-note {
+      font-size: 12px;
+      color: rgba(226, 232, 240, 0.86);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .hero-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .hero-meta-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 12px;
+    }
+
+    .hero-side {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .hero-side-card {
+      border-radius: 20px;
+      padding: 16px 18px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(191, 219, 254, 0.4);
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #e5e7eb;
+    }
+
+    .hero-side-list {
+      list-style: none;
+      color: #cbd5f5;
+      line-height: 1.6;
+    }
+
+    .hero-side-list li + li { margin-top: 4px; }
+
+    /* 공통 카드 */
+    .project-card {
+      border-radius: var(--radius-card);
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 24px 20px;
+    }
+
+    .project-card-header {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .project-card-body {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.75;
+    }
+
+    .project-card-body ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 6px;
+    }
+
+    .project-card-body li + li { margin-top: 6px; }
+
+    .project-card-body b {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .project-section-sub {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    /* Before / After */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .overview-label {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .overview-list {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
+      padding-left: 18px;
+      list-style: disc;
+    }
+
+    .overview-list li + li { margin-top: 4px; }
+
+    /* 사용 흐름/산출물 구조 카드 */
+    .structure-card {
+      border-radius: 24px;
+      padding: 18px 22px 18px;
+      background: var(--bg-card-soft);
+      border: 1px solid var(--accent-soft);
+      box-shadow: 0 12px 30px rgba(148, 163, 184, 0.25);
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .structure-box {
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 12px 14px;
+      line-height: 1.6;
+    }
+
+    .structure-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .structure-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .structure-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #4b5563;
+    }
+
+    /* 기대 성과 */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .impact-card {
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 12px 14px;
+      line-height: 1.6;
+    }
+
+    .impact-card-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .impact-card ul {
+      list-style: disc;
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+
+    .project-footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-card { grid-template-columns: minmax(0, 1fr); }
+      .overview-grid, .structure-grid, .impact-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      main { padding-top: 32px; }
+      .hero-card { padding: 24px 20px 22px; }
+      section { padding: 24px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header class="top-nav">
+      <div class="top-nav-inner">
+        <div class="nav-logo">YEON JE SEOK</div>
+        <a href="../index.html#projects" class="back-link">
+          <span>←</span> Back to Projects
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card">
+            <div>
+              <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>INTERVIEW</span>
+              </div>
+
+              <h1 class="hero-title">Interview Feedback Summarizer</h1>
+              <p class="hero-role">인터뷰어 피드백 텍스트를 붙여넣기만 하면 강점, 우려, 평가 차이를 구조화해 정리하는 템플릿</p>
+
+              <p class="hero-text">
+                인터뷰가 끝난 뒤 가장 시간이 많이 드는 작업은 “각 인터뷰어의 자유 텍스트를 읽고 합불 판단 가능한 형태로 정리하는 일”입니다.
+                이 템플릿은 원문을 훼손하지 않으면서도, 최종 판단에 필요한 정보만 남도록 구조화해
+                리뷰 회의와 의사결정을 더 빠르고 일관되게 만드는 것을 목표로 설계했습니다.
+              </p>
+
+              <!-- CTA -->
+              <div class="hero-cta-row">
+                <a
+                  class="hero-cta"
+                  href="https://chatgpt.com/g/g-692947438f04819181daa80a49fc9cbb-inteobyu-pideubaeg-jadong-yoyag-tempeulris"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="실제 Interview Feedback 템플릿 확인하기 (새 탭)"
+                >
+                  <span class="hero-cta-dot" aria-hidden="true"></span>
+                  <span>실제 인터뷰 피드백 템플릿 보기</span>
+                  <span class="hero-cta-icon" aria-hidden="true">↗</span>
+                </a>
+
+                <button
+                  type="button"
+                  class="hero-cta secondary"
+                  id="copyTemplateLinkBtn"
+                  data-copy-text="https://chatgpt.com/g/g-692947438f04819181daa80a49fc9cbb-inteobyu-pideubaeg-jadong-yoyag-tempeulris"
+                  aria-label="템플릿 링크 복사"
+                >
+                  <span class="hero-cta-dot copy" aria-hidden="true"></span>
+                  <span id="copyTemplateLinkText">링크 복사</span>
+                </button>
+              </div>
+
+              <div class="hero-cta-note">
+                실제로 동작하는 템플릿입니다. 클릭해서 바로 확인할 수 있습니다.
+              </div>
+
+              <div class="hero-meta-chips">
+                <span class="hero-meta-chip">강점/우려 자동 추출</span>
+                <span class="hero-meta-chip">Alignment Gap 도출</span>
+                <span class="hero-meta-chip">직무/문화/성장 항목 분리</span>
+                <span class="hero-meta-chip">원문 훼손 없이 구조화</span>
+              </div>
+            </div>
+
+            <aside class="hero-side">
+              <div class="hero-side-card">
+                <div class="hero-side-title">활용 포인트</div>
+                <ul class="hero-side-list">
+                  <li>면접 리뷰 회의 전, 빠른 요약본 생성</li>
+                  <li>인터뷰어 간 판단 기준 불일치 확인</li>
+                  <li>합불 결정에 필요한 핵심만 남기기</li>
+                </ul>
+              </div>
+              <div class="hero-side-card">
+                <div class="hero-side-title">결과물</div>
+                <ul class="hero-side-list">
+                  <li>공통 강점 / 공통 우려</li>
+                  <li>Alignment Gap (불일치 영역)</li>
+                  <li>직무·문화·성장 관점 요약</li>
+                  <li>결정용 한 줄 요약</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 프로젝트 요약 -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">프로젝트 요약</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                인터뷰어 피드백을 “읽기 쉬운 요약”이 아니라, “결정 가능한 구조”로 바꾸는 것을 목표로 했습니다.
+              </p>
+              <ul>
+                <li>전체 피드백을 한 번에 분석해 <b>공통된 강점</b>, <b>공통된 우려</b> 자동 추출</li>
+                <li>인터뷰어 간 관찰 불일치 영역(<b>Alignment Gap</b>)을 분리해 논의 포인트를 명확히</li>
+                <li><b>직무적합도 / 문화적합도 / 성장 가능성</b> 등 핵심 축으로 자동 구분</li>
+                <li>최종 판단에 필요한 정보만 남기도록 <b>요약 방식 최적화</b></li>
+                <li>원본 텍스트는 훼손하지 않고, 핵심만 구조화되도록 설계</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Before / After -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">문제 정의 (Before / After)</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                면접 이후의 병목은 “평가 자체”보다, 흩어진 텍스트를 판단 가능한 형태로 정리하는 과정에서 발생하는 경우가 많았습니다.
+              </p>
+
+              <div class="overview-grid">
+                <div>
+                  <div class="overview-label">Before</div>
+                  <ul class="overview-list">
+                    <li>인터뷰어마다 작성 방식이 달라 비교가 어려움</li>
+                    <li>강점/우려가 섞여 있어 핵심 포인트가 흐려짐</li>
+                    <li>불일치(의견 충돌)가 어디서 생겼는지 한 번에 안 보임</li>
+                    <li>리쿠르터가 정리 작업에 과도한 리소스를 사용</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <div class="overview-label">After</div>
+                  <ul class="overview-list">
+                    <li>공통 강점/공통 우려를 먼저 분리해 빠른 판단 지원</li>
+                    <li>Alignment Gap을 도출해 논의해야 할 지점을 선명화</li>
+                    <li>직무/문화/성장 축으로 정리해 평가 프레임 통일</li>
+                    <li>리뷰 회의 시간을 줄이고 의사결정 속도 향상</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 기획(세부) -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">기획 (세부 기획 포함)</div>
+            <div class="project-card-body">
+              <ul>
+                <li>여러 인터뷰어 피드백을 통합 입력하면 <b>공통된 패턴</b>을 우선 추출하도록 설계</li>
+                <li><b>강점 / 우려 / 근거 문장</b>을 세트로 묶어 “왜 그렇게 판단했는지”가 남도록 구성</li>
+                <li><b>관찰 불일치(Alignment Gap)</b>는 별도 섹션으로 분리해 회의의 초점을 맞춤</li>
+                <li>직무적합도/문화적합도/성장가능성 등 평가 축을 고정해 <b>정렬 프레임</b>이 흔들리지 않게 설계</li>
+                <li>원문은 보존하고 요약만 구조화하여, 추후 검토 시 <b>원본 추적</b>이 가능하도록 구성</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 사용 흐름 -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">사용 흐름 (How it Works)</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                실제 사용을 가정했을 때 “입력 → 자동 구조화 → 산출물”이 한 번에 이해되도록 단계로 정리했습니다.
+              </p>
+
+              <div class="structure-card">
+                <div class="structure-grid">
+                  <div class="structure-box">
+                    <div class="structure-title">Step 1 · 피드백 입력</div>
+                    <p>인터뷰어들의 자유 텍스트 피드백을 한 번에 붙여넣습니다.</p>
+                    <div class="structure-pill-row">
+                      <span class="structure-pill">텍스트 원문</span>
+                      <span class="structure-pill">다수 인터뷰어</span>
+                      <span class="structure-pill">포지션 컨텍스트</span>
+                    </div>
+                  </div>
+
+                  <div class="structure-box">
+                    <div class="structure-title">Step 2 · 자동 구조화</div>
+                    <p>강점/우려/불일치/평가축 기준으로 핵심만 분리합니다.</p>
+                    <div class="structure-pill-row">
+                      <span class="structure-pill">공통 강점</span>
+                      <span class="structure-pill">공통 우려</span>
+                      <span class="structure-pill">Alignment Gap</span>
+                      <span class="structure-pill">직무/문화/성장</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="structure-grid" style="margin-top: 12px;">
+                  <div class="structure-box">
+                    <div class="structure-title">Step 3 · 결정용 요약 생성</div>
+                    <p>리뷰 회의에 바로 쓸 수 있는 “결정용 요약본”을 출력합니다.</p>
+                    <div class="structure-pill-row">
+                      <span class="structure-pill">핵심 요약</span>
+                      <span class="structure-pill">논의 포인트</span>
+                      <span class="structure-pill">근거 문장</span>
+                    </div>
+                  </div>
+
+                  <div class="structure-box">
+                    <div class="structure-title">Step 4 · 회의/의사결정</div>
+                    <p>불일치 영역을 중심으로 토론하고 빠르게 결론을 내립니다.</p>
+                    <div class="structure-pill-row">
+                      <span class="structure-pill">리뷰 회의</span>
+                      <span class="structure-pill">최종 합불</span>
+                      <span class="structure-pill">다음 액션</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 산출물(Output) -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">산출물 구성 (Output)</div>
+            <div class="project-card-body">
+              <p class="project-section-sub">
+                실제 템플릿에서는 아래 항목들이 자동 생성됩니다. (예시는 템플릿 링크에서 직접 확인 가능합니다.)
+              </p>
+              <ul>
+                <li><b>Summary</b>: 후보자에 대한 한 줄 요약 + 전체 결론 방향</li>
+                <li><b>Strengths</b>: 공통 강점 / 인터뷰어별 강점 (근거 포함)</li>
+                <li><b>Concerns</b>: 공통 우려 / 인터뷰어별 우려 (근거 포함)</li>
+                <li><b>Alignment Gap</b>: 평가 불일치 영역과 불일치 이유 후보</li>
+                <li><b>Fit Matrix</b>: 직무/문화/성장 축으로 정렬된 판단 포인트</li>
+                <li><b>Decision Notes</b>: 최종 회의에서 논의해야 할 질문 리스트</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 기대 성과 -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">기대 성과</div>
+            <div class="project-card-body">
+              <div class="impact-grid">
+                <div class="impact-card">
+                  <div class="impact-card-title">Consistency</div>
+                  <ul>
+                    <li>평가 기준의 일관성 확보</li>
+                    <li>불일치 영역이 분리되어 논의 효율 증가</li>
+                    <li>결정 근거가 구조화되어 재검토 용이</li>
+                  </ul>
+                </div>
+
+                <div class="impact-card">
+                  <div class="impact-card-title">Speed</div>
+                  <ul>
+                    <li>면접 리뷰 회의 시간 단축</li>
+                    <li>의사결정 속도 증가</li>
+                    <li>리쿠르터 정리 리소스 절감</li>
+                  </ul>
+                </div>
+
+                <div class="impact-card">
+                  <div class="impact-card-title">Candidate Experience</div>
+                  <ul>
+                    <li>기록 누락 방지</li>
+                    <li>후보자 평가 히스토리 보존</li>
+                    <li>커뮤니케이션 지연 감소</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-footer">
+            본 페이지는 템플릿의 구조/설계 의도를 중심으로 정리한 내용입니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- Design Principles -->
+      <section>
+        <div class="container">
+          <div class="project-card">
+            <div class="project-card-header">자동화 설계 원리 (Design Principles)</div>
+            <div class="project-card-body">
+              <ul>
+                <li>사람을 대체하는 자동화가 아닌, 잠재적 내부고객에게 집중할 시간을 확보 (채용 경험)</li>
+                <li>단순작업, 반복작업 제거 및 프로세스 효율화</li>
+                <li>HM, 리크루터, 인터뷰어 간 Alignment 속도를 올리는 설계 중심</li>
+                <li>텍스트 기반 구조로 보안 리스크 최소화</li>
+                <li>지원자 경험에 집중할 수 있도록 구성한 프로토타입</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // 링크 복사 버튼
+    (function () {
+      const btn = document.getElementById('copyTemplateLinkBtn');
+      const label = document.getElementById('copyTemplateLinkText');
+      if (!btn || !label) return;
+
+      const originalText = label.textContent;
+
+      async function copyText(text) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+        } catch (e) {}
+
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.top = '-9999px';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          return ok;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      btn.addEventListener('click', async () => {
+        const url = btn.getAttribute('data-copy-text') || '';
+        const ok = await copyText(url);
+
+        label.textContent = ok ? '복사 완료' : '복사 실패';
+        setTimeout(() => {
+          label.textContent = originalText;
+        }, 1400);
+      });
+    })();
+  </script>
+</body>
+</html>
