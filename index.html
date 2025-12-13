@@ -35,11 +35,7 @@
       --nav-height: 64px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       width: 100%;
@@ -74,12 +70,9 @@
     }
 
     /* NAV */
-
     .top-nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 40;
       height: var(--nav-height);
       display: flex;
@@ -118,15 +111,9 @@
       cursor: pointer;
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
+    .nav-link:hover { opacity: 1; transform: translateY(-1px); }
 
-    .nav-link:hover {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    main {
-      margin-top: var(--nav-height);
-    }
+    main { margin-top: var(--nav-height); }
 
     section.section {
       min-height: 100vh;
@@ -138,11 +125,7 @@
       transform: translateY(40px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-
-    section.section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    section.section.visible { opacity: 1; transform: translateY(0); }
 
     .section-inner {
       width: 100%;
@@ -175,18 +158,13 @@
     }
 
     /* HERO */
-
     .hero {
       background: radial-gradient(circle at 0% 0%, #00d4ff22 0, transparent 50%),
                   radial-gradient(circle at 100% 0%, #7c3aed26 0, transparent 55%),
                   linear-gradient(145deg, var(--bg-hero-grad-from), var(--bg-hero-grad-to));
       color: #f9fafb;
     }
-
-    .hero.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .hero.visible { opacity: 1; transform: translateY(0); }
 
     .hero-inner {
       width: 100%;
@@ -329,9 +307,7 @@
       color: #93c5fd;
     }
 
-    .hero-focus-item-title {
-      font-size: 12px;
-    }
+    .hero-focus-item-title { font-size: 12px; }
 
     .hero-focus-pill-tag {
       font-size: 11px;
@@ -364,7 +340,6 @@
     }
 
     /* ABOUT / FOCUS */
-
     .section-focus {
       background: radial-gradient(circle at 0 0, #e0edff 0, transparent 55%),
                   radial-gradient(circle at 100% 100%, #e0f2fe 0, transparent 55%),
@@ -384,10 +359,7 @@
       color: var(--text-sub);
       max-width: 520px;
     }
-
-    .focus-body p + p {
-      margin-top: 12px;
-    }
+    .focus-body p + p { margin-top: 12px; }
 
     .focus-card {
       border-radius: var(--radius-card);
@@ -434,12 +406,9 @@
       box-shadow: 0 18px 40px rgba(37, 99, 235, 0.4);
     }
 
-    .focus-pill.active .focus-pill-tag {
-      color: #dbeafe;
-    }
+    .focus-pill.active .focus-pill-tag { color: #dbeafe; }
 
     /* IMPACT */
-
     .section-impact {
       background: radial-gradient(circle at 0 100%, #e0f2fe 0, transparent 60%),
                   #f5f7fb;
@@ -536,20 +505,15 @@
     }
 
     /* PROJECTS */
-
     .section-projects {
       background: radial-gradient(circle at 100% 0, #e0edff 0, transparent 55%),
                   #f5f7fb;
     }
 
-    /* [추가] 필터로 카드 수가 적을 때 상단이 비는 현상(중앙 정렬) 방지 */
-    #projects.section {
-      align-items: flex-start;
-    }
+    /* 필터 시 위가 비어 보이는 느낌 방지(요청하셨던 부분 유지) */
+    #projects.section { align-items: flex-start; }
 
-    .projects-header {
-      margin-bottom: 28px;
-    }
+    .projects-header { margin-bottom: 28px; }
 
     .projects-header p {
       font-size: 15px;
@@ -589,10 +553,9 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
       margin-bottom: 24px;
-      align-items: stretch; /* [추가] 그리드 아이템 높이 늘려서 카드 높이 통일 */
+      align-items: stretch;
     }
 
-    /* [추가] 링크 래퍼도 동일 높이로 늘어나게 */
     .project-card-link {
       display: block;
       height: 100%;
@@ -608,8 +571,8 @@
       flex-direction: column;
       gap: 14px;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      height: 100%;        /* [추가] 카드 높이 통일 */
-      min-height: 240px;   /* [추가] 가장 긴 카드 기준으로 전체 통일(과도한 변화 없이) */
+      height: 100%;
+      min-height: 240px;
     }
 
     .project-card:hover {
@@ -668,8 +631,7 @@
       box-shadow: 0 10px 25px rgba(148, 163, 184, 0.35);
     }
 
-    /* SKILLS – Hard/Soft/Tools */
-
+    /* SKILLS */
     .section-skills {
       background: radial-gradient(circle at 0 0, #e0edff 0, transparent 55%),
                   radial-gradient(circle at 100% 100%, #e0f2fe 0, transparent 60%),
@@ -734,12 +696,9 @@
       padding-left: 18px;
     }
 
-    .skills-column li + li {
-      margin-top: 4px;
-    }
+    .skills-column li + li { margin-top: 4px; }
 
     /* PROFILE */
-
     .section-profile {
       background: radial-gradient(circle at 100% 0, #e0edff 0, transparent 60%),
                   #f5f7fb;
@@ -789,18 +748,6 @@
       display: block;
     }
 
-    .profile-image-placeholder {
-      flex: 1;
-      border-radius: 26px;
-      background: radial-gradient(circle at 50% 0, #dbeafe, #eff6ff);
-      margin-bottom: 18px;
-    }
-
-    .profile-caption {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
     .profile-body-title {
       font-size: 20px;
       font-weight: 700;
@@ -835,7 +782,6 @@
     }
 
     /* CONTACT */
-
     .section-contact {
       background: #050816;
       color: #e5e7eb;
@@ -848,13 +794,6 @@
       display: flex;
       flex-direction: column;
       gap: 32px;
-    }
-
-    .contact-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      align-items: flex-end;
     }
 
     .contact-title {
@@ -917,14 +856,8 @@
     }
 
     @keyframes pulse-dot {
-      0%, 100% {
-        opacity: 0.55;
-        transform: scale(0.9);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1);
-      }
+      0%, 100% { opacity: 0.55; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1); }
     }
 
     .contact-footer {
@@ -940,19 +873,12 @@
 
     /* SCROLL SNAP (데스크탑만) */
     @media (min-width: 960px) {
-      html {
-        scroll-snap-type: y mandatory;
-      }
-      body {
-        scroll-snap-type: y mandatory;
-      }
-      .section {
-        scroll-snap-align: start;
-      }
+      html { scroll-snap-type: y mandatory; }
+      body { scroll-snap-type: y mandatory; }
+      .section { scroll-snap-align: start; }
     }
 
     /* RESPONSIVE */
-
     @media (max-width: 960px) {
       .hero-inner {
         grid-template-columns: minmax(0, 1fr);
@@ -961,59 +887,27 @@
         padding-bottom: 72px;
       }
 
-      .hero-focus-card {
-        justify-self: flex-start;
-      }
+      .hero-focus-card { justify-self: flex-start; }
 
-      .focus-grid,
-      .impact-layout,
-      .profile-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .focus-grid, .impact-layout, .profile-grid { grid-template-columns: minmax(0, 1fr); }
 
-      .project-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-      .section-inner {
-        padding-top: 72px;
-        padding-bottom: 72px;
-      }
+      .section-inner { padding-top: 72px; padding-bottom: 72px; }
 
-      .skills-columns {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .skills-columns { grid-template-columns: minmax(0, 1fr); }
 
-      html, body {
-        scroll-snap-type: none;
-      }
+      html, body { scroll-snap-type: none; }
     }
 
     @media (max-width: 720px) {
       .nav-links { gap: 14px; }
-
       .hero-title { font-size: 34px; }
-
-      .project-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .section {
-        min-height: auto;
-      }
-
-      .section-inner {
-        padding-top: 64px;
-        padding-bottom: 64px;
-      }
-
-      .impact-card {
-        border-radius: 32px;
-      }
-
-      .contact-info-list {
-        justify-content: flex-start;
-      }
+      .project-grid { grid-template-columns: minmax(0, 1fr); }
+      .section { min-height: auto; }
+      .section-inner { padding-top: 64px; padding-bottom: 64px; }
+      .impact-card { border-radius: 32px; }
+      .contact-info-list { justify-content: flex-start; }
     }
   </style>
 </head>
@@ -1050,28 +944,15 @@
               짧은 시간 안에 '이 사람과 일하면 구조가 잡히겠다'는 인상을 남기는 것을 목표로 합니다.
             </p>
             <div class="hero-tags">
-              <div class="tag-pill">
-                <span class="tag-dot"></span>
-                <span>채용·HR 관점의 메시지 설계</span>
-              </div>
-              <div class="tag-pill">
-                <span class="tag-dot"></span>
-                <span>AI 기반 문서·워크플로우 자동화</span>
-              </div>
-              <div class="tag-pill">
-                <span class="tag-dot"></span>
-                <span>콘텐츠·교육 서비스 도메인</span>
-              </div>
+              <div class="tag-pill"><span class="tag-dot"></span><span>채용·HR 관점의 메시지 설계</span></div>
+              <div class="tag-pill"><span class="tag-dot"></span><span>AI 기반 문서·워크플로우 자동화</span></div>
+              <div class="tag-pill"><span class="tag-dot"></span><span>콘텐츠·교육 서비스 도메인</span></div>
             </div>
-            <div class="hero-scroll-indicator">
-              <span class="hero-scroll-line"></span> SCROLL
-            </div>
+            <div class="hero-scroll-indicator"><span class="hero-scroll-line"></span> SCROLL</div>
           </div>
 
           <aside class="hero-focus-card">
-            <div class="hero-focus-header">
-              <span>현재 집중하는 것들</span>
-            </div>
+            <div class="hero-focus-header"><span>현재 집중하는 것들</span></div>
             <div class="hero-focus-list">
               <div class="hero-focus-item" data-hero-index="0">
                 <div class="hero-focus-item-main">
@@ -1102,7 +983,6 @@
                 <span class="hero-focus-pill-tag">정렬</span>
               </div>
             </div>
-
             <div class="hero-focus-note">현재 보는 포트폴리오 페이지는 전부 gpt를 활용해 제작했습니다.</div>
           </aside>
         </div>
@@ -1170,22 +1050,10 @@
               </p>
 
               <div class="impact-list">
-                <div class="impact-item">
-                  <span class="impact-dot"></span>
-                  <span>VOD 상품 구성 리디자인으로 객단가 약 20% 상승</span>
-                </div>
-                <div class="impact-item">
-                  <span class="impact-dot"></span>
-                  <span>카테고리·SKU 구조 개편 후 전환율 약 25% 유지</span>
-                </div>
-                <div class="impact-item">
-                  <span class="impact-dot"></span>
-                  <span>AI 템플릿 기반 자동화를 통한 반복 문서 작성 3단계 감소</span>
-                </div>
-                <div class="impact-item">
-                  <span class="impact-dot"></span>
-                  <span>동료 긍정 피드백 다수</span>
-                </div>
+                <div class="impact-item"><span class="impact-dot"></span><span>VOD 상품 구성 리디자인으로 객단가 약 20% 상승</span></div>
+                <div class="impact-item"><span class="impact-dot"></span><span>카테고리·SKU 구조 개편 후 전환율 약 25% 유지</span></div>
+                <div class="impact-item"><span class="impact-dot"></span><span>AI 템플릿 기반 자동화를 통한 반복 문서 작성 3단계 감소</span></div>
+                <div class="impact-item"><span class="impact-dot"></span><span>동료 긍정 피드백 다수</span></div>
               </div>
             </div>
 
@@ -1193,9 +1061,7 @@
               <div>
                 <div class="impact-metric-main" id="impactNumber">20%</div>
                 <div class="impact-metric-label" id="impactLabel">객단가 상승</div>
-                <div class="impact-metric-sub" id="impactSub">
-                  VOD 번들 구성·SKU 조정 프로젝트 기준
-                </div>
+                <div class="impact-metric-sub" id="impactSub">VOD 번들 구성·SKU 조정 프로젝트 기준</div>
 
                 <div class="impact-badge-list">
                   <span class="impact-badge">전환/객단가 지표</span>
@@ -1214,9 +1080,7 @@
           <div class="projects-header">
             <div class="section-title">Projects</div>
             <h2 class="section-headline">실제 문제에서 시작한<br>콘텐츠·프로세스 기획 사례</h2>
-            <p>
-              실무 영역에서 발생한 문제를 진단하고, 구조화해 개선 솔루션을 설계한 프로젝트들입니다.
-            </p>
+            <p>실무 영역에서 발생한 문제를 진단하고, 구조화해 개선 솔루션을 설계한 프로젝트들입니다.</p>
           </div>
 
           <div class="project-filters">
@@ -1279,14 +1143,16 @@
               </article>
             </a>
 
-            <a href="projects/vod-ops.html" class="project-card" data-type="content">
-              <div class="project-tag">VOD · OPS</div>
-              <div class="project-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
-              <p class="project-desc">
-                학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를
-                기획하고, 프로모션·구성 전략을 함께 설계했습니다.
-              </p>
-              <div class="project-meta">지표 기반 개선 사이클 수립</div>
+            <a href="projects/vod-ops.html" class="project-card-link">
+              <article class="project-card" data-type="content">
+                <div class="project-tag">VOD · OPS</div>
+                <div class="project-title">VOD 콘텐츠 개선 운영 프로세스 구축</div>
+                <p class="project-desc">
+                  학습 목적·사용자 여정에 맞춰 VOD 상품 패키지를
+                  기획하고, 프로모션·구성 전략을 함께 설계했습니다.
+                </p>
+                <div class="project-meta">지표 기반 개선 사이클 수립</div>
+              </article>
             </a>
 
             <a href="projects/project-vod-product.html" class="project-card-link">
@@ -1298,9 +1164,7 @@
                   콘텐츠를 기획·상품화한 프로젝트입니다.<br>
                   클래스101·블루타이거에서 기획·상세페이지·운영까지 End-to-End로 리딩했습니다.
                 </p>
-                <div class="project-meta">
-                  콘텐츠 기획 · 상품 구조화 · 상세페이지 · 운영
-                </div>
+                <div class="project-meta">콘텐츠 기획 · 상품 구조화 · 상세페이지 · 운영</div>
               </article>
             </a>
 
@@ -1348,8 +1212,7 @@
 
           <div class="project-view-more-wrap">
             <button id="projectViewMoreBtn" class="project-view-more-btn">
-              전체 보기
-              <span aria-hidden="true">▾</span>
+              전체 보기 <span aria-hidden="true">▾</span>
             </button>
           </div>
         </div>
@@ -1366,10 +1229,8 @@
           </p>
 
           <div class="skills-columns">
-            <!-- Hard Skills -->
             <div class="skills-column">
               <div class="skills-column-title">Hard Skills</div>
-
               <h4>구조적 문제 정의 & 프로세스 설계</h4>
               <ul>
                 <li>문제 구조화(Logical Structuring)</li>
@@ -1398,10 +1259,8 @@
               </ul>
             </div>
 
-            <!-- Soft Skills -->
             <div class="skills-column">
               <div class="skills-column-title">Soft Skills</div>
-
               <h4>커뮤니케이션 & 협업</h4>
               <ul>
                 <li>이해관계자 Alignment</li>
@@ -1431,7 +1290,6 @@
               </ul>
             </div>
 
-            <!-- Tools -->
             <div class="skills-column">
               <div class="skills-column-title">Tools</div>
 
@@ -1497,14 +1355,12 @@
       <!-- CONTACT -->
       <section id="contact" class="section section-contact">
         <div class="contact-inner">
-          <div class="contact-header">
-            <div>
-              <div class="contact-title">함께 구조를 설계해 보고 싶다면</div>
-              <p class="contact-sub">
-                사람·프로덕트·프로세스가 만나는 지점에서 채용·운영·콘텐츠 문제를 함께 정의하고,
-                AI를 활용한 구조적 해결책을 실험해 보고 싶습니다.
-              </p>
-            </div>
+          <div>
+            <div class="contact-title">함께 구조를 설계해 보고 싶다면</div>
+            <p class="contact-sub">
+              사람·프로덕트·프로세스가 만나는 지점에서 채용·운영·콘텐츠 문제를 함께 정의하고,
+              AI를 활용한 구조적 해결책을 실험해 보고 싶습니다.
+            </p>
           </div>
 
           <div class="contact-info-list">
@@ -1538,9 +1394,7 @@
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
+          if (entry.isIntersecting) entry.target.classList.add('visible');
         });
       },
       { threshold: 0.35 }
@@ -1571,9 +1425,7 @@
     let heroFocusIndex = 0;
 
     function setHeroFocusActive(idx) {
-      heroFocusItems.forEach((item, i) => {
-        item.classList.toggle('active', i === idx);
-      });
+      heroFocusItems.forEach((item, i) => item.classList.toggle('active', i === idx));
     }
 
     if (heroFocusItems.length > 0) {
@@ -1589,9 +1441,7 @@
     let focusIndex = 0;
 
     function setFocusActive(idx) {
-      focusPills.forEach((pill, i) => {
-        pill.classList.toggle('active', i === idx);
-      });
+      focusPills.forEach((pill, i) => pill.classList.toggle('active', i === idx));
     }
 
     if (focusPills.length > 0) {
@@ -1604,26 +1454,10 @@
 
     // IMPACT 카드 자동 전환
     const impactStates = [
-      {
-        value: '20%',
-        label: '객단가 상승',
-        sub: 'VOD 번들 구성·SKU 조정 프로젝트 기준',
-      },
-      {
-        value: '25%',
-        label: '전환율 상위 유지',
-        sub: '카테고리·SKU 구조 재설계 랜딩 기준',
-      },
-      {
-        value: '3단계',
-        label: '반복 문서 작성 단계 축소 기대',
-        sub: 'AI 템플릿·체크리스트 도입 전/후 예상',
-      },
-      {
-        value: 'Clear',
-        label: '구조 변경/확장에 대한 긍정 피드백',
-        sub: '프로세스·메시지 정렬 후 동료 정성 피드백',
-      }
+      { value: '20%', label: '객단가 상승', sub: 'VOD 번들 구성·SKU 조정 프로젝트 기준' },
+      { value: '25%', label: '전환율 상위 유지', sub: '카테고리·SKU 구조 재설계 랜딩 기준' },
+      { value: '3단계', label: '반복 문서 작성 단계 축소 기대', sub: 'AI 템플릿·체크리스트 도입 전/후 예상' },
+      { value: 'Clear', label: '구조 변경/확장에 대한 긍정 피드백', sub: '프로세스·메시지 정렬 후 동료 정성 피드백' }
     ];
 
     const impactNumber = document.getElementById('impactNumber');
@@ -1653,6 +1487,25 @@
     let projectShowAll = false;
     const PROJECT_VISIBLE_COUNT = 6;
 
+    // ✅ 핵심 수정: 카드(article) 말고, 카드의 래퍼(a 또는 article)를 숨기기/보이기
+    function getProjectWrapper(cardEl) {
+      const linkWrapper = cardEl.closest('.project-card-link');
+      return linkWrapper ? linkWrapper : cardEl;
+    }
+
+    function setWrapperDisplay(wrapperEl, show) {
+      if (show) {
+        // 링크 래퍼면 그리드 아이템으로 보이게(블록), 카드 자체면 플렉스
+        if (wrapperEl.classList && wrapperEl.classList.contains('project-card-link')) {
+          wrapperEl.style.display = 'block';
+        } else {
+          wrapperEl.style.display = 'flex';
+        }
+      } else {
+        wrapperEl.style.display = 'none';
+      }
+    }
+
     function applyProjectVisibility() {
       const activeFilterBtn = document.querySelector('.project-filter-btn.active');
       const filter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
@@ -1665,17 +1518,19 @@
           filter === type ||
           (filter === 'content' && type === 'product');
 
+        const wrapper = getProjectWrapper(card);
+
         if (!match) {
-          card.style.display = 'none';
+          setWrapperDisplay(wrapper, false);
           return;
         }
 
         if (!projectShowAll && shownCount >= PROJECT_VISIBLE_COUNT) {
-          card.style.display = 'none';
+          setWrapperDisplay(wrapper, false);
           return;
         }
 
-        card.style.display = 'flex';
+        setWrapperDisplay(wrapper, true);
         shownCount += 1;
       });
 
