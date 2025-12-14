@@ -224,6 +224,7 @@
                   radial-gradient(circle at 100% 0%, #7c3aed26 0, transparent 55%),
                   linear-gradient(145deg, var(--bg-hero-grad-from), var(--bg-hero-grad-to));
       color: #f9fafb;
+      position: relative; /* ✅ ADD: 하단 중앙 고정 기준 */
     }
     .hero.visible { opacity: 1; transform: translateY(0); }
 
@@ -400,26 +401,33 @@
       color: rgba(255, 255, 255, 0.72);
     }
 
-    /* ✅ ADD: HERO INTENT (겹침 방지 + 모바일 정렬 보정) */
+    /* ✅ HERO INTENT: 데스크탑 최하단 정중앙 고정 */
     .hero-intent {
-      margin-top: -18px; /* tags 아래 여백이 커서, “최하단 쪽”에 더 붙여 보이도록만 미세 조정 */
-      margin-bottom: 18px;
-      width: 100%;
-      max-width: 680px;
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 720px;
       text-align: center;
+      z-index: 2;
+      pointer-events: none;
     }
+
     .hero-intent-title {
       display: block;
       font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(191, 219, 254, 0.9);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
+
     .hero-intent-text {
       font-size: 13px;
       line-height: 1.55;
       color: rgba(229, 231, 235, 0.9);
+      word-break: keep-all;
     }
 
     /* ABOUT / FOCUS */
@@ -981,13 +989,6 @@
       .skills-columns { grid-template-columns: minmax(0, 1fr); }
 
       html, body { scroll-snap-type: none; }
-
-      /* ✅ ADD: HERO INTENT (모바일/태블릿에서 폭 100% + 중앙 유지) */
-      .hero-intent {
-        max-width: 100%;
-        margin-top: -8px;
-        margin-bottom: 16px;
-      }
     }
 
     /* ✅ 모바일에서만: 네비 드롭다운 + 패딩 미세 감소 */
@@ -1018,6 +1019,26 @@
 
       .impact-card { border-radius: 32px; }
       .contact-info-list { justify-content: flex-start; }
+
+      /* ✅ 모바일: hero-intent는 흐름 안으로 내려서 겹침 방지 */
+      .hero-intent {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        margin: 14px auto 0;
+        pointer-events: auto;
+      }
+
+      .hero-intent-title {
+        font-size: 11px;
+        margin-bottom: 6px;
+      }
+
+      .hero-intent-text {
+        font-size: 13px;
+        line-height: 1.6;
+      }
     }
   </style>
 </head>
@@ -1084,14 +1105,6 @@
               <div class="tag-pill"><span class="tag-dot"></span><span>콘텐츠·교육 서비스 도메인</span></div>
             </div>
 
-            <!-- ✅ ADD: hero intent (모바일 겹침 방지 / 중앙 정렬 / 줄바꿈 최소화) -->
-            <div class="hero-intent">
-              <span class="hero-intent-title">이 포트폴리오를 통해 보여주고 싶은 것</span>
-              <div class="hero-intent-text">
-                저는 프로젝트 결과보다 그 결과가 나오게 만든 문제 정의와 판단 기준을 보여주고 싶습니다. 반복되는 비효율은 실행력이 부족해서가 아니라 문제와 역할, 우선순위가 구조화되지 않은 상태에서 상황에 맞지 않는 판단을 반복하기 때문에 발생한다고 생각합니다.
-              </div>
-            </div>
-
             <div class="hero-scroll-indicator"><span class="hero-scroll-line"></span> SCROLL</div>
           </div>
 
@@ -1129,6 +1142,14 @@
             </div>
             <div class="hero-focus-note">현재 보는 포트폴리오 페이지는 전부 gpt를 활용해 제작했습니다.</div>
           </aside>
+        </div>
+
+        <!-- ✅ hero 최하단 정중앙 고정(데스크탑), 모바일은 흐름으로 -->
+        <div class="hero-intent" aria-label="Portfolio intent">
+          <span class="hero-intent-title">이 포트폴리오를 통해 보여주고 싶은 것</span>
+          <div class="hero-intent-text">
+            저는 프로젝트 결과보다 그 결과가 나오게 만든 문제 정의와 판단 기준을 보여주고 싶습니다. 반복되는 비효율은 실행력이 부족해서가 아니라 문제와 역할, 우선순위가 구조화되지 않은 상태에서 상황에 맞지 않는 판단을 반복하기 때문에 발생한다고 생각합니다.
+          </div>
         </div>
       </section>
 
