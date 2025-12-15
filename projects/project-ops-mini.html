@@ -579,8 +579,17 @@
         padding: 24px 0;
       }
 
+      /* ✅ FIX: 모바일에서 flow-step(버블)이 가로 100%로 커지는 문제 방지 */
       .flow-steps {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      .flow-step {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
       }
     }
   </style>
