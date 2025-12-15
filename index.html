@@ -993,6 +993,9 @@
 
     /* ✅ 모바일에서만: 네비 드롭다운 + 패딩 미세 감소 */
     @media (max-width: 720px) {
+      /* ✅ FIX: 모바일에서 hero 섹션 안 요소들이 옆으로 붙는 문제 방지 */
+      .hero { flex-direction: column; }
+
       /* 네비 overflow 해결(모바일만) */
       .nav-links { display: none; }
       .nav-mobile { display: inline-flex; }
