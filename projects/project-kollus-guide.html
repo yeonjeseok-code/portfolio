@@ -499,8 +499,17 @@
         padding: 24px 0;
       }
 
+      /* ✅ FIX: 모바일에서 flow-step(버블)이 세로로 100% 커지는 문제 방지 */
       .flow-steps {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      .flow-step {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
       }
     }
   </style>
@@ -512,9 +521,9 @@
     <header class="top-nav">
       <div class="top-nav-inner">
         <div class="nav-logo">YEON JE SEOK</div>
-<a href="/portfolio/#projects" class="back-link">
-  <span>←</span> Back to Projects
-</a>
+        <a href="/portfolio/#projects" class="back-link">
+          <span>←</span> Back to Projects
+        </a>
       </div>
     </header>
 
